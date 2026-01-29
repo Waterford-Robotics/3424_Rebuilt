@@ -14,11 +14,11 @@ public class IntakeSubsystem extends SubsystemBase{
     m_intake.getConfigurator().apply(IntakeConfigs.INTAKE_TALON_FX_CONFIGURATION, 0.05);
 
     m_lift = new TalonFX(MotorConstants.k_intakeKrakenID);
-    m_lift.getConfigurator().apply(IntakeConfigs.INTAKE_TALON_FX_CONFIGURATION, 0.05);
+    m_lift.getConfigurator().apply(IntakeConfigs.LIFT_TALON_FX_CONFIGURATION, 0.05);
   }
 
   public void lift() {
-    m_lift.set(MotorConstants.k_intakeSpeed);
+    m_lift.set(MotorConstants.k_liftSpeed);
   }
 
   public void intake(int polarity) { //polarity is 1 or -1

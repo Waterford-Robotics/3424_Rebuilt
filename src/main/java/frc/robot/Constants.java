@@ -60,7 +60,7 @@ public class Constants {
     public static final double k_intakeSpeed = -0.5;
 
     //intake hood lift
-    public static final int k_intakeKrakenID = 11;
+    public static final int k_liftKrakenID = 11;
     public static final double k_liftRampRate = 0.05;
     public static final double k_liftClosedMaxSpeed = 0.4;
     public static final int k_liftSupplyCurrentLimit = 60;
@@ -70,7 +70,7 @@ public class Constants {
     public static final int k_lowershooterKrakenID = 20;
     public static final double k_lowershooterRampRate = 0.05;
     public static final double k_lowershooterClosedMaxSpeed = 0.4;
-    public static final int k_shooterSupplyCurrentLimit = 60;
+    public static final int k_lowershooterSupplyCurrentLimit = 60;
     public static final double k_lowershooterSpeed = 0.31;
     public static final double k_fastLowerShooterSpeed = 0.67;
 
