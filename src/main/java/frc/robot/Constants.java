@@ -50,32 +50,52 @@ public class Constants {
   
   public static final class MotorConstants{
     public static final int k_supplyCurrentLimit = 40;
+    //-->IMPORTANT these constants need testing and are not properly adjusted
 
     //intake
-    public static final int k_intakeKrakenID = 12;
+    public static final int k_intakeKrakenID = 10;
     public static final double k_intakeRampRate = 0.05;
     public static final double k_intakeClosedMaxSpeed = 0.4;
     public static final int k_intakeSupplyCurrentLimit = 60;
     public static final double k_intakeSpeed = -0.5;
 
-    //conveyor intake
-    public static final int k_conveyorKrakenID = 11;
-    public static final double k_conveyorRampRate = 0.05;
-    public static final double k_conveyorClosedMaxSpeed = 0.4;
-    public static final int k_conveyorSupplyCurrentLimit = 60;
-    public static final double k_conveyorSpeed = 0.12; 
+    //intake hood lift
+    public static final int k_intakeKrakenID = 11;
+    public static final double k_liftRampRate = 0.05;
+    public static final double k_liftClosedMaxSpeed = 0.4;
+    public static final int k_liftSupplyCurrentLimit = 60;
+    public static final double k_liftSpeed = -0.5;
 
-    //shooter
-    public static final int k_shooterKrakenID = 21;
-    public static final double k_shooterRampRate = 0.05;
-    public static final double k_shooterClosedMaxSpeed = 0.4;
+    //lower shooter
+    public static final int k_lowershooterKrakenID = 20;
+    public static final double k_lowershooterRampRate = 0.05;
+    public static final double k_lowershooterClosedMaxSpeed = 0.4;
     public static final int k_shooterSupplyCurrentLimit = 60;
-    public static final double k_shooterSpeed = 0.31;
-    public static final double k_fastShooterSpeed = 0.67;
-  }
-  
-  /*public static final class SensorIDConstants {
-    // Intake CANRange
-    public static final int k_shootCANRangeID = 42;
-  }*/
+    public static final double k_lowershooterSpeed = 0.31;
+    public static final double k_fastLowerShooterSpeed = 0.67;
+
+    //upper shooter
+    public static final int k_uppershooterKrakenID = 21;
+    public static final double k_uppershooterRampRate = 0.05;
+    public static final double k_uppershooterClosedMaxSpeed = 0.4;
+    public static final int k_uppershooterSupplyCurrentLimit = 60;
+    public static final double k_uppershooterSpeed = 0.31;
+    public static final double k_fastUpperShooterSpeed = 0.67;
+
+    //bottom spinner (spindexer)
+    public static final int k_bottomspinnerKrakenID = 31;
+    public static final double k_bottomspinnerRampRate = 0.05;
+    public static final double k_bottomspinnerClosedMaxSpeed = 0.4;
+    public static final int k_bottomspinnerSupplyCurrentLimit = 60;
+    public static final double k_bottomspinnerSpeed = 0.31;
+    public static final double k_fastBottomSpinnerSpeed = 0.67;
+
+    //roller (spindexer)
+    public static final int k_rollerKrakenID = 31;
+    public static final double k_rollerRampRate = 0.05;
+    public static final double k_rollerClosedMaxSpeed = 0.4;
+    public static final int k_rollerSupplyCurrentLimit = 60;
+    public static final double k_rollerSpeed = 0.31;
+    public static final double k_fastRollerSpeed = 0.67;
+}
 }
