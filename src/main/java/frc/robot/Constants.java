@@ -49,6 +49,11 @@ public class Constants {
     public static final double k_turnRate = -0.85;
   }
   
+  public static final class OperatorConstants {
+    public static final int k_driverController = 0;
+  }
+
+
   public static final class MotorConstants{
     public static final int k_supplyCurrentLimit = 40;
     //-->IMPORTANT these constants need testing and are not properly adjusted
@@ -59,6 +64,13 @@ public class Constants {
     public static final double k_intakeClosedMaxSpeed = 0.4;
     public static final int k_intakeSupplyCurrentLimit = 60;
     public static final double k_intakeSpeed = -0.5;
+
+    //spindexer
+    public static final int k_spindexerKrakenID = 10;
+    public static final double k_spindexerRampRate = 0.05;
+    public static final double k_spindexerClosedMaxSpeed = 0.4;
+    public static final int k_sipindexerSupplyCurrentLimit = 60;
+    public static final double k_spindexerSpeed = -0.5;
 
     //intake hood lift
     public static final int k_liftKrakenID = 11;
