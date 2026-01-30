@@ -40,6 +40,7 @@ public class Constants {
 
     public final static int k_righttrig = Axis.kRightTrigger.value; // Right Trig
     public final static int k_lefttrig = Axis.kLeftTrigger.value; // Left Trig
+    public final static int k_resetNavX = 8;
   }  
 
   public static final class DriveConstants{
