@@ -5,11 +5,13 @@
 package frc.robot;
 
 import frc.robot.Constants.ControllerConstants;
+import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Autos;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.SwerveSubsystem;
+import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -34,6 +36,7 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the trigger bindings
     configureBindings();
+    m_swerveSubsystem.setDefaultCommand(driveFieldOrientedAngularVelocity);
   }
 
   /**
@@ -59,6 +62,10 @@ public class RobotContainer {
    *
    * @return the command to run in autonomous
    */
+   Command driveFieldOrientedAngularVelocity = m_swerveSubsystem.driveCommand(
+        () -> MathUtil.applyDeadband(m_driverController.getLeftY() * DriveConstants.k_driveSpeed, DriveConstants.k_driveDeadBand),
+        () -> MathUtil.applyDeadband(m_driverController.getLeftX() * DriveConstants.k_driveSpeed, DriveConstants.k_driveDeadBand),
+        () -> m_driverController.getRightX() * DriveConstants.k_turnRate); 
   public Command getAutonomousCommand() {
 
     // The selected auto on SmartDashboard will be run in autonomous
