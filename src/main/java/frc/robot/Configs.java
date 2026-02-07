@@ -8,6 +8,21 @@ import frc.robot.Constants.MotorConstants;
 
 
 public class Configs {
+  public static final class ClimberConfigs {
+    public static final TalonFXConfiguration CLIMBER_TALON_FX_CONFIGURATION = new TalonFXConfiguration();
+    static{
+    /*
+    ********************************************
+    **    CLIMBER KRAKEN x60 CONFIGURATIONS    **
+    ********************************************
+   */
+    CLIMBER_TALON_FX_CONFIGURATION.ClosedLoopRamps.DutyCycleClosedLoopRampPeriod = MotorConstants.k_climberRampRate;
+    CLIMBER_TALON_FX_CONFIGURATION.MotorOutput.PeakForwardDutyCycle =MotorConstants.k_climberClosedMaxSpeed;
+    CLIMBER_TALON_FX_CONFIGURATION.MotorOutput.PeakReverseDutyCycle = -MotorConstants.k_climberClosedMaxSpeed;
+    CLIMBER_TALON_FX_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Brake;
+    CLIMBER_TALON_FX_CONFIGURATION.CurrentLimits.SupplyCurrentLimit = MotorConstants.k_climberSupplyCurrentLimit;
+    }
+  }
   public static final class IntakeConfigs {
     // Intake Kraken x44
     public static final TalonFXConfiguration INTAKE_TALON_FX_CONFIGURATION = new TalonFXConfiguration();
@@ -47,7 +62,7 @@ public class Configs {
 
   /* 
     ***********************************************
-    **  LOWER SHOOTER KRAKEN x60 CONFIGURATIONS  **
+    **  CLIMBER SHOOTER KRAKEN x60 CONFIGURATIONS  **
     ***********************************************
     */
 static{

@@ -14,6 +14,7 @@ public class Constants {
     // Must be max physically possible speed
     public static final double k_maxSpeed = edu.wpi.first.math.util.Units.feetToMeters(18.9); // Meters per second
     public static final double k_maxAngularSpeed = 1.5 * Math.PI; // Radians per second
+
   }
 
   public static final class ControllerConstants {
@@ -110,5 +111,13 @@ public class Constants {
     public static final int k_rollerSupplyCurrentLimit = 60;
     public static final double k_rollerSpeed = 0.31;
     public static final double k_fastRollerSpeed = 0.67;
+
+    //climber NOT SPECIFIC TO CLIMBER YET 
+    public static final int k_climberKrakenID = 40;
+    public static final double k_climberRampRate = 0.05;
+    public static final double k_climberClosedMaxSpeed = 0.4;
+    public static final int k_climberSupplyCurrentLimit = 60;
+    public static final double k_climberSpeed = 0.31;
+    public static final double k_fastClimberSpeed = 0.67;
 }
 }
