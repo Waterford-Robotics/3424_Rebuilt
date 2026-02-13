@@ -6,6 +6,7 @@ package frc.robot;
 
 import frc.robot.Constants.ControllerConstants;
 import frc.robot.Constants.DriveConstants;
+import frc.robot.commands.AimCommand;
 import frc.robot.commands.Autos;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.ClimberSubsystem;
@@ -33,6 +34,7 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final SwerveSubsystem m_swerveSubsystem = new SwerveSubsystem();
   private final IntakeSubsystem m_intakeSubsystem = new IntakeSubsystem();
+  private final IntakeSubsystem m_flipSubsystem = new IntakeSubsystem();
   private final ClimberSubsystem m_climberSubsystem = new ClimberSubsystem();
   private final ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
   private final SpindexerSubsystem m_spindexerSubsystem = new SpindexerSubsystem();
@@ -90,6 +92,24 @@ public class RobotContainer {
       .onFalse(new RunCommand(
         () -> m_climberSubsystem.stopClimb(),
         m_climberSubsystem));
+
+    // flip out
+    new JoystickButton(m_operatorController.getHID(), ControllerConstants.k_flipOut)
+     .onTrue(new RunCommand( //double check onTrue of whileTrue
+        () -> m_flipSubsystem.flipCommand(-1), //may need to change
+        m_flipSubsystem));
+
+    // flip in
+    new JoystickButton(m_operatorController.getHID(), ControllerConstants.k_flipIn)
+     .onTrue(new RunCommand(
+        () -> m_flipSubsystem.flipCommand(1), //may need to change
+        m_flipSubsystem));
+
+
+    // aim
+    new JoystickButton(m_driverController.getHID(), ControllerConstants.k_aimRobot)
+     .onTrue(new AimCommand(m_swerveSubsystem));
+
 
   }
 
