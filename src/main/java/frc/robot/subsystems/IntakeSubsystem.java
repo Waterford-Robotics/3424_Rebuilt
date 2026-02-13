@@ -23,7 +23,7 @@ public class IntakeSubsystem extends SubsystemBase{
     m_lift.set(MotorConstants.k_liftSpeed);
   }
 
-  public void intake(int polarity) { //polarity is 1 or -1
+  public void intakeCommand(int polarity) { //polarity is 1 or -1
     m_intake.set(MotorConstants.k_intakeSpeed*polarity); //-1 polarity makes motor run backwards
   }
 

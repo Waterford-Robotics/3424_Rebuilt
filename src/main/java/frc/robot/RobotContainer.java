@@ -6,15 +6,19 @@ package frc.robot;
 
 import frc.robot.Constants.ControllerConstants;
 import frc.robot.Constants.DriveConstants;
-import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Autos;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.ShooterSubsystem;
+import frc.robot.subsystems.SpindexerSubsystem;
 import frc.robot.subsystems.SwerveSubsystem;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
@@ -28,7 +32,12 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final SwerveSubsystem m_swerveSubsystem = new SwerveSubsystem();
-  private final CommandXboxController m_driverController = new CommandXboxController(OperatorConstants.k_driverController);
+  private final IntakeSubsystem m_intakeSubsystem = new IntakeSubsystem();
+  private final ClimberSubsystem m_climberSubsystem = new ClimberSubsystem();
+  private final ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
+  private final SpindexerSubsystem m_spindexerSubsystem = new SpindexerSubsystem();
+  private final CommandXboxController m_driverController = new CommandXboxController(ControllerConstants.k_driverControllerPort);
+  private final CommandXboxController m_operatorController = new CommandXboxController(ControllerConstants.k_operatorControllerPort);
   SendableChooser<Command> m_chooser = new SendableChooser<>();
  
 
@@ -54,7 +63,34 @@ public class RobotContainer {
     .onTrue(new InstantCommand(
         () -> m_swerveSubsystem.zeroGyro(),
         m_swerveSubsystem));
+
+    // intake wheels
+    new JoystickButton(m_driverController.getHID(), ControllerConstants.k_intakeWheels)
+      .whileTrue(new RunCommand(
+        () -> m_intakeSubsystem.intakeCommand(1), // may need to change
+        m_intakeSubsystem))
+      .onFalse(new RunCommand(
+        () -> m_intakeSubsystem.stopIntake(),
+        m_intakeSubsystem));
+
+    // climber extension
+    new JoystickButton(m_operatorController.getHID(), ControllerConstants.k_climbExtend)
+     .whileTrue(new RunCommand(
+        () -> m_climberSubsystem.climbCommand(1), //may need to change
+        m_climberSubsystem))
+      .onFalse(new RunCommand(
+        () -> m_climberSubsystem.stopClimb(),
+        m_climberSubsystem));
     
+    // climber compression
+    new JoystickButton(m_operatorController.getHID(), ControllerConstants.k_climbCompress)
+     .whileTrue(new RunCommand(
+        () -> m_climberSubsystem.climbCommand(-1), //may need to change
+        m_climberSubsystem))
+      .onFalse(new RunCommand(
+        () -> m_climberSubsystem.stopClimb(),
+        m_climberSubsystem));
+
   }
 
   /**

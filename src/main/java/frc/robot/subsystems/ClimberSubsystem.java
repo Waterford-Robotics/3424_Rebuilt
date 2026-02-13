@@ -14,11 +14,11 @@ public class ClimberSubsystem extends SubsystemBase{
         m_climbSpinner.getConfigurator().apply(ClimberConfigs.CLIMBER_TALON_FX_CONFIGURATION, 0.05);
     }
 
-    public void climb() {
-        m_climbSpinner.set(MotorConstants.k_climberSpeed); 
+    public void climbCommand(int polarity) {
+        m_climbSpinner.set(MotorConstants.k_climberSpeed*polarity); 
     }
 
-    public void stopClimbing() {
+    public void stopClimb() {
         m_climbSpinner.set(0); 
     }
 }
