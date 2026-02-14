@@ -9,12 +9,16 @@ import frc.robot.Constants.DriveConstants;
 import frc.robot.commands.AimCommand;
 import frc.robot.commands.Autos;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.ShooterCommand;
 import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.SpindexerSubsystem;
 import frc.robot.subsystems.SwerveSubsystem;
+
+import com.pathplanner.lib.auto.NamedCommands;
+
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -48,6 +52,8 @@ public class RobotContainer {
     // Configure the trigger bindings
     configureBindings();
     m_swerveSubsystem.setDefaultCommand(driveFieldOrientedAngularVelocity);
+
+    NamedCommands.registerCommand("shooterCommand", new ShooterCommand(m_shooterSubsystem,1));
   }
 
   /**
