@@ -74,9 +74,9 @@ public class SwerveSubsystem extends SubsystemBase {
         swerveDrive.setChassisSpeeds(chassisSpeeds);
     }
 
-    public void zeroGyro() { 
-        swerveDrive.zeroGyro();
-    }
+    public void zeroGyro() {
+    swerveDrive.zeroGyro();
+  }
 
      // Get Auto Command
     public Command getAutonomousCommand(String pathName) {

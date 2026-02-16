@@ -10,6 +10,7 @@ public class IntakeSubsystem extends SubsystemBase{
 
   private TalonFX m_intake; // intake wheels
   private TalonFX m_lift; // motor to lift hood
+  private TalonFX m_flip; // motor to 
 
   public IntakeSubsystem() {
     m_intake = new TalonFX(MotorConstants.k_intakeKrakenID);
@@ -19,12 +20,12 @@ public class IntakeSubsystem extends SubsystemBase{
     m_lift.getConfigurator().apply(IntakeConfigs.LIFT_TALON_FX_CONFIGURATION, 0.05);
   }
 
-  public void lift() {
-    m_lift.set(MotorConstants.k_liftSpeed);
+  public void intakeCommand(int polarity) { //polarity is 1 or -1
+    m_intake.set(MotorConstants.k_intakeSpeed*polarity); //-1 polarity makes motor run backwards
   }
 
-  public void intake(int polarity) { //polarity is 1 or -1
-    m_intake.set(MotorConstants.k_intakeSpeed*polarity); //-1 polarity makes motor run backwards
+  public void flipCommand(int polarity){
+    m_flip.set(MotorConstants.k_flipSpeed*polarity); //-1 polarity makes motor run backwards
   }
 
   public void stopLift() {

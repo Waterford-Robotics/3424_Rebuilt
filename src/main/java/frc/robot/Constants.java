@@ -26,18 +26,18 @@ public class Constants {
     public final static int k_start = Button.kStart.value; // Start Button
     public final static int k_back = Button.kBack.value; // Back Button
 
-    public static final int k_A = Button.kA.value; // A
-    public static final int k_B = Button.kB.value; // B
-    public static final int k_X = Button.kX.value; // X
-    public static final int k_Y = Button.kY.value; // Y
+    public static final int k_intakeWheels = 1; // A
+    public static final int k_climbCompress = 2; // B
+    public static final int k_aimRobot = 3; // X
+    public static final int k_climbExtend = 4; // Y
     
     public static final int k_dpadup = 0; // D-Pad Up
     public static final int k_dpadRight = 90; // D-Pad Right
     public static final int k_dpadDown = 180; // D-Pad Down
     public static final int k_dpadLeft = 270; // D-Pad Left
 
-    public final static int k_rightbump = Button.kRightBumper.value; // Right Bump
-    public final static int k_leftbump = Button.kLeftBumper.value; // Left Bump
+    public final static int k_flipOut = 5; // Right Bump
+    public final static int k_flipIn = 6; // Left it Bump
 
     public final static int k_righttrig = Axis.kRightTrigger.value; // Right Trig
     public final static int k_lefttrig = Axis.kLeftTrigger.value; // Left Trig
@@ -48,10 +48,6 @@ public class Constants {
     public static final double k_driveDeadBand = 0.1;
     public static final double k_driveSpeed = -0.8;
     public static final double k_turnRate = -0.85;
-  }
-  
-  public static final class OperatorConstants {
-    public static final int k_driverController = 0;
   }
 
 
@@ -65,6 +61,7 @@ public class Constants {
     public static final double k_intakeClosedMaxSpeed = 0.4;
     public static final int k_intakeSupplyCurrentLimit = 60;
     public static final double k_intakeSpeed = -0.5;
+    public static final double k_flipSpeed = -0.5; // OK CHANGE THIS
 
     //spindexer
     public static final int k_spindexerKrakenID = 10;
@@ -119,5 +116,21 @@ public class Constants {
     public static final int k_climberSupplyCurrentLimit = 60;
     public static final double k_climberSpeed = 0.31;
     public static final double k_fastClimberSpeed = 0.67;
+  }
+    //limelight
+     public static final class VisionConstants{
+     public static final String LimelightName = "limelight-three";
+     public static final double kP = 1.0;
+     public static final double kI = 1.0;
+     public static final double kD = 1.0;
+     public static final double kAimThreshold = 1.0;
+     public static final double timeoutTime = 2.0;
+     public static final double turnScale = -0.05; //scale down turn rate and PID
+     public static final double driveScale = -0.1;
+     public static final double CAMERA_HEIGHT = 0.254; // meters
+     public static final double TAG_HEIGHT = 1.12;    // meters, actual measurement for hub.
+     public static final double CAMERA_PITCH = 0.785;  // upwards tilt. RADIANS! aka 45 degrees. Update if needed
+     public static final double CAMERA_YAW = 0.0; // side tilt. Positive is to the left. RADIANS!
+
 }
 }
