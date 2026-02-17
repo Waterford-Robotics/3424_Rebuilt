@@ -29,7 +29,7 @@ public class AimCommand extends Command {
   // Checks if the a tag is seen
   boolean sees_tag;
 
-
+  double target_distance_to_hub;
   // Constructor
   public AimCommand(SwerveSubsystem m_swerveSubsystem) {
     // swerveSubsystem is an instance of SwerveSubsystem class, aka an object
@@ -78,7 +78,7 @@ public class AimCommand extends Command {
     // positive angle = april tag too high = drive backwards, so negate before putting into thing.
     // negative angle = april tag below bot, drive fowards.
     double TY = Math.toRadians(LimelightHelpers.getTY(Constants.VisionConstants.LimelightName));
-    double distancingVelocity = TY * Constants.VisionConstants.driveScale;
+    double distancingVelocity = (ApriltagHelpers.getDistance() - target_distance_to_hub) * Constants.VisionConstants.driveScale;
     return distancingVelocity;
   }
 
@@ -94,7 +94,7 @@ public class AimCommand extends Command {
     {
       // scales values into speeds: first parameter: X, positive = forward; second parameter: Y, positive = left; third parameter: Angular Rotation, positive = ccw, negative = cw
       //swerveSubsystem.driveCommand( () -> limelight_drive(), () -> 0.0, () -> limelight_rotation());
-      swerveSubsystem.driveCommand( () -> 0.0, () -> 0.0, () -> limelight_rotation());
+      swerveSubsystem.driveCommand( () -> limelight_drive(), () -> 0.0, () -> limelight_rotation());
     }
     // Otherwise we tell it to quit
     else sees_tag = false;
