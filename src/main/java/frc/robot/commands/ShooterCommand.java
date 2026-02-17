@@ -22,10 +22,7 @@ public class ShooterCommand extends Command {
     // Definitions and setting parameters are equal to members!
     m_shooterSubsystem = shooterSubsystem;
     addRequirements(shooterSubsystem);
-
-    
     m_seconds = seconds;
-
   }
 
   // Reset timer when the command starts executing

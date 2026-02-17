@@ -1,6 +1,8 @@
 package frc.robot.subsystems.Limelight;
 
 
+
+
 //import edu.wpi.first.math.geometry.Pose3d;
 //import edu.wpi.first.math.geometry.Rotation3d;
 //import edu.wpi.first.math.geometry.Translation3d;
@@ -8,13 +10,27 @@ import frc.robot.Constants.VisionConstants;
 public class ApriltagHelpers {
 
 
+
+
 public ApriltagHelpers(){
 }
 
 
+public static double getDistance(){
+   double TY = Math.toRadians(LimelightHelpers.getTY(VisionConstants.LimelightName));
+   double TX = Math.toRadians(LimelightHelpers.getTX(VisionConstants.LimelightName));
+
+   // angleup = ty + pitch
+   double angleUp = VisionConstants.CAMERA_PITCH + TY;
+   // distance = (h2-h1)/tan(ty+pitch) = (h2-h1)/tan(angleup)
+   double distance = (VisionConstants.TAG_HEIGHT - VisionConstants.CAMERA_HEIGHT)/Math.tan(angleUp);
+   return distance;
+}
 public static double getTargetAngle(){
    double TY = Math.toRadians(LimelightHelpers.getTY(VisionConstants.LimelightName));
    double TX = Math.toRadians(LimelightHelpers.getTX(VisionConstants.LimelightName));
+
+
 
 
    // angleup = ty + pitch
@@ -32,13 +48,15 @@ public static double getTargetAngle(){
    return targetAngle;
 }
 }
-  
+ 
 /*     // Hub center is 0.6 meters behind the AprilTag
    private static final double HUB_OFFSET_METERS = 0.6;
    public static Pose3d getHubCenterTarget(Pose3d tagPose) {
        // extract data
        //Converts a Pose3d object to an array of doubles in the format [x, y, z, roll, pitch, yaw].
        //Translation components are in meters, rotation components are in degrees.
+
+
 
 
        double[] poseArray = LimelightHelpers.pose3dToArray(tagPose);
