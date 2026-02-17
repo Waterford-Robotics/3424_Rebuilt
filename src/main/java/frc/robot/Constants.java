@@ -63,13 +63,6 @@ public class Constants {
     public static final double k_intakeSpeed = -0.5;
     public static final double k_flipSpeed = -0.5; // OK CHANGE THIS
 
-    //spindexer
-    public static final int k_spindexerKrakenID = 10;
-    public static final double k_spindexerRampRate = 0.05;
-    public static final double k_spindexerClosedMaxSpeed = 0.4;
-    public static final int k_sipindexerSupplyCurrentLimit = 60;
-    public static final double k_spindexerSpeed = -0.5;
-
     //intake hood lift
     public static final int k_liftKrakenID = 11;
     public static final double k_liftRampRate = 0.05;
@@ -93,21 +86,21 @@ public class Constants {
     public static final double k_uppershooterSpeed = 0.31;
     public static final double k_fastUpperShooterSpeed = 0.67;
 
-    //bottom spinner (spindexer)
-    public static final int k_bottomspinnerKrakenID = 31;
-    public static final double k_bottomspinnerRampRate = 0.05;
-    public static final double k_bottomspinnerClosedMaxSpeed = 0.4;
-    public static final int k_bottomspinnerSupplyCurrentLimit = 60;
-    public static final double k_bottomspinnerSpeed = 0.31;
-    public static final double k_fastBottomSpinnerSpeed = 0.67;
-
-    //roller (spindexer)
-    public static final int k_rollerKrakenID = 31;
+    //roller
+    public static final int k_rollerKrakenID = 22;
     public static final double k_rollerRampRate = 0.05;
     public static final double k_rollerClosedMaxSpeed = 0.4;
     public static final int k_rollerSupplyCurrentLimit = 60;
     public static final double k_rollerSpeed = 0.31;
     public static final double k_fastRollerSpeed = 0.67;
+
+    //spindexer
+    public static final int k_spindexerKrakenID = 30;
+    public static final double k_spindexerRampRate = 0.05;
+    public static final double k_spindexerClosedMaxSpeed = 0.4;
+    public static final int k_spindexerSupplyCurrentLimit = 60;
+    public static final double k_spindexerSpeed = -0.5;
+
 
     //climber NOT SPECIFIC TO CLIMBER YET 
     public static final int k_climberKrakenID = 40;

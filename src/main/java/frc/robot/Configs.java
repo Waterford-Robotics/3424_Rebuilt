@@ -60,6 +60,9 @@ public class Configs {
   // Upper Shooter Kraken x60
   public static final TalonFXConfiguration UPPERSHOOTER_TALON_FX_CONFIGURATION = new TalonFXConfiguration();
 
+  // Roller Kraken x44
+  public static final TalonFXConfiguration ROLLER_TALON_FX_CONFIGURATION = new TalonFXConfiguration();
+
   /* 
     ***********************************************
     **  CLIMBER SHOOTER KRAKEN x60 CONFIGURATIONS  **
@@ -83,6 +86,18 @@ static{
   UPPERSHOOTER_TALON_FX_CONFIGURATION.MotorOutput.PeakReverseDutyCycle = -MotorConstants.k_uppershooterClosedMaxSpeed;
   UPPERSHOOTER_TALON_FX_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Brake;
   UPPERSHOOTER_TALON_FX_CONFIGURATION.CurrentLimits.SupplyCurrentLimit = MotorConstants.k_uppershooterSupplyCurrentLimit; 
+
+    /*
+    ********************************************
+    **    ROLLER KRAKEN x44 CONFIGURATIONS    **
+    ********************************************
+  */
+
+    ROLLER_TALON_FX_CONFIGURATION.ClosedLoopRamps.DutyCycleClosedLoopRampPeriod = MotorConstants.k_rollerRampRate;
+    ROLLER_TALON_FX_CONFIGURATION.MotorOutput.PeakForwardDutyCycle = MotorConstants.k_rollerClosedMaxSpeed;
+    ROLLER_TALON_FX_CONFIGURATION.MotorOutput.PeakReverseDutyCycle = -MotorConstants.k_rollerClosedMaxSpeed;
+    ROLLER_TALON_FX_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Brake;
+    ROLLER_TALON_FX_CONFIGURATION.CurrentLimits.SupplyCurrentLimit = MotorConstants.k_rollerSupplyCurrentLimit;
 }
 }
 public static final class SpindexerConfigs {
@@ -102,36 +117,4 @@ static{
   SPINDEXER_TALON_FX_CONFIGURATION.CurrentLimits.SupplyCurrentLimit = MotorConstants.k_lowershooterSupplyCurrentLimit;
 }
 }
-
-public static final TalonFXConfiguration BOTTOMSPINNER_TALON_FX_CONFIGURATION = new TalonFXConfiguration();
-
-  // Roller Kraken x44
-public static final TalonFXConfiguration ROLLER_TALON_FX_CONFIGURATION = new TalonFXConfiguration();
-
-static{
- 
-  /*
-    ********************************************
-    **  BOTTOM SPINNER KRAKEN x44 CONFIGURATIONS    **
-    ********************************************
-  */
-
-  BOTTOMSPINNER_TALON_FX_CONFIGURATION.ClosedLoopRamps.DutyCycleClosedLoopRampPeriod = MotorConstants.k_bottomspinnerRampRate;
-  BOTTOMSPINNER_TALON_FX_CONFIGURATION.MotorOutput.PeakForwardDutyCycle = MotorConstants.k_bottomspinnerClosedMaxSpeed;
-  BOTTOMSPINNER_TALON_FX_CONFIGURATION.MotorOutput.PeakReverseDutyCycle = -MotorConstants.k_bottomspinnerClosedMaxSpeed;
-  BOTTOMSPINNER_TALON_FX_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Brake;
-  BOTTOMSPINNER_TALON_FX_CONFIGURATION.CurrentLimits.SupplyCurrentLimit = MotorConstants.k_bottomspinnerSupplyCurrentLimit;
-
-  /*
-    ********************************************
-    **    ROLLER KRAKEN x44 CONFIGURATIONS    **
-    ********************************************
-  */
-
-    ROLLER_TALON_FX_CONFIGURATION.ClosedLoopRamps.DutyCycleClosedLoopRampPeriod = MotorConstants.k_rollerRampRate;
-    ROLLER_TALON_FX_CONFIGURATION.MotorOutput.PeakForwardDutyCycle = MotorConstants.k_rollerClosedMaxSpeed;
-    ROLLER_TALON_FX_CONFIGURATION.MotorOutput.PeakReverseDutyCycle = -MotorConstants.k_rollerClosedMaxSpeed;
-    ROLLER_TALON_FX_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Brake;
-    ROLLER_TALON_FX_CONFIGURATION.CurrentLimits.SupplyCurrentLimit = MotorConstants.k_rollerSupplyCurrentLimit; 
-  }
 }

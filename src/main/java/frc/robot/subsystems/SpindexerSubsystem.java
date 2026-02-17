@@ -8,24 +8,18 @@ import frc.robot.Constants.MotorConstants;
 
 public class SpindexerSubsystem extends SubsystemBase{
 
-  private TalonFX m_bottomspinner;
-  private TalonFX m_roller;
+  private TalonFX m_spindexer;
 
   public SpindexerSubsystem() {
-    m_bottomspinner = new TalonFX(MotorConstants.k_spindexerKrakenID);
-    m_bottomspinner.getConfigurator().apply(SpindexerConfigs.SPINDEXER_TALON_FX_CONFIGURATION, 0.05);
-
-    m_roller = new TalonFX(MotorConstants.k_rollerKrakenID);
-    m_roller.getConfigurator().apply(SpindexerConfigs.SPINDEXER_TALON_FX_CONFIGURATION, 0.05);
+    m_spindexer = new TalonFX(MotorConstants.k_spindexerKrakenID);
+    m_spindexer.getConfigurator().apply(SpindexerConfigs.SPINDEXER_TALON_FX_CONFIGURATION, 0.05);
   }
 
   public void spindex() {
-    m_bottomspinner.set(MotorConstants.k_bottomspinnerSpeed);  // Starts the spinner and roller
-    m_roller.set(MotorConstants.k_rollerSpeed);
+    m_spindexer.set(MotorConstants.k_spindexerSpeed);  // Starts the spinner and roller
   }
 
   public void stopSpindex() {
-    m_bottomspinner.set(0); // Stops the bottom spinner
-    m_roller.set(0); //Stops the roller
+    m_spindexer.set(0); // Stops the bottom spinner
   }
 }
