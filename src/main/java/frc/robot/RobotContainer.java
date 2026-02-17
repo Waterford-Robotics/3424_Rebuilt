@@ -16,7 +16,6 @@ import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.SpindexerSubsystem;
 import frc.robot.subsystems.SwerveSubsystem;
-
 import com.pathplanner.lib.auto.NamedCommands;
 
 import edu.wpi.first.math.MathUtil;
@@ -25,6 +24,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
@@ -127,10 +127,17 @@ public class RobotContainer {
         () -> MathUtil.applyDeadband(m_driverController.getLeftY() * DriveConstants.k_driveSpeed, DriveConstants.k_driveDeadBand),
         () -> MathUtil.applyDeadband(m_driverController.getLeftX() * DriveConstants.k_driveSpeed, DriveConstants.k_driveDeadBand),
         () -> m_driverController.getRightX() * DriveConstants.k_turnRate); 
-  public Command getAutonomousCommand() {
-
+  
+        public Command getAutonomousCommand() {
     // The selected auto on SmartDashboard will be run in autonomous
     return m_chooser.getSelected(); 
   }
+
+  SequentialCommandGroup LowerAndRollIntakeCommand = new SequentialCommandGroup{
+    new IntakeFlipoutCommand(1),
+    new IntakeRolersCommand(1)
+  };
+
+  
   
 }
