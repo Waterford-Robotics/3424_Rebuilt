@@ -9,12 +9,8 @@ package frc.robot.subsystems.Limelight;
 import frc.robot.Constants.VisionConstants;
 public class ApriltagHelpers {
 
-
-
-
 public ApriltagHelpers(){
 }
-
 
 public static double getDistance(){
    double TY = Math.toRadians(LimelightHelpers.getTY(VisionConstants.LimelightName));

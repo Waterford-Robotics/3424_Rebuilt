@@ -10,6 +10,10 @@ import frc.robot.commands.AimCommand;
 import frc.robot.commands.Autos;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.ShooterCommand;
+import frc.robot.commands.IntakeFlipoutCommand;
+import frc.robot.commands.IntakeRollersCommand;
+import frc.robot.commands.ShooterCommand;
+import frc.robot.commands.SpindexerCommand;
 import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
@@ -25,6 +29,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
@@ -133,11 +138,13 @@ public class RobotContainer {
     return m_chooser.getSelected(); 
   }
 
-  SequentialCommandGroup LowerAndRollIntakeCommand = new SequentialCommandGroup{
-    new IntakeFlipoutCommand(1),
-    new IntakeRolersCommand(1)
-  };
+  ParallelCommandGroup LowerAndRollIntakeCommand = new ParallelCommandGroup(
+    new IntakeFlipoutCommand(m_intakeSubsystem, 1.0),
+    new IntakeRollersCommand(m_intakeSubsystem, 1.0)
+  );
 
-  
-  
+  SequentialCommandGroup SpindexAndShootCommand = new SequentialCommandGroup(
+    new ShooterCommand(m_shooterSubsystem, 1.0),
+    new SpindexerCommand(m_spindexerSubsystem, 1.0)
+  );
 }
