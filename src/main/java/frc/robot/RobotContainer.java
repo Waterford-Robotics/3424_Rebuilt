@@ -56,8 +56,25 @@ public class RobotContainer {
     // Configure the trigger bindings
     configureBindings();
     m_swerveSubsystem.setDefaultCommand(driveFieldOrientedAngularVelocity);
+  
+   // NamedCommands.registerCommand("shooterCommand", new ShooterCommand(m_shooterSubsystem,1.0));
+   // Aim and rev up at the same time, then start spindexing 
+   NamedCommands.registerCommand("AimAndShootSequence", 
+        new SequentialCommandGroup(
+          new ParallelCommandGroup(
+            new AimCommand(m_swerveSubsystem), 
+            new ShooterCommand(m_shooterSubsystem, 2.0)),
+          new SpindexerCommand(m_spindexerSubsystem, 1.0)
+        )
+    );
 
-    NamedCommands.registerCommand("shooterCommand", new ShooterCommand(m_shooterSubsystem,1));
+    // Deploy intake and roll at the same time
+    NamedCommands.registerCommand("IntakeSequence", 
+        new ParallelCommandGroup(
+            new IntakeFlipoutCommand(m_intakeSubsystem, 1.0, 1),
+            new IntakeRollersCommand(m_intakeSubsystem, 1.0)
+        )
+    );
   }
 
   /**
@@ -139,7 +156,7 @@ public class RobotContainer {
   }
 
   ParallelCommandGroup LowerAndRollIntakeCommand = new ParallelCommandGroup(
-    new IntakeFlipoutCommand(m_intakeSubsystem, 1.0),
+    new IntakeFlipoutCommand(m_intakeSubsystem, 1.0, 1),
     new IntakeRollersCommand(m_intakeSubsystem, 1.0)
   );
 
