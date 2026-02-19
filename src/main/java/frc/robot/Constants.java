@@ -61,12 +61,14 @@ public class Constants {
     public static final double k_intakeClosedMaxSpeed = 0.4;
     public static final int k_intakeSupplyCurrentLimit = 60;
     public static final double k_intakeSpeed = -0.5;
+    public static final int k_intakePolarity = 1;
     //intake flip
     public static final int k_flipKrakenID = 11;
     public static final double k_flipRampRate = 0.05;
     public static final double k_flipClosedMaxSpeed = 0.4;
     public static final int k_flipSupplyCurrentLimit = 60;
     public static final double k_flipSpeed = -0.5;
+    public static final int k_flipPolarity = 1;
 
     //lower shooter
     public static final int k_lowershooterKrakenID = 20;
@@ -75,6 +77,7 @@ public class Constants {
     public static final int k_lowershooterSupplyCurrentLimit = 60;
     public static final double k_lowershooterSpeed = 0.31;
     public static final double k_fastLowerShooterSpeed = 0.67;
+    public static final int k_lowershooterPolarity = 1;
 
     //upper shooter
     public static final int k_uppershooterKrakenID = 21;
@@ -83,6 +86,7 @@ public class Constants {
     public static final int k_uppershooterSupplyCurrentLimit = 60;
     public static final double k_uppershooterSpeed = 0.31;
     public static final double k_fastUpperShooterSpeed = 0.67;
+    public static final int k_uppershooterPolarity = 1;
 
     //roller
     public static final int k_rollerKrakenID = 22;
@@ -91,6 +95,7 @@ public class Constants {
     public static final int k_rollerSupplyCurrentLimit = 60;
     public static final double k_rollerSpeed = 0.31;
     public static final double k_fastRollerSpeed = 0.67;
+    public static final int k_rollerPolarity = 1;
 
     //spindexer
     public static final int k_spindexerKrakenID = 30;
@@ -99,6 +104,7 @@ public class Constants {
     public static final int k_spindexerSupplyCurrentLimit = 60;
     public static final double k_spindexerSpeed = -0.5;
     public static final double k_blackRollerSpeed = 0.31;
+    public static final int k_blackRollerPolarity = 1;
 
 
 
@@ -109,6 +115,8 @@ public class Constants {
     public static final int k_climberSupplyCurrentLimit = 60;
     public static final double k_climberSpeed = 0.31;
     public static final double k_fastClimberSpeed = 0.67;
+    public static final int k_climberPolarity = 1;
+
   }
     //limelight
      public static final class VisionConstants{
@@ -124,6 +132,5 @@ public class Constants {
      public static final double TAG_HEIGHT = 1.12;    // meters, actual measurement for hub.
      public static final double CAMERA_PITCH = 0.785;  // upwards tilt. RADIANS! aka 45 degrees. Update if needed
      public static final double CAMERA_YAW = 0.0; // side tilt. Positive is to the left. RADIANS!
-
-}
+  }
 }

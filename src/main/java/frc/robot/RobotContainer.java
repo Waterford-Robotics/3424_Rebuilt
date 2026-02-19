@@ -6,6 +6,7 @@ package frc.robot;
 
 import frc.robot.Constants.ControllerConstants;
 import frc.robot.Constants.DriveConstants;
+import frc.robot.Constants.MotorConstants;
 import frc.robot.commands.AimCommand;
 import frc.robot.commands.Autos;
 import frc.robot.commands.ExampleCommand;
@@ -70,11 +71,11 @@ public class RobotContainer {
     );
     // Deploy intake and roll at the same time
     NamedCommands.registerCommand("IntakeFlipout", 
-        new IntakeFlipCommand(m_intakeSubsystem, 1.0, 1)
+        new IntakeFlipCommand(m_intakeSubsystem, 1.0, MotorConstants.k_flipPolarity)
     );
 
     NamedCommands.registerCommand("IntakeFlipin", 
-        new IntakeFlipCommand(m_intakeSubsystem, 1.0, -1)
+        new IntakeFlipCommand(m_intakeSubsystem, 1.0, -1 * MotorConstants.k_flipPolarity)
     );
 
     NamedCommands.registerCommand("IntakeRollers", 
@@ -101,7 +102,7 @@ public class RobotContainer {
     // intake wheels
     new JoystickButton(m_driverController.getHID(), ControllerConstants.k_intakeWheels)
       .whileTrue(new RunCommand(
-        () -> m_intakeSubsystem.intakeCommand(1), // may need to change
+        () -> m_intakeSubsystem.intakeCommand(MotorConstants.k_intakePolarity), // may need to change
         m_intakeSubsystem))
       .onFalse(new RunCommand(
         () -> m_intakeSubsystem.stopIntake(),
@@ -110,7 +111,7 @@ public class RobotContainer {
     // climber extension
     new JoystickButton(m_operatorController.getHID(), ControllerConstants.k_climbExtend)
      .whileTrue(new RunCommand(
-        () -> m_climberSubsystem.climbCommand(1), //may need to change
+        () -> m_climberSubsystem.climbCommand(MotorConstants.k_climberPolarity), //may need to change
         m_climberSubsystem))
       .onFalse(new RunCommand(
         () -> m_climberSubsystem.stopClimb(),
@@ -119,7 +120,7 @@ public class RobotContainer {
     // climber compression
     new JoystickButton(m_operatorController.getHID(), ControllerConstants.k_climbCompress)
      .whileTrue(new RunCommand(
-        () -> m_climberSubsystem.climbCommand(-1), //may need to change
+        () -> m_climberSubsystem.climbCommand(-1*MotorConstants.k_climberPolarity), //may need to change
         m_climberSubsystem))
       .onFalse(new RunCommand(
         () -> m_climberSubsystem.stopClimb(),
@@ -128,13 +129,13 @@ public class RobotContainer {
     // flip out
     new JoystickButton(m_operatorController.getHID(), ControllerConstants.k_flipOut)
      .onTrue(new RunCommand( //double check onTrue of whileTrue
-        () -> m_intakeSubsystem.flipCommand(-1), //may need to change
+        () -> m_intakeSubsystem.flipCommand(MotorConstants.k_intakePolarity), //may need to change
         m_intakeSubsystem));
 
     // flip in
     new JoystickButton(m_operatorController.getHID(), ControllerConstants.k_flipIn)
      .onTrue(new RunCommand(
-        () -> m_intakeSubsystem.flipCommand(1), //may need to change
+        () -> m_intakeSubsystem.flipCommand(-1 * MotorConstants.k_intakePolarity), //may need to change
         m_intakeSubsystem));
 
 
