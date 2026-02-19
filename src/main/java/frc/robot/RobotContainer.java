@@ -132,12 +132,12 @@ public class RobotContainer {
     // The selected auto on SmartDashboard will be run in autonomous
     return m_chooser.getSelected(); 
   }
-
+/* 
   SequentialCommandGroup LowerAndRollIntakeCommand = new SequentialCommandGroup{
     new IntakeFlipoutCommand(1),
     new IntakeRolersCommand(1)
   };
-
+*/
   
   
 }
