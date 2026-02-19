@@ -10,7 +10,7 @@ import frc.robot.commands.AimCommand;
 import frc.robot.commands.Autos;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.ShooterCommand;
-import frc.robot.commands.IntakeFlipoutCommand;
+import frc.robot.commands.IntakeFlipCommand;
 import frc.robot.commands.IntakeRollersCommand;
 import frc.robot.commands.ShooterCommand;
 import frc.robot.commands.SpindexerCommand;
@@ -63,17 +63,22 @@ public class RobotContainer {
         new SequentialCommandGroup(
           new ParallelCommandGroup(
             new AimCommand(m_swerveSubsystem), 
-            new ShooterCommand(m_shooterSubsystem, 2.0)),
-          new SpindexerCommand(m_spindexerSubsystem, 1.0)
-        )
+            new ShooterCommand(m_shooterSubsystem, 2.0)
+        ),
+          new SpindexerCommand(m_spindexerSubsystem, 2.0))
+
+    );
+    // Deploy intake and roll at the same time
+    NamedCommands.registerCommand("IntakeFlipout", 
+        new IntakeFlipCommand(m_intakeSubsystem, 1.0, 1)
     );
 
-    // Deploy intake and roll at the same time
-    NamedCommands.registerCommand("IntakeSequence", 
-        new ParallelCommandGroup(
-            new IntakeFlipoutCommand(m_intakeSubsystem, 1.0, 1),
-            new IntakeRollersCommand(m_intakeSubsystem, 1.0)
-        )
+    NamedCommands.registerCommand("IntakeFlipin", 
+        new IntakeFlipCommand(m_intakeSubsystem, 1.0, -1)
+    );
+
+    NamedCommands.registerCommand("IntakeRollers", 
+        new IntakeRollersCommand(m_intakeSubsystem, 1.0)
     );
   }
 
@@ -155,13 +160,10 @@ public class RobotContainer {
     return m_chooser.getSelected(); 
   }
 
-  ParallelCommandGroup LowerAndRollIntakeCommand = new ParallelCommandGroup(
-    new IntakeFlipoutCommand(m_intakeSubsystem, 1.0, 1),
-    new IntakeRollersCommand(m_intakeSubsystem, 1.0)
-  );
-
   SequentialCommandGroup SpindexAndShootCommand = new SequentialCommandGroup(
     new ShooterCommand(m_shooterSubsystem, 1.0),
     new SpindexerCommand(m_spindexerSubsystem, 1.0)
   );
+
+  
 }

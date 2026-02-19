@@ -8,9 +8,9 @@ import frc.robot.Constants.MotorConstants;
 
 public class ShooterSubsystem extends SubsystemBase{
 
-  private TalonFX m_lower;
-  private TalonFX m_upper;
-  private TalonFX m_roller;
+  private TalonFX m_lower; // lower shooter
+  private TalonFX m_upper; // upper shooter
+  private TalonFX m_roller; // roller feeder
 
   public ShooterSubsystem() {
     m_lower = new TalonFX(MotorConstants.k_lowershooterKrakenID);
@@ -26,7 +26,7 @@ public class ShooterSubsystem extends SubsystemBase{
   public void shoot() {
     m_lower.set(MotorConstants.k_lowershooterSpeed);  // Revs up the two shooter motors
     m_upper.set(MotorConstants.k_uppershooterSpeed);
-    m_roller.set(MotorConstants.k_rollerSpeed);
+    m_roller.set(MotorConstants.k_rollerSpeed); // feeds the balls in
   }
 
   public void stopShooting() {

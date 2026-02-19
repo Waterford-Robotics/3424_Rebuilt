@@ -2,16 +2,15 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 // Flip in or out the intake
+// Clean!
 package frc.robot.commands;
 
 import frc.robot.subsystems.IntakeSubsystem;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 
-// Raises Elevator
 public class IntakeFlipoutCommand extends Command {
 
-  // Uses Elevator and Subsystems
   IntakeSubsystem m_intakeSubsystem;
   double m_seconds;
   int m_polarity;
@@ -42,7 +41,7 @@ public class IntakeFlipoutCommand extends Command {
 
   // Stuff that happens when command is over
   public void end(boolean interrupted) {
-    m_intakeSubsystem.stopLift();
+    m_intakeSubsystem.stopFlip();
   }
 
   // Checks if the command is done

@@ -61,14 +61,12 @@ public class Constants {
     public static final double k_intakeClosedMaxSpeed = 0.4;
     public static final int k_intakeSupplyCurrentLimit = 60;
     public static final double k_intakeSpeed = -0.5;
-    public static final double k_flipSpeed = -0.5; // OK CHANGE THIS
-
-    //intake hood lift
-    public static final int k_liftKrakenID = 11;
-    public static final double k_liftRampRate = 0.05;
-    public static final double k_liftClosedMaxSpeed = 0.4;
-    public static final int k_liftSupplyCurrentLimit = 60;
-    public static final double k_liftSpeed = -0.5;
+    //intake flip
+    public static final int k_flipKrakenID = 11;
+    public static final double k_flipRampRate = 0.05;
+    public static final double k_flipClosedMaxSpeed = 0.4;
+    public static final int k_flipSupplyCurrentLimit = 60;
+    public static final double k_flipSpeed = -0.5;
 
     //lower shooter
     public static final int k_lowershooterKrakenID = 20;
@@ -100,6 +98,8 @@ public class Constants {
     public static final double k_spindexerClosedMaxSpeed = 0.4;
     public static final int k_spindexerSupplyCurrentLimit = 60;
     public static final double k_spindexerSpeed = -0.5;
+    public static final double k_blackRollerSpeed = 0.31;
+
 
 
     //climber NOT SPECIFIC TO CLIMBER YET 
