@@ -1,14 +1,15 @@
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
-
+// Shoots - just runs shooter
+// Clean
 package frc.robot.commands;
 
 import frc.robot.subsystems.ShooterSubsystem;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 
-// Raises Elevator
+
 public class ShooterCommand extends Command {
 
   // Uses Elevator and Subsystems

@@ -9,7 +9,7 @@ import frc.robot.subsystems.IntakeSubsystem;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 
-public class IntakeFlipoutCommand extends Command {
+public class IntakeFlipCommand extends Command {
 
   IntakeSubsystem m_intakeSubsystem;
   double m_seconds;
@@ -17,7 +17,7 @@ public class IntakeFlipoutCommand extends Command {
   Timer m_timer = new Timer();
 
   // Constructor
-  public IntakeFlipoutCommand(IntakeSubsystem intakeSubsystem, double seconds, int polarity) {
+  public IntakeFlipCommand(IntakeSubsystem intakeSubsystem, double seconds, int polarity) {
         
     // Definitions and setting parameters are equal to members!
     m_intakeSubsystem = intakeSubsystem;
