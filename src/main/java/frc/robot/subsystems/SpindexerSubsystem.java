@@ -18,10 +18,10 @@ public class SpindexerSubsystem extends SubsystemBase{
     m_spindexer.getConfigurator().apply(SpindexerConfigs.SPINDEXER_TALON_FX_CONFIGURATION, 0.05);
     
     m_roller = new TalonFX(MotorConstants.k_rollerKrakenID);
-    m_roller.getConfigurator().apply(ShooterConfigs.ROLLER_TALON_FX_CONFIGURATION, 0.05);
+    m_roller.getConfigurator().apply(SpindexerConfigs.ROLLER_TALON_FX_CONFIGURATION, 0.05);
 
     m_blackRoller = new TalonFX(MotorConstants.k_rollerKrakenID);
-    m_blackRoller.getConfigurator().apply(ShooterConfigs.ROLLER_TALON_FX_CONFIGURATION, 0.05);
+    m_blackRoller.getConfigurator().apply(SpindexerConfigs.BLACKROLLER_TALON_FX_CONFIGURATION, 0.05);
   
   }
 

@@ -5,6 +5,7 @@ import com.ctre.phoenix6.hardware.TalonFX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Configs.ShooterConfigs;
 import frc.robot.Constants.MotorConstants;
+import frc.robot.subsystems.Limelight.ApriltagHelpers;
 
 public class ShooterSubsystem extends SubsystemBase{
 
@@ -19,9 +20,18 @@ public class ShooterSubsystem extends SubsystemBase{
     m_upper.getConfigurator().apply(ShooterConfigs.UPPERSHOOTER_TALON_FX_CONFIGURATION, 0.05);
   }
 
-  public void shoot() {
-    m_lower.set(MotorConstants.k_lowershooterSpeed);  // Revs up the two shooter motors
+  public void shootHub() {
+    m_lower.set(calculateSpeed(ApriltagHelpers.getDistance()));  // Revs up the two shooter motors
+    m_upper.set(calculateSpeed(ApriltagHelpers.getDistance()));
+  }
+
+  public void shootPass() {
+    m_lower.set(MotorConstants.k_lowershooterSpeed);
     m_upper.set(MotorConstants.k_uppershooterSpeed);
+  }
+
+  public double calculateSpeed(double distance) {
+      return(distance*distance/10); // takes in distance, does math, and spits out speed
   }
 
   public void stopShooting() {

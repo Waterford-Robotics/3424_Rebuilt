@@ -35,25 +35,4 @@ public static double getTargetAngle(){
    double targetAngle = TX - (hubAngle - VisionConstants.CAMERA_YAW);
    return targetAngle;
 }
-}
- 
-/*     // Hub center is 0.6 meters behind the AprilTag
-   private static final double HUB_OFFSET_METERS = 0.6;
-   public static Pose3d getHubCenterTarget(Pose3d tagPose) {
-       // extract data
-       //Converts a Pose3d object to an array of doubles in the format [x, y, z, roll, pitch, yaw].
-       //Translation components are in meters, rotation components are in degrees.
-
-
-
-
-       double[] poseArray = LimelightHelpers.pose3dToArray(tagPose);
-       // add HUB_OFFSET_METERS to x axis
-       poseArray[0] += 0.6;
-       // turn back into a pose
-       tagPose = LimelightHelpers.toPose3D(poseArray);
-       return tagPose;
-   }
-   // Pose3d tagPose3d = LimelightHelpers.getBotPose3d_wpiBlue(VisionConstants.LimelightName);
-   // return getHubCenterTarget(tagPose3d);
-   */
+};
