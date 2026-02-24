@@ -30,9 +30,10 @@ public static double getTargetAngle(){
    // yd = d cos(yaw + tx)
    double y_distance = distance * Math.cos(VisionConstants.CAMERA_YAW + TX);
    // hub angle = arctan(xd/(yd + 0.6))
-   double hubAngle = Math.atan(x_distance/(y_distance + 0.6));
-   // target angle = tx - (hubAngle - yaw)
-   double targetAngle = TX - (hubAngle - VisionConstants.CAMERA_YAW);
+   double hubAngle = Math.atan(x_distance/(y_distance + 0.6)); // 
+   // target angle is the target tx (angle error)
+   // target angle = hubAngle - yaw
+   double targetAngle = hubAngle - VisionConstants.CAMERA_YAW;
    return targetAngle;
 }
 };

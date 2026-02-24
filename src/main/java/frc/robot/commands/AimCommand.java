@@ -44,8 +44,6 @@ public class AimCommand extends Command {
 
   // Method that returns a double for how fast the robot needs to turn, farther angle from the tag is a faster turn
   private double limelight_rotation() {
-   
-
     //double targetingAngularVelocity = pidController.calculate(LimelightHelpers.getTX(Constants.VisionConstants.LimelightName), 0);
     // use k_turnRate instead as a proportion? What is k_turnRate (part of Swerve Subsystem)?
     // gives this value to the swerve drive to start driving!
@@ -53,10 +51,13 @@ public class AimCommand extends Command {
     
     // positive angle = april tag to the right, turn clockwise, negate
     // negative angle = april tag to the left, turn counterclockwise, positive
-    //double targetingAngularVelocity = LimelightHelpers.getTX(Constants.VisionConstants.LimelightName) * Constants.VisionConstants.turnScale;
     double TX = Math.toRadians(LimelightHelpers.getTX(Constants.VisionConstants.LimelightName));
     double targetingAngularVelocity = 
-    (TX - ApriltagHelpers.getTargetAngle() * Constants.VisionConstants.turnScale);
+    // ex: target angle = 45 degrees / 0.78 radians (right), 
+    //      TX = 10 degrees / 0.17 radians (right)
+    //      we want to turn right, at negative (target_angle - TX), so constant is negative
+    //      0.6 radians difference, 0.3 power? set constant to 0.5 initially
+    ((ApriltagHelpers.getTargetAngle() - TX) * Constants.VisionConstants.turnScale);
     double rotationSpeed = MathUtil.clamp(targetingAngularVelocity, -0.5, 0.5);
     return rotationSpeed; 
   }

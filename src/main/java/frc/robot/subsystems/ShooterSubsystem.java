@@ -21,13 +21,13 @@ public class ShooterSubsystem extends SubsystemBase{
   }
 
   public void shootHub() {
-    m_lower.set(calculateSpeed(ApriltagHelpers.getDistance()));  // Revs up the two shooter motors
-    m_upper.set(calculateSpeed(ApriltagHelpers.getDistance()));
+    m_lower.set(calculateSpeed(ApriltagHelpers.getDistance()) * MotorConstants.k_lowershooterPolarity);  // Revs up the two shooter motors
+    m_upper.set(calculateSpeed(ApriltagHelpers.getDistance())* MotorConstants.k_uppershooterPolarity);
   }
 
   public void shootPass() {
-    m_lower.set(MotorConstants.k_lowershooterSpeed);
-    m_upper.set(MotorConstants.k_uppershooterSpeed);
+    m_lower.set(MotorConstants.k_lowershooterSpeed * MotorConstants.k_lowershooterPolarity);
+    m_upper.set(MotorConstants.k_uppershooterSpeed * MotorConstants.k_uppershooterPolarity);
   }
 
   public double calculateSpeed(double distance) {

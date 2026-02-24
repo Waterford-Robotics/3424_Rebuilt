@@ -86,7 +86,7 @@ public class Constants {
     public static final int k_uppershooterSupplyCurrentLimit = 60;
     public static final double k_uppershooterSpeed = 0.31;
     public static final double k_fastUpperShooterSpeed = 0.67;
-    public static final int k_uppershooterPolarity = 1;
+    public static final int k_uppershooterPolarity = -1;
 
     //roller
     public static final int k_rollerKrakenID = 22;
@@ -124,9 +124,9 @@ public class Constants {
      public static final double kP = 1.0;
      public static final double kI = 1.0;
      public static final double kD = 1.0;
-     public static final double kAimThreshold = 1.0;
+     public static final double kAimThreshold = 0.1; // 0.1 radians = 5.7 degrees error is ok
      public static final double timeoutTime = 2.0;
-     public static final double turnScale = -0.05; //scale down turn rate and PID
+     public static final double turnScale = -0.5; //scale down turn rate and PID
      public static final double driveScale = -0.1;
      public static final double CAMERA_HEIGHT = 0.254; // meters
      public static final double TAG_HEIGHT = 1.12;    // meters, actual measurement for hub.
