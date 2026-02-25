@@ -6,10 +6,15 @@ package frc.robot;
 
 import frc.robot.Constants.ControllerConstants;
 import frc.robot.Constants.DriveConstants;
+import frc.robot.Constants.MotorConstants;
 import frc.robot.commands.AimCommand;
 import frc.robot.commands.Autos;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.ShooterCommand;
+import frc.robot.commands.IntakeFlipCommand;
+import frc.robot.commands.IntakeRollersCommand;
+import frc.robot.commands.ShooterCommand;
+import frc.robot.commands.SpindexerCommand;
 import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
@@ -25,6 +30,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
@@ -51,8 +57,30 @@ public class RobotContainer {
     // Configure the trigger bindings
     configureBindings();
     m_swerveSubsystem.setDefaultCommand(driveFieldOrientedAngularVelocity);
+  
+   // NamedCommands.registerCommand("shooterCommand", new ShooterCommand(m_shooterSubsystem,1.0));
+   // Aim and rev up at the same time, then start spindexing 
+   NamedCommands.registerCommand("AimAndShootSequence", 
+        new SequentialCommandGroup(
+          new ParallelCommandGroup(
+            new AimCommand(m_swerveSubsystem), 
+            new ShooterCommand(m_shooterSubsystem, 2.0)
+        ),
+          new SpindexerCommand(m_spindexerSubsystem, 2.0))
 
-    NamedCommands.registerCommand("shooterCommand", new ShooterCommand(m_shooterSubsystem,1));
+    );
+    // Deploy intake and roll at the same time
+    NamedCommands.registerCommand("IntakeFlipout", 
+        new IntakeFlipCommand(m_intakeSubsystem, 1.0, MotorConstants.k_flipPolarity)
+    );
+
+    NamedCommands.registerCommand("IntakeFlipin", 
+        new IntakeFlipCommand(m_intakeSubsystem, 1.0, -1 * MotorConstants.k_flipPolarity)
+    );
+
+    NamedCommands.registerCommand("IntakeRollers", 
+        new IntakeRollersCommand(m_intakeSubsystem, 1.0)
+    );
   }
 
   /**
@@ -74,7 +102,7 @@ public class RobotContainer {
     // intake wheels
     new JoystickButton(m_driverController.getHID(), ControllerConstants.k_intakeWheels)
       .whileTrue(new RunCommand(
-        () -> m_intakeSubsystem.intakeCommand(1), // may need to change
+        () -> m_intakeSubsystem.intakeCommand(MotorConstants.k_intakePolarity), // may need to change
         m_intakeSubsystem))
       .onFalse(new RunCommand(
         () -> m_intakeSubsystem.stopIntake(),
@@ -83,7 +111,7 @@ public class RobotContainer {
     // climber extension
     new JoystickButton(m_operatorController.getHID(), ControllerConstants.k_climbExtend)
      .whileTrue(new RunCommand(
-        () -> m_climberSubsystem.climbCommand(1), //may need to change
+        () -> m_climberSubsystem.climbCommand(MotorConstants.k_climberPolarity), //may need to change
         m_climberSubsystem))
       .onFalse(new RunCommand(
         () -> m_climberSubsystem.stopClimb(),
@@ -92,7 +120,7 @@ public class RobotContainer {
     // climber compression
     new JoystickButton(m_operatorController.getHID(), ControllerConstants.k_climbCompress)
      .whileTrue(new RunCommand(
-        () -> m_climberSubsystem.climbCommand(-1), //may need to change
+        () -> m_climberSubsystem.climbCommand(-1*MotorConstants.k_climberPolarity), //may need to change
         m_climberSubsystem))
       .onFalse(new RunCommand(
         () -> m_climberSubsystem.stopClimb(),
@@ -101,13 +129,13 @@ public class RobotContainer {
     // flip out
     new JoystickButton(m_operatorController.getHID(), ControllerConstants.k_flipOut)
      .onTrue(new RunCommand( //double check onTrue of whileTrue
-        () -> m_intakeSubsystem.flipCommand(-1), //may need to change
+        () -> m_intakeSubsystem.flipCommand(MotorConstants.k_intakePolarity), //may need to change
         m_intakeSubsystem));
 
     // flip in
     new JoystickButton(m_operatorController.getHID(), ControllerConstants.k_flipIn)
      .onTrue(new RunCommand(
-        () -> m_intakeSubsystem.flipCommand(1), //may need to change
+        () -> m_intakeSubsystem.flipCommand(-1 * MotorConstants.k_intakePolarity), //may need to change
         m_intakeSubsystem));
 
 
@@ -132,12 +160,11 @@ public class RobotContainer {
     // The selected auto on SmartDashboard will be run in autonomous
     return m_chooser.getSelected(); 
   }
-/* 
-  SequentialCommandGroup LowerAndRollIntakeCommand = new SequentialCommandGroup{
-    new IntakeFlipoutCommand(1),
-    new IntakeRolersCommand(1)
-  };
-*/
-  
+
+  SequentialCommandGroup SpindexAndShootCommand = new SequentialCommandGroup(
+    new ShooterCommand(m_shooterSubsystem, 1.0),
+    new SpindexerCommand(m_spindexerSubsystem, 1.0)
+  );
+
   
 }
