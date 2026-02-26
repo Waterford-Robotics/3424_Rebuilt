@@ -8,15 +8,13 @@ import frc.robot.Constants.ControllerConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.MotorConstants;
 import frc.robot.commands.AimCommand;
-import frc.robot.commands.Autos;
-import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.ShooterCommand;
 import frc.robot.commands.IntakeFlipCommand;
 import frc.robot.commands.IntakeRollersCommand;
 import frc.robot.commands.ShooterCommand;
 import frc.robot.commands.SpindexerCommand;
 import frc.robot.subsystems.ClimberSubsystem;
-import frc.robot.subsystems.ExampleSubsystem;
+
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.SpindexerSubsystem;
