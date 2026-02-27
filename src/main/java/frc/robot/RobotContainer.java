@@ -98,6 +98,13 @@ public class RobotContainer {
         () -> m_swerveSubsystem.zeroGyro(),
         m_swerveSubsystem));
 
+
+     new JoystickButton(m_driverController.getHID(), OperatorConstants.k_Xwheels)
+    .whileTrue(new RunCommand(
+        () -> m_swerveSubsystem.XWheels(),
+        m_swerveSubsystem));
+    
+
     // intake wheels
     new JoystickButton(m_driverController.getHID(), ControllerConstants.k_intakeWheels)
       .whileTrue(new RunCommand(

@@ -77,6 +77,10 @@ public class SwerveSubsystem extends SubsystemBase {
     public void zeroGyro() {
     swerveDrive.zeroGyro();
   }
+    public void XWheels() {
+        swerveDrive.lockPose();
+    }
+
 
      // Get Auto Command
     public Command getAutonomousCommand(String pathName) {
