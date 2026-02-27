@@ -13,7 +13,7 @@ public class ClimberSubsystem extends SubsystemBase{
     }
 
     public void climbCommand(int polarity) {
-        m_climbSpinner.set(MotorConstants.k_climberSpeed*polarity); 
+        m_climbSpinner.set(MotorConstants.k_climberSpeed*polarity*MotorConstants.k_climberPolarity); 
     }
 
     public void stopClimb() {

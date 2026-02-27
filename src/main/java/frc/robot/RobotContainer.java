@@ -12,14 +12,14 @@ import frc.robot.commands.AimCommand;
 import frc.robot.commands.ShooterCommand;
 import frc.robot.commands.IntakeFlipCommand;
 import frc.robot.commands.IntakeRollersCommand;
-import frc.robot.commands.ShooterCommand;
 import frc.robot.commands.SpindexerCommand;
-import frc.robot.subsystems.ClimberSubsystem;
+//import frc.robot.subsystems.ClimberSubsystem;
 
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.SpindexerSubsystem;
 import frc.robot.subsystems.SwerveSubsystem;
+
 import com.pathplanner.lib.auto.NamedCommands;
 
 import edu.wpi.first.math.MathUtil;
@@ -43,7 +43,7 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final SwerveSubsystem m_swerveSubsystem = new SwerveSubsystem();
   private final IntakeSubsystem m_intakeSubsystem = new IntakeSubsystem();
-  private final ClimberSubsystem m_climberSubsystem = new ClimberSubsystem();
+  //private final ClimberSubsystem m_climberSubsystem = new ClimberSubsystem();
   private final ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
   private final SpindexerSubsystem m_spindexerSubsystem = new SpindexerSubsystem();
   private final CommandXboxController m_driverController = new CommandXboxController(ControllerConstants.k_driverControllerPort);
@@ -101,13 +101,13 @@ public class RobotContainer {
     // does there need to be an .onFalse?    
 
     // intake wheels
-    new JoystickButton(m_driverController.getHID(), ControllerConstants.k_intakeWheels)
-      .whileTrue(new RunCommand(
-        () -> m_intakeSubsystem.intakeCommand(MotorConstants.k_intakePolarity), // may need to change
-        m_intakeSubsystem))
-      .onFalse(new RunCommand(
-        () -> m_intakeSubsystem.stopIntake(),
-        m_intakeSubsystem));
+   new Trigger(() -> m_driverController.getRawAxis(ControllerConstants.k_intakeWheels) > 0.05)
+      .whileTrue(
+        new RunCommand(() -> m_intakeSubsystem.intakeCommand(1))
+      )
+      .onFalse(
+        new RunCommand(() -> m_intakeSubsystem.stopIntake())
+      );
 
     // spindexer and feed
     new JoystickButton(m_driverController.getHID(), ControllerConstants.k_spindexer)
@@ -122,14 +122,14 @@ public class RobotContainer {
      .onTrue(new AimCommand(m_swerveSubsystem));
 
      // X Wheels
-     new JoystickButton(m_driverController.getHID(), OperatorConstants.k_Xwheels)
+     new JoystickButton(m_operatorController.getHID(), OperatorConstants.k_Xwheels)
     .whileTrue(new RunCommand(
         () -> m_swerveSubsystem.XWheels(),
         m_swerveSubsystem));
-    // does there need to be an .onFalse?
 
+    /* 
       // climber extension
-      new JoystickButton(m_operatorController.getHID(), OperatorConstants.k_climbExtend)
+      new JoystickButton(m_operatorController.getHID(), ControllerConstants.k_climbExtend)
      .whileTrue(new RunCommand(
         () -> m_climberSubsystem.climbCommand(MotorConstants.k_climberPolarity), //may need to change
         m_climberSubsystem))
@@ -138,16 +138,16 @@ public class RobotContainer {
         m_climberSubsystem));
     
       // climber compression
-      new JoystickButton(m_operatorController.getHID(), OperatorConstants.k_climbCompress)
+      new JoystickButton(m_operatorController.getHID(), ControllerConstants.k_climbCompress)
      .whileTrue(new RunCommand(
         () -> m_climberSubsystem.climbCommand(-1*MotorConstants.k_climberPolarity), //may need to change
         m_climberSubsystem))
       .onFalse(new RunCommand(
         () -> m_climberSubsystem.stopClimb(),
         m_climberSubsystem));
-
+*/
       // flip out
-      new JoystickButton(m_driverController.getHID(), OperatorConstants.k_flipOut)
+      new JoystickButton(m_driverController.getHID(), ControllerConstants.k_flipOut)
      .onTrue(new RunCommand( //double check onTrue of whileTrue
         () -> m_intakeSubsystem.flipCommand(MotorConstants.k_intakePolarity), //may need to change
         m_intakeSubsystem))
@@ -156,7 +156,7 @@ public class RobotContainer {
         m_intakeSubsystem));
 
       // flip in
-      new JoystickButton(m_driverController.getHID(), OperatorConstants.k_flipIn)
+      new JoystickButton(m_driverController.getHID(), ControllerConstants.k_flipIn)
      .onTrue(new RunCommand(
         () -> m_intakeSubsystem.flipCommand(-1 * MotorConstants.k_intakePolarity), //may need to change
         m_intakeSubsystem))
@@ -165,15 +165,16 @@ public class RobotContainer {
         m_intakeSubsystem));
 
    
-    // shoot/rev up
-    // new Trigger(() -> m_driverController.getRawAxis(ControllerConstants.k_rightTrig) > 0.05)
-    //   .whileTrue(
-    //     new RunCommand(() -> m_shooterSubsystem.shoot())
-    //   )
-    //   .onFalse(
-    //     new RunCommand(() -> m_shooterSubsystem.stopShooting())
-    //   );
-    new JoystickButton(m_driverController.getHID(), OperatorConstants.k_shoot)
+    //Spindexer on Driver controller
+    new Trigger(() -> m_driverController.getRawAxis(ControllerConstants.k_spindexer) > 0.05)
+      .whileTrue(
+        new RunCommand(() -> m_spindexerSubsystem.spindex())
+      )
+      .onFalse(
+        new RunCommand(() -> m_spindexerSubsystem.stopSpindex())
+      );
+// shoot/rev up
+    new Trigger (() -> m_operatorController.getRawAxis(OperatorConstants.k_revShooter) > 0.05)
       .onTrue(new RunCommand(
         () -> m_shooterSubsystem.shoot(), m_shooterSubsystem))
       .onFalse(new RunCommand(

@@ -20,11 +20,11 @@ public class IntakeSubsystem extends SubsystemBase{
   }
 
   public void intakeCommand(int polarity) { //polarity is 1 or -1
-    m_intake.set(MotorConstants.k_intakeSpeed*polarity); //-1 polarity makes motor run backwards
+    m_intake.set(MotorConstants.k_intakeSpeed*polarity*MotorConstants.k_intakePolarity); //-1 polarity makes motor run backwards
   }
 
   public void flipCommand(int polarity){
-    m_flip.set(MotorConstants.k_flipSpeed*polarity); //-1 polarity makes motor run backwards
+    m_flip.set(MotorConstants.k_flipSpeed*polarity*MotorConstants.k_flipPolarity); //-1 polarity makes motor run backwards
   }
   public void stopFlip() {
       m_flip.set(0);

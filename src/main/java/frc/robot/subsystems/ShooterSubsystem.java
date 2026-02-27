@@ -13,22 +13,22 @@ public class ShooterSubsystem extends SubsystemBase{
   private TalonFX m_upper; // upper shooter
 
   public ShooterSubsystem() {
-    m_lower = new TalonFX(MotorConstants.k_lowershooterKrakenID);
-    m_lower.getConfigurator().apply(ShooterConfigs.LOWERSHOOTER_TALON_FX_CONFIGURATION, 0.05);
+    m_lower = new TalonFX(MotorConstants.k_leftshooterKrakenID);
+    m_lower.getConfigurator().apply(ShooterConfigs.LEFTSHOOTER_TALON_FX_CONFIGURATION, 0.05);
 
-    m_upper = new TalonFX(MotorConstants.k_uppershooterKrakenID);
-    m_upper.getConfigurator().apply(ShooterConfigs.UPPERSHOOTER_TALON_FX_CONFIGURATION, 0.05);
+    m_upper = new TalonFX(MotorConstants.k_rightshooterKrakenID);
+    m_upper.getConfigurator().apply(ShooterConfigs.RIGHTSHOOTER_TALON_FX_CONFIGURATION, 0.05);
   }
 
   @SuppressWarnings("unused")
   public void shoot() {
     if(false){ //TODO: A condition that checks if the limelight is getting good data from an april tag
-      m_lower.set(calculateSpeed(ApriltagHelpers.getDistance()) * MotorConstants.k_lowershooterPolarity);  // Revs up the two shooter motors
-      m_upper.set(calculateSpeed(ApriltagHelpers.getDistance())* MotorConstants.k_uppershooterPolarity);
+      m_lower.set(calculateSpeed(ApriltagHelpers.getDistance()) * MotorConstants.k_leftshooterPolarity);  // Revs up the two shooter motors
+      m_upper.set(calculateSpeed(ApriltagHelpers.getDistance())* MotorConstants.k_rightshooterPolarity);
     }
     else{
-      m_lower.set(MotorConstants.k_fastShooterSpeed * MotorConstants.k_lowershooterPolarity);  // Revs up the two shooter motors
-      m_upper.set(MotorConstants.k_fastShooterSpeed * MotorConstants.k_uppershooterPolarity);
+      m_lower.set(MotorConstants.k_fastShooterSpeed * MotorConstants.k_leftshooterPolarity);  // Revs up the two shooter motors
+      m_upper.set(MotorConstants.k_fastShooterSpeed * MotorConstants.k_rightshooterPolarity);
     }
   }
 

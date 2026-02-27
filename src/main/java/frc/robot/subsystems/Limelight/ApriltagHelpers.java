@@ -9,7 +9,6 @@ public ApriltagHelpers(){
 }
 public static double getDistance(){
    double TY = Math.toRadians(LimelightHelpers.getTY(VisionConstants.LimelightName));
-   double TX = Math.toRadians(LimelightHelpers.getTX(VisionConstants.LimelightName));
 
    // angleup = ty + pitch
    double angleUp = VisionConstants.CAMERA_PITCH + TY;

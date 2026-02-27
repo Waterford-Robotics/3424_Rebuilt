@@ -5,7 +5,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.XboxController.Axis;
-import edu.wpi.first.wpilibj.XboxController.Button;
+
 
 public class Constants {
       // Constants for Kraken Drivetrain!
@@ -20,26 +20,22 @@ public class Constants {
   public static final class ControllerConstants {
     public static final int k_driverControllerPort = 0; // Driver
 
-    // public static final double k_driveDeadband = 0.10; // Increase to combat larger stick drift
-
-    public static final int k_start = Button.kStart.value; // Start Button
-    public static final int k_back = Button.kBack.value; // Back Button
-
-    public static final int k_intakeWheels = 1; // A
-    // public static final int k_climbCompress = 2; // B
+    public static final int k_intakeWheels = Axis.kLeftTrigger.value;
+    public static final int k_climbCompress = 2; // B
+     public static final int k_climbExtend = 7; 
     public static final int k_aimRobot = 3; // X
-    public static final int k_spindexer = 4; // Y
-     
-    public static final int k_rightTrig = Axis.kRightTrigger.value;
+   
+    public static final int k_spindexer = Axis.kRightTrigger.value;
     public static final int k_resetNavX = 8;
+    public static final int k_flipOut = 5; // Right Bump // flip out for driver 
+    public static final int k_flipIn = 6; // Left Bump // flip in for driver,
   }  
 
   public static final class OperatorConstants {
     public static final int k_operatorControllerPort = 1; // Operator
-    public static final int k_flipOut = 5; // Right Bump // flip out for driver 
-    public static final int k_flipIn = 6; // Left Bump // flip in for driver,
+   
     public static final int k_Xwheels = 8;
-    public static final int k_rightTrig = Axis.kRightTrigger.value;
+    public static final int k_revShooter = Axis.kRightTrigger.value;
   }  
 
   public static final class DriveConstants{
@@ -60,6 +56,7 @@ public class Constants {
     public static final int k_intakeSupplyCurrentLimit = 60;
     public static final double k_intakeSpeed = -0.5;
     public static final int k_intakePolarity = 1;
+   
     //intake flip
     public static final int k_flipKrakenID = 11;
     public static final double k_flipRampRate = 0.05;
@@ -84,13 +81,13 @@ public class Constants {
     public static final double k_fastShooterSpeed = 1;
 
     //Blue roller
-    public static final int k_blueRollerKrakenID = 22;
-    public static final double k_blueRollerRampRate = 0.05;
-    public static final double k_blueRollerClosedMaxSpeed = 0.4;
-    public static final int k_blueRollerSupplyCurrentLimit = 60;
-    public static final double k_blueRollerSpeed = 0.31;
-    public static final double k_fastBlueRollerSpeed = 0.67;
-    public static final int k_blueRollerPolarity = -1;
+    public static final int k_shooterRollerKrakenID = 22;
+    public static final double k_shooterRollerRampRate = 0.05;
+    public static final double k_shooterRollerClosedMaxSpeed = 0.4;
+    public static final int k_shooterRollerSupplyCurrentLimit = 60;
+    public static final double k_shooterRollerSpeed = 0.31;
+    public static final double k_fastShooterRollerSpeed = 0.67;
+    public static final int k_shooterRollerPolarity = -1;
 
     //spindexer
     public static final int k_spindexerKrakenID = 30;
@@ -101,13 +98,13 @@ public class Constants {
     public static final int k_spindexerPolarity = -1;
 
     //black roller
-    public static final int k_blackRollerKrakenID = -1; // SET
-    public static final double k_blackRollerRampRate = 0.05;
-    public static final double k_blackRollerClosedMaxSpeed = 0.4;
-    public static final int k_blackRollerSupplyCurrentLimit = 60;
-    public static final double k_blackRollerSpeed = 0.31;
-    public static final double k_fastBlackRollerSpeed = 0.67;
-    public static final int k_blackRollerPolarity = -1;
+    public static final int k_hopperRollerKrakenID = 31; // SET
+    public static final double k_hopperRollerRampRate = 0.05;
+    public static final double k_hopperRollerClosedMaxSpeed = 0.4;
+    public static final int k_hopperRollerSupplyCurrentLimit = 60;
+    public static final double k_hopperRollerSpeed = 0.31;
+    public static final double k_fastHopperRollerSpeed = 0.67;
+    public static final int k_hopperRollerPolarity = -1;
     
 
     //climber NOT SPECIFIC TO CLIMBER YET 

@@ -2,7 +2,7 @@ package frc.robot;
 
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.signals.NeutralModeValue;
-import com.ctre.phoenix6.signals.UpdateModeValue;
+
 
 import frc.robot.Constants.MotorConstants;
 
@@ -61,7 +61,7 @@ public class Configs {
 
   /* 
     ***********************************************
-    **  CLIMBER SHOOTER KRAKEN x60 CONFIGURATIONS  **
+    **  LEFT SHOOTER KRAKEN x60 CONFIGURATIONS  **
     ***********************************************
     */
 static{
@@ -87,8 +87,8 @@ static{
 public static final class SpindexerConfigs {
 
   public static final TalonFXConfiguration SPINDEXER_TALON_FX_CONFIGURATION = new TalonFXConfiguration();
-  public static final TalonFXConfiguration BLUEROLLER_TALON_FX_CONFIGURATION = new TalonFXConfiguration();
-  public static final TalonFXConfiguration BLACKROLLER_TALON_FX_CONFIGURATION = new TalonFXConfiguration();
+  public static final TalonFXConfiguration SHOOTER_ROLLER_TALON_FX_CONFIGURATION = new TalonFXConfiguration();
+  public static final TalonFXConfiguration HOPPER_ROLLER_TALON_FX_CONFIGURATION = new TalonFXConfiguration();
 
   /* 
     ***********************************************
@@ -103,26 +103,26 @@ static{
   SPINDEXER_TALON_FX_CONFIGURATION.CurrentLimits.SupplyCurrentLimit = MotorConstants.k_spindexerSupplyCurrentLimit;
   /*
     ********************************************
-    **    BLUE ROLLER KRAKEN x44 CONFIGURATIONS    **
+    **    SHOOTER ROLLER KRAKEN x44 CONFIGURATIONS    **
     ********************************************
   */
 
-  BLUEROLLER_TALON_FX_CONFIGURATION.ClosedLoopRamps.DutyCycleClosedLoopRampPeriod = MotorConstants.k_blueRollerRampRate;
-  BLUEROLLER_TALON_FX_CONFIGURATION.MotorOutput.PeakForwardDutyCycle = MotorConstants.k_blueRollerClosedMaxSpeed;
-  BLUEROLLER_TALON_FX_CONFIGURATION.MotorOutput.PeakReverseDutyCycle = -MotorConstants.k_blueRollerClosedMaxSpeed;
-  BLUEROLLER_TALON_FX_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Brake;
-  BLUEROLLER_TALON_FX_CONFIGURATION.CurrentLimits.SupplyCurrentLimit = MotorConstants.k_blueRollerSupplyCurrentLimit;
+  SHOOTER_ROLLER_TALON_FX_CONFIGURATION.ClosedLoopRamps.DutyCycleClosedLoopRampPeriod = MotorConstants.k_shooterRollerRampRate;
+  SHOOTER_ROLLER_TALON_FX_CONFIGURATION.MotorOutput.PeakForwardDutyCycle = MotorConstants.k_shooterRollerClosedMaxSpeed;
+  SHOOTER_ROLLER_TALON_FX_CONFIGURATION.MotorOutput.PeakReverseDutyCycle = -MotorConstants.k_shooterRollerClosedMaxSpeed;
+  SHOOTER_ROLLER_TALON_FX_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Brake;
+  SHOOTER_ROLLER_TALON_FX_CONFIGURATION.CurrentLimits.SupplyCurrentLimit = MotorConstants.k_shooterRollerSupplyCurrentLimit;
   /*
     ********************************************
-    **    BLACK ROLLER KRAKEN x44 CONFIGURATIONS    **
+    **    HOPPER ROLLER KRAKEN x44 CONFIGURATIONS    **
     ********************************************
   */
 
-  BLACKROLLER_TALON_FX_CONFIGURATION.ClosedLoopRamps.DutyCycleClosedLoopRampPeriod = MotorConstants.k_blackRollerRampRate;
-  BLACKROLLER_TALON_FX_CONFIGURATION.MotorOutput.PeakForwardDutyCycle = MotorConstants.k_blackRollerClosedMaxSpeed;
-  BLACKROLLER_TALON_FX_CONFIGURATION.MotorOutput.PeakReverseDutyCycle = -MotorConstants.k_blackRollerClosedMaxSpeed;
-  BLACKROLLER_TALON_FX_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Brake;
-  BLACKROLLER_TALON_FX_CONFIGURATION.CurrentLimits.SupplyCurrentLimit = MotorConstants.k_blackRollerSupplyCurrentLimit;
+  HOPPER_ROLLER_TALON_FX_CONFIGURATION.ClosedLoopRamps.DutyCycleClosedLoopRampPeriod = MotorConstants.k_hopperRollerRampRate;
+  HOPPER_ROLLER_TALON_FX_CONFIGURATION.MotorOutput.PeakForwardDutyCycle = MotorConstants.k_hopperRollerClosedMaxSpeed;
+  HOPPER_ROLLER_TALON_FX_CONFIGURATION.MotorOutput.PeakReverseDutyCycle = -MotorConstants.k_hopperRollerClosedMaxSpeed;
+  HOPPER_ROLLER_TALON_FX_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Brake;
+  HOPPER_ROLLER_TALON_FX_CONFIGURATION.CurrentLimits.SupplyCurrentLimit = MotorConstants.k_hopperRollerSupplyCurrentLimit;
 }
 }
 }
