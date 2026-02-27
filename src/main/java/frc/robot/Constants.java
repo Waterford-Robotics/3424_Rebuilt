@@ -19,7 +19,6 @@ public class Constants {
 
   public static final class ControllerConstants {
     public static final int k_driverControllerPort = 0; // Driver
-    public static final int k_operatorControllerPort = 1; // Operator
 
     // public static final double k_driveDeadband = 0.10; // Increase to combat larger stick drift
 
@@ -29,15 +28,37 @@ public class Constants {
     public static final int k_intakeWheels = 1; // A
     public static final int k_climbCompress = 2; // B
     public static final int k_aimRobot = 3; // X
-    public static final int k_climbExtend = 4; // Y
+    public static final int k_spindexer = 4; // Y
     
-    public static final int k_dpadup = 0; // D-Pad Up
-    public static final int k_dpadRight = 90; // D-Pad Right
-    public static final int k_dpadDown = 180; // D-Pad Down
-    public static final int k_dpadLeft = 270; // D-Pad Left
+    // public static final int k_dpadup = 0; // D-Pad Up
+    // public static final int k_dpadRight = 90; // D-Pad Right
+    // public static final int k_dpadDown = 180; // D-Pad Down
+    // public static final int k_dpadLeft = 270; // D-Pad Left
 
-    public final static int k_flipOut = 5; // Right Bump
-    public final static int k_flipIn = 6; // Left it Bump
+    public final static int k_righttrig = Axis.kRightTrigger.value; // Right Trig
+    public final static int k_lefttrig = Axis.kLeftTrigger.value; // Left Trig
+    public final static int k_resetNavX = 8;
+  }  
+
+  public static final class OperatorConstants {
+    public static final int k_operatorControllerPort = 1; // Operator
+
+    // public static final double k_driveDeadband = 0.10; // Increase to combat larger stick drift
+
+    public final static int k_start = Button.kStart.value; // Start Button
+    public final static int k_back = Button.kBack.value; // Back Button
+
+    public static final int k_intakeWheels = 1; // A
+    public static final int k_climbCompress = 2; // B
+    public static final int k_revUp = 3; // X
+        
+    // public static final int k_dpadup = 0; // D-Pad Up
+    // public static final int k_dpadRight = 90; // D-Pad Right
+    // public static final int k_dpadDown = 180; // D-Pad Down
+    // public static final int k_dpadLeft = 270; // D-Pad Left
+
+    public final static int k_flipIn = 5; // Right Bump // flip out for driver 
+    public final static int k_flipOut = 6; // Left it Bump // flip in for driver, 
 
     public final static int k_righttrig = Axis.kRightTrigger.value; // Right Trig
     public final static int k_lefttrig = Axis.kLeftTrigger.value; // Left Trig

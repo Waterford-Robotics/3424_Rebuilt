@@ -5,6 +5,7 @@
 package frc.robot;
 
 import frc.robot.Constants.ControllerConstants;
+import frc.robot.Constants.OperatorConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.MotorConstants;
 import frc.robot.commands.AimCommand;
@@ -46,7 +47,7 @@ public class RobotContainer {
   private final ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
   private final SpindexerSubsystem m_spindexerSubsystem = new SpindexerSubsystem();
   private final CommandXboxController m_driverController = new CommandXboxController(ControllerConstants.k_driverControllerPort);
-  private final CommandXboxController m_operatorController = new CommandXboxController(ControllerConstants.k_operatorControllerPort);
+  private final CommandXboxController m_operatorController = new CommandXboxController(OperatorConstants.k_operatorControllerPort);
   SendableChooser<Command> m_chooser = new SendableChooser<>();
  
 
@@ -106,32 +107,33 @@ public class RobotContainer {
         () -> m_intakeSubsystem.stopIntake(),
         m_intakeSubsystem));
 
-    // climber extension
-    new JoystickButton(m_operatorController.getHID(), ControllerConstants.k_climbExtend)
-     .whileTrue(new RunCommand(
-        () -> m_climberSubsystem.climbCommand(MotorConstants.k_climberPolarity), //may need to change
-        m_climberSubsystem))
-      .onFalse(new RunCommand(
-        () -> m_climberSubsystem.stopClimb(),
-        m_climberSubsystem));
     
-    // climber compression
-    new JoystickButton(m_operatorController.getHID(), ControllerConstants.k_climbCompress)
-     .whileTrue(new RunCommand(
-        () -> m_climberSubsystem.climbCommand(-1*MotorConstants.k_climberPolarity), //may need to change
-        m_climberSubsystem))
-      .onFalse(new RunCommand(
-        () -> m_climberSubsystem.stopClimb(),
-        m_climberSubsystem));
+    //     // climber extension
+    // new JoystickButton(m_operatorController.getHID(), ControllerConstants.k_climbExtend)
+    //  .whileTrue(new RunCommand(
+    //     () -> m_climberSubsystem.climbCommand(MotorConstants.k_climberPolarity), //may need to change
+    //     m_climberSubsystem))
+    //   .onFalse(new RunCommand(
+    //     () -> m_climberSubsystem.stopClimb(),
+    //     m_climberSubsystem));
+    
+    // // climber compression
+    // new JoystickButton(m_operatorController.getHID(), ControllerConstants.k_climbCompress)
+    //  .whileTrue(new RunCommand(
+    //     () -> m_climberSubsystem.climbCommand(-1*MotorConstants.k_climberPolarity), //may need to change
+    //     m_climberSubsystem))
+    //   .onFalse(new RunCommand(
+    //     () -> m_climberSubsystem.stopClimb(),
+    //     m_climberSubsystem));/
 
     // flip out
-    new JoystickButton(m_operatorController.getHID(), ControllerConstants.k_flipOut)
+    new JoystickButton(m_operatorController.getHID(), OperatorConstants.k_flipOut)
      .onTrue(new RunCommand( //double check onTrue of whileTrue
         () -> m_intakeSubsystem.flipCommand(MotorConstants.k_intakePolarity), //may need to change
         m_intakeSubsystem));
 
     // flip in
-    new JoystickButton(m_operatorController.getHID(), ControllerConstants.k_flipIn)
+    new JoystickButton(m_operatorController.getHID(), OperatorConstants.k_flipIn)
      .onTrue(new RunCommand(
         () -> m_intakeSubsystem.flipCommand(-1 * MotorConstants.k_intakePolarity), //may need to change
         m_intakeSubsystem));
@@ -141,7 +143,16 @@ public class RobotContainer {
     new JoystickButton(m_driverController.getHID(), ControllerConstants.k_aimRobot)
      .onTrue(new AimCommand(m_swerveSubsystem));
 
+    // shoot/rev up, operator
+    new JoystickButton(m_operatorController.getHID(), OperatorConstants.k_shoot)
+        .onTrue(new RunCommand(
+        () -> m_shooterSubsystem.shoot(), m_shooterSubsystem));
 
+    // spindexer, driver
+    new JoystickButton(m_driverController.getHID(), ControllerConstants.k_spindexer)
+     .onTrue(new RunCommand(
+        () -> m_spindexerSubsystem.spindex(), m_spindexerSubsystem));
+    
   }
 
   /**

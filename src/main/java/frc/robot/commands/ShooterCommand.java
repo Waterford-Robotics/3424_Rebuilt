@@ -36,7 +36,7 @@ public class ShooterCommand extends Command {
   public void execute() {
 
     if(m_timer.get() < m_seconds) {
-      m_shooterSubsystem.shootHub();
+      m_shooterSubsystem.shoot();
     }
   }
 

@@ -20,14 +20,9 @@ public class ShooterSubsystem extends SubsystemBase{
     m_upper.getConfigurator().apply(ShooterConfigs.UPPERSHOOTER_TALON_FX_CONFIGURATION, 0.05);
   }
 
-  public void shootHub() {
+  public void shoot() {
     m_lower.set(calculateSpeed(ApriltagHelpers.getDistance()) * MotorConstants.k_lowershooterPolarity);  // Revs up the two shooter motors
     m_upper.set(calculateSpeed(ApriltagHelpers.getDistance())* MotorConstants.k_uppershooterPolarity);
-  }
-
-  public void shootPass() {
-    m_lower.set(MotorConstants.k_lowershooterSpeed * MotorConstants.k_lowershooterPolarity);
-    m_upper.set(MotorConstants.k_uppershooterSpeed * MotorConstants.k_uppershooterPolarity);
   }
 
   public double calculateSpeed(double distance) {
