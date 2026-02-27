@@ -92,18 +92,13 @@ public class RobotContainer {
    * joysticks}.
    */
   private void configureBindings() {
+    // CONTROLLER CONSTANTS
     //zero NavX
     new JoystickButton(m_driverController.getHID(), ControllerConstants.k_resetNavX)
     .onTrue(new InstantCommand(
         () -> m_swerveSubsystem.zeroGyro(),
         m_swerveSubsystem));
-
-
-     new JoystickButton(m_driverController.getHID(), OperatorConstants.k_Xwheels)
-    .whileTrue(new RunCommand(
-        () -> m_swerveSubsystem.XWheels(),
-        m_swerveSubsystem));
-    
+    // does there need to be an .onFalse?    
 
     // intake wheels
     new JoystickButton(m_driverController.getHID(), ControllerConstants.k_intakeWheels)
@@ -114,59 +109,76 @@ public class RobotContainer {
         () -> m_intakeSubsystem.stopIntake(),
         m_intakeSubsystem));
 
-    
-    //     // climber extension
-    // new JoystickButton(m_operatorController.getHID(), ControllerConstants.k_climbExtend)
-    //  .whileTrue(new RunCommand(
-    //     () -> m_climberSubsystem.climbCommand(MotorConstants.k_climberPolarity), //may need to change
-    //     m_climberSubsystem))
-    //   .onFalse(new RunCommand(
-    //     () -> m_climberSubsystem.stopClimb(),
-    //     m_climberSubsystem));
-    
-    // // climber compression
-    // new JoystickButton(m_operatorController.getHID(), ControllerConstants.k_climbCompress)
-    //  .whileTrue(new RunCommand(
-    //     () -> m_climberSubsystem.climbCommand(-1*MotorConstants.k_climberPolarity), //may need to change
-    //     m_climberSubsystem))
-    //   .onFalse(new RunCommand(
-    //     () -> m_climberSubsystem.stopClimb(),
-    //     m_climberSubsystem));/
-
-    // flip out
-    new JoystickButton(m_driverController.getHID(), ControllerConstants.k_flipOut)
-     .onTrue(new RunCommand( //double check onTrue of whileTrue
-        () -> m_intakeSubsystem.flipCommand(MotorConstants.k_intakePolarity), //may need to change
-        m_intakeSubsystem));
-
-    // flip in
-    new JoystickButton(m_driverController.getHID(), ControllerConstants.k_flipIn)
-     .onTrue(new RunCommand(
-        () -> m_intakeSubsystem.flipCommand(-1 * MotorConstants.k_intakePolarity), //may need to change
-        m_intakeSubsystem));
-
-
-    // aim
-    new JoystickButton(m_driverController.getHID(), ControllerConstants.k_aimRobot)
-     .onTrue(new AimCommand(m_swerveSubsystem));
-
-    // shoot/rev up
-    new Trigger(() -> m_driverController.getRawAxis(ControllerConstants.k_rightTrig) > 0.05)
-      .whileTrue(
-        new RunCommand(() -> m_shooterSubsystem.shoot())
-      )
-      .onFalse(
-        new RunCommand(() -> m_shooterSubsystem.stopShooting())
-      );
-
-    // spindexer, driver
+    // spindexer and feed
     new JoystickButton(m_driverController.getHID(), ControllerConstants.k_spindexer)
       .onTrue(new RunCommand(
         () -> m_spindexerSubsystem.spindex(), m_spindexerSubsystem))
       .onFalse(new RunCommand(
         () -> m_spindexerSubsystem.stopSpindex(),
         m_spindexerSubsystem));
+
+    // aim
+    new JoystickButton(m_driverController.getHID(), ControllerConstants.k_aimRobot)
+     .onTrue(new AimCommand(m_swerveSubsystem));
+
+     // X Wheels
+     new JoystickButton(m_driverController.getHID(), OperatorConstants.k_Xwheels)
+    .whileTrue(new RunCommand(
+        () -> m_swerveSubsystem.XWheels(),
+        m_swerveSubsystem));
+    // does there need to be an .onFalse?
+
+      // climber extension
+      new JoystickButton(m_operatorController.getHID(), OperatorConstants.k_climbExtend)
+     .whileTrue(new RunCommand(
+        () -> m_climberSubsystem.climbCommand(MotorConstants.k_climberPolarity), //may need to change
+        m_climberSubsystem))
+      .onFalse(new RunCommand(
+        () -> m_climberSubsystem.stopClimb(),
+        m_climberSubsystem));
     
+      // climber compression
+      new JoystickButton(m_operatorController.getHID(), OperatorConstants.k_climbCompress)
+     .whileTrue(new RunCommand(
+        () -> m_climberSubsystem.climbCommand(-1*MotorConstants.k_climberPolarity), //may need to change
+        m_climberSubsystem))
+      .onFalse(new RunCommand(
+        () -> m_climberSubsystem.stopClimb(),
+        m_climberSubsystem));
+
+      // flip out
+      new JoystickButton(m_driverController.getHID(), OperatorConstants.k_flipOut)
+     .onTrue(new RunCommand( //double check onTrue of whileTrue
+        () -> m_intakeSubsystem.flipCommand(MotorConstants.k_intakePolarity), //may need to change
+        m_intakeSubsystem))
+      .onFalse(new RunCommand(
+        () -> m_intakeSubsystem.stopFlip(),
+        m_intakeSubsystem));
+
+      // flip in
+      new JoystickButton(m_driverController.getHID(), OperatorConstants.k_flipIn)
+     .onTrue(new RunCommand(
+        () -> m_intakeSubsystem.flipCommand(-1 * MotorConstants.k_intakePolarity), //may need to change
+        m_intakeSubsystem))
+      .onFalse(new RunCommand(
+        () -> m_intakeSubsystem.stopFlip(),
+        m_intakeSubsystem));
+
+   
+    // shoot/rev up
+    // new Trigger(() -> m_driverController.getRawAxis(ControllerConstants.k_rightTrig) > 0.05)
+    //   .whileTrue(
+    //     new RunCommand(() -> m_shooterSubsystem.shoot())
+    //   )
+    //   .onFalse(
+    //     new RunCommand(() -> m_shooterSubsystem.stopShooting())
+    //   );
+    new JoystickButton(m_driverController.getHID(), OperatorConstants.k_shoot)
+      .onTrue(new RunCommand(
+        () -> m_shooterSubsystem.shoot(), m_shooterSubsystem))
+      .onFalse(new RunCommand(
+        () -> m_shooterSubsystem.stopShooting(),
+        m_shooterSubsystem));
   }
 
   /**

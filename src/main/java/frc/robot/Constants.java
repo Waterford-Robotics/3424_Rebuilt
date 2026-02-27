@@ -22,23 +22,24 @@ public class Constants {
 
     // public static final double k_driveDeadband = 0.10; // Increase to combat larger stick drift
 
-    public final static int k_start = Button.kStart.value; // Start Button
-    public final static int k_back = Button.kBack.value; // Back Button
+    public static final int k_start = Button.kStart.value; // Start Button
+    public static final int k_back = Button.kBack.value; // Back Button
 
     public static final int k_intakeWheels = 1; // A
-    public static final int k_climbCompress = 2; // B
+    // public static final int k_climbCompress = 2; // B
     public static final int k_aimRobot = 3; // X
     public static final int k_spindexer = 4; // Y
-    public final static int k_flipOut = 5; // Right Bump // flip out for driver 
-    public final static int k_flipIn = 6; // Left it Bump // flip in for driver, 
-    public final static int k_rightTrig = Axis.kRightTrigger.value;
-    public final static int k_resetNavX = 8;
+     
+    public static final int k_rightTrig = Axis.kRightTrigger.value;
+    public static final int k_resetNavX = 8;
   }  
 
   public static final class OperatorConstants {
     public static final int k_operatorControllerPort = 1; // Operator
+    public static final int k_flipOut = 5; // Right Bump // flip out for driver 
+    public static final int k_flipIn = 6; // Left Bump // flip in for driver,
     public static final int k_Xwheels = 8;
-    public final static int k_rightTrig = Axis.kRightTrigger.value;
+    public static final int k_rightTrig = Axis.kRightTrigger.value;
   }  
 
   public static final class DriveConstants{
