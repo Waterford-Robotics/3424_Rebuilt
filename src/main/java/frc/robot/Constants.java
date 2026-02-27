@@ -67,27 +67,29 @@ public class Constants {
     public static final double k_flipSpeed = -0.5;
     public static final int k_flipPolarity = 1;
 
-    //lower shooter
-    public static final int k_lowershooterKrakenID = 20;
+    //left shooter
+    public static final int k_leftshooterKrakenID = 20;
+    public static final int k_leftshooterPolarity = 1;
+
+    //right shooter
+    public static final int k_rightshooterKrakenID = 21;
+    public static final int k_rightshooterPolarity = -1;
+
+    //both shooters
     public static final double k_shooterRampRate = 0.05;
     public static final double k_shooterClosedMaxSpeed = 0.4;
     public static final int k_shooterSupplyCurrentLimit = 60;
     public static final double k_shooterSpeed = 0.31;
     public static final double k_fastShooterSpeed = 1;
-    public static final int k_lowershooterPolarity = 1;
 
-    //upper shooter
-    public static final int k_uppershooterKrakenID = 21;
-    public static final int k_uppershooterPolarity = -1;
-
-    //roller
-    public static final int k_rollerKrakenID = 22;
-    public static final double k_rollerRampRate = 0.05;
-    public static final double k_rollerClosedMaxSpeed = 0.4;
-    public static final int k_rollerSupplyCurrentLimit = 60;
-    public static final double k_rollerSpeed = 0.31;
-    public static final double k_fastRollerSpeed = 0.67;
-    public static final int k_rollerPolarity = -1;
+    //Blue roller
+    public static final int k_blueRollerKrakenID = 22;
+    public static final double k_blueRollerRampRate = 0.05;
+    public static final double k_blueRollerClosedMaxSpeed = 0.4;
+    public static final int k_blueRollerSupplyCurrentLimit = 60;
+    public static final double k_blueRollerSpeed = 0.31;
+    public static final double k_fastBlueRollerSpeed = 0.67;
+    public static final int k_blueRollerPolarity = -1;
 
     //spindexer
     public static final int k_spindexerKrakenID = 30;
@@ -98,10 +100,14 @@ public class Constants {
     public static final int k_spindexerPolarity = -1;
 
     //black roller
+    public static final int k_blackRollerKrakenID = -1; // SET
+    public static final double k_blackRollerRampRate = 0.05;
+    public static final double k_blackRollerClosedMaxSpeed = 0.4;
+    public static final int k_blackRollerSupplyCurrentLimit = 60;
     public static final double k_blackRollerSpeed = 0.31;
+    public static final double k_fastBlackRollerSpeed = 0.67;
     public static final int k_blackRollerPolarity = -1;
-
-
+    
 
     //climber NOT SPECIFIC TO CLIMBER YET 
     public static final int k_climberKrakenID = 40;
