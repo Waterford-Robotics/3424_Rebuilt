@@ -29,40 +29,16 @@ public class Constants {
     public static final int k_climbCompress = 2; // B
     public static final int k_aimRobot = 3; // X
     public static final int k_spindexer = 4; // Y
-    
-    // public static final int k_dpadup = 0; // D-Pad Up
-    // public static final int k_dpadRight = 90; // D-Pad Right
-    // public static final int k_dpadDown = 180; // D-Pad Down
-    // public static final int k_dpadLeft = 270; // D-Pad Left
-
-    public final static int k_righttrig = Axis.kRightTrigger.value; // Right Trig
-    public final static int k_lefttrig = Axis.kLeftTrigger.value; // Left Trig
+    public final static int k_flipOut = 5; // Right Bump // flip out for driver 
+    public final static int k_flipIn = 6; // Left it Bump // flip in for driver, 
+    public final static int k_rightTrig = Axis.kRightTrigger.value;
     public final static int k_resetNavX = 8;
   }  
 
   public static final class OperatorConstants {
     public static final int k_operatorControllerPort = 1; // Operator
     public static final int k_Xwheels = 8;
-    // public static final double k_driveDeadband = 0.10; // Increase to combat larger stick drift
-
-    public final static int k_start = Button.kStart.value; // Start Button
-    public final static int k_back = Button.kBack.value; // Back Button
-
-    public static final int k_intakeWheels = 1; // A
-    public static final int k_climbCompress = 2; // B
-    public static final int k_shoot = 3; // X
-        
-    // public static final int k_dpadup = 0; // D-Pad Up
-    // public static final int k_dpadRight = 90; // D-Pad Right
-    // public static final int k_dpadDown = 180; // D-Pad Down
-    // public static final int k_dpadLeft = 270; // D-Pad Left
-
-    public final static int k_flipOut = 5; // Right Bump // flip out for driver 
-    public final static int k_flipIn = 6; // Left it Bump // flip in for driver, 
-
-    public final static int k_righttrig = Axis.kRightTrigger.value; // Right Trig
-    public final static int k_lefttrig = Axis.kLeftTrigger.value; // Left Trig
-    public final static int k_resetNavX = 8;
+    public final static int k_rightTrig = Axis.kRightTrigger.value;
   }  
 
   public static final class DriveConstants{
@@ -93,20 +69,15 @@ public class Constants {
 
     //lower shooter
     public static final int k_lowershooterKrakenID = 20;
-    public static final double k_lowershooterRampRate = 0.05;
-    public static final double k_lowershooterClosedMaxSpeed = 0.4;
-    public static final int k_lowershooterSupplyCurrentLimit = 60;
-    public static final double k_lowershooterSpeed = 0.31;
-    public static final double k_fastLowerShooterSpeed = 0.67;
+    public static final double k_shooterRampRate = 0.05;
+    public static final double k_shooterClosedMaxSpeed = 0.4;
+    public static final int k_shooterSupplyCurrentLimit = 60;
+    public static final double k_shooterSpeed = 0.31;
+    public static final double k_fastShooterSpeed = 1;
     public static final int k_lowershooterPolarity = 1;
 
     //upper shooter
     public static final int k_uppershooterKrakenID = 21;
-    public static final double k_uppershooterRampRate = 0.05;
-    public static final double k_uppershooterClosedMaxSpeed = 0.4;
-    public static final int k_uppershooterSupplyCurrentLimit = 60;
-    public static final double k_uppershooterSpeed = 0.31;
-    public static final double k_fastUpperShooterSpeed = 0.67;
     public static final int k_uppershooterPolarity = -1;
 
     //roller
@@ -116,7 +87,7 @@ public class Constants {
     public static final int k_rollerSupplyCurrentLimit = 60;
     public static final double k_rollerSpeed = 0.31;
     public static final double k_fastRollerSpeed = 0.67;
-    public static final int k_rollerPolarity = 1;
+    public static final int k_rollerPolarity = -1;
 
     //spindexer
     public static final int k_spindexerKrakenID = 30;
@@ -124,8 +95,11 @@ public class Constants {
     public static final double k_spindexerClosedMaxSpeed = 0.4;
     public static final int k_spindexerSupplyCurrentLimit = 60;
     public static final double k_spindexerSpeed = -0.5;
+    public static final int k_spindexerPolarity = -1;
+
+    //black roller
     public static final double k_blackRollerSpeed = 0.31;
-    public static final int k_blackRollerPolarity = 1;
+    public static final int k_blackRollerPolarity = -1;
 
 
 

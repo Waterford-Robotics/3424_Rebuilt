@@ -134,13 +134,13 @@ public class RobotContainer {
     //     m_climberSubsystem));/
 
     // flip out
-    new JoystickButton(m_operatorController.getHID(), OperatorConstants.k_flipOut)
+    new JoystickButton(m_driverController.getHID(), ControllerConstants.k_flipOut)
      .onTrue(new RunCommand( //double check onTrue of whileTrue
         () -> m_intakeSubsystem.flipCommand(MotorConstants.k_intakePolarity), //may need to change
         m_intakeSubsystem));
 
     // flip in
-    new JoystickButton(m_operatorController.getHID(), OperatorConstants.k_flipIn)
+    new JoystickButton(m_driverController.getHID(), ControllerConstants.k_flipIn)
      .onTrue(new RunCommand(
         () -> m_intakeSubsystem.flipCommand(-1 * MotorConstants.k_intakePolarity), //may need to change
         m_intakeSubsystem));
@@ -150,15 +150,22 @@ public class RobotContainer {
     new JoystickButton(m_driverController.getHID(), ControllerConstants.k_aimRobot)
      .onTrue(new AimCommand(m_swerveSubsystem));
 
-    // shoot/rev up, operator
-    new JoystickButton(m_operatorController.getHID(), OperatorConstants.k_shoot)
-        .onTrue(new RunCommand(
-        () -> m_shooterSubsystem.shoot(), m_shooterSubsystem));
+    // shoot/rev up
+    new Trigger(() -> m_driverController.getRawAxis(ControllerConstants.k_rightTrig) > 0.05)
+      .whileTrue(
+        new RunCommand(() -> m_shooterSubsystem.shoot())
+      )
+      .onFalse(
+        new RunCommand(() -> m_shooterSubsystem.stopShooting())
+      );
 
     // spindexer, driver
     new JoystickButton(m_driverController.getHID(), ControllerConstants.k_spindexer)
-     .onTrue(new RunCommand(
-        () -> m_spindexerSubsystem.spindex(), m_spindexerSubsystem));
+      .onTrue(new RunCommand(
+        () -> m_spindexerSubsystem.spindex(), m_spindexerSubsystem))
+      .onFalse(new RunCommand(
+        () -> m_spindexerSubsystem.stopSpindex(),
+        m_spindexerSubsystem));
     
   }
 

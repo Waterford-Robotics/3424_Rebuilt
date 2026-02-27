@@ -26,9 +26,9 @@ public class SpindexerSubsystem extends SubsystemBase{
   }
 
   public void spindex() {
-    m_spindexer.set(MotorConstants.k_spindexerSpeed);  // Starts the spinner
-    m_roller.set(MotorConstants.k_rollerSpeed); // feeds the balls into the shooter
-    m_blackRoller.set(MotorConstants.k_blackRollerSpeed); // feeds the balls into the spindexer
+    m_spindexer.set(MotorConstants.k_spindexerSpeed*MotorConstants.k_spindexerPolarity);  // Starts the spinner
+    m_roller.set(MotorConstants.k_rollerSpeed*MotorConstants.k_rollerPolarity); // feeds the balls into the shooter
+    m_blackRoller.set(MotorConstants.k_blackRollerSpeed*MotorConstants.k_blackRollerPolarity); // feeds the balls into the spindexer
 
   }
 

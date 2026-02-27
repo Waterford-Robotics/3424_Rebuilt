@@ -20,9 +20,16 @@ public class ShooterSubsystem extends SubsystemBase{
     m_upper.getConfigurator().apply(ShooterConfigs.UPPERSHOOTER_TALON_FX_CONFIGURATION, 0.05);
   }
 
+  @SuppressWarnings("unused")
   public void shoot() {
-    m_lower.set(calculateSpeed(ApriltagHelpers.getDistance()) * MotorConstants.k_lowershooterPolarity);  // Revs up the two shooter motors
-    m_upper.set(calculateSpeed(ApriltagHelpers.getDistance())* MotorConstants.k_uppershooterPolarity);
+    if(false){ //TODO: A condition that checks if the limelight is getting good data from an april tag
+      m_lower.set(calculateSpeed(ApriltagHelpers.getDistance()) * MotorConstants.k_lowershooterPolarity);  // Revs up the two shooter motors
+      m_upper.set(calculateSpeed(ApriltagHelpers.getDistance())* MotorConstants.k_uppershooterPolarity);
+    }
+    else{
+      m_lower.set(MotorConstants.k_fastShooterSpeed * MotorConstants.k_lowershooterPolarity);  // Revs up the two shooter motors
+      m_upper.set(MotorConstants.k_fastShooterSpeed * MotorConstants.k_uppershooterPolarity);
+    }
   }
 
   public double calculateSpeed(double distance) {

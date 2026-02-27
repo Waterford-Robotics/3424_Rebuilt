@@ -65,11 +65,11 @@ public class Configs {
     ***********************************************
     */
 static{
-  LOWERSHOOTER_TALON_FX_CONFIGURATION.ClosedLoopRamps.DutyCycleClosedLoopRampPeriod = MotorConstants.k_lowershooterRampRate;
-  LOWERSHOOTER_TALON_FX_CONFIGURATION.MotorOutput.PeakForwardDutyCycle = MotorConstants.k_lowershooterClosedMaxSpeed;
-  LOWERSHOOTER_TALON_FX_CONFIGURATION.MotorOutput.PeakReverseDutyCycle = -MotorConstants.k_lowershooterClosedMaxSpeed;
-  LOWERSHOOTER_TALON_FX_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Brake;
-  LOWERSHOOTER_TALON_FX_CONFIGURATION.CurrentLimits.SupplyCurrentLimit = MotorConstants.k_lowershooterSupplyCurrentLimit;
+  LOWERSHOOTER_TALON_FX_CONFIGURATION.ClosedLoopRamps.DutyCycleClosedLoopRampPeriod = MotorConstants.k_shooterRampRate;
+  LOWERSHOOTER_TALON_FX_CONFIGURATION.MotorOutput.PeakForwardDutyCycle = MotorConstants.k_shooterClosedMaxSpeed;
+  LOWERSHOOTER_TALON_FX_CONFIGURATION.MotorOutput.PeakReverseDutyCycle = -MotorConstants.k_shooterClosedMaxSpeed;
+  LOWERSHOOTER_TALON_FX_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Coast;
+  LOWERSHOOTER_TALON_FX_CONFIGURATION.CurrentLimits.SupplyCurrentLimit = MotorConstants.k_shooterSupplyCurrentLimit;
 
   /* 
     ***********************************************
@@ -77,11 +77,11 @@ static{
     ***********************************************
   
 */
-  UPPERSHOOTER_TALON_FX_CONFIGURATION.ClosedLoopRamps.DutyCycleClosedLoopRampPeriod = MotorConstants.k_uppershooterRampRate;
-  UPPERSHOOTER_TALON_FX_CONFIGURATION.MotorOutput.PeakForwardDutyCycle = MotorConstants.k_uppershooterClosedMaxSpeed;
-  UPPERSHOOTER_TALON_FX_CONFIGURATION.MotorOutput.PeakReverseDutyCycle = -MotorConstants.k_uppershooterClosedMaxSpeed;
-  UPPERSHOOTER_TALON_FX_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Brake;
-  UPPERSHOOTER_TALON_FX_CONFIGURATION.CurrentLimits.SupplyCurrentLimit = MotorConstants.k_uppershooterSupplyCurrentLimit; 
+  UPPERSHOOTER_TALON_FX_CONFIGURATION.ClosedLoopRamps.DutyCycleClosedLoopRampPeriod = MotorConstants.k_shooterRampRate;
+  UPPERSHOOTER_TALON_FX_CONFIGURATION.MotorOutput.PeakForwardDutyCycle = MotorConstants.k_shooterClosedMaxSpeed;
+  UPPERSHOOTER_TALON_FX_CONFIGURATION.MotorOutput.PeakReverseDutyCycle = -MotorConstants.k_shooterClosedMaxSpeed;
+  UPPERSHOOTER_TALON_FX_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Coast;
+  UPPERSHOOTER_TALON_FX_CONFIGURATION.CurrentLimits.SupplyCurrentLimit = MotorConstants.k_shooterSupplyCurrentLimit; 
 }
 }
 public static final class SpindexerConfigs {
@@ -97,11 +97,11 @@ public static final class SpindexerConfigs {
     ***********************************************
     */
 static{
-  SPINDEXER_TALON_FX_CONFIGURATION.ClosedLoopRamps.DutyCycleClosedLoopRampPeriod = MotorConstants.k_lowershooterRampRate;
-  SPINDEXER_TALON_FX_CONFIGURATION.MotorOutput.PeakForwardDutyCycle = MotorConstants.k_lowershooterClosedMaxSpeed;
-  SPINDEXER_TALON_FX_CONFIGURATION.MotorOutput.PeakReverseDutyCycle = -MotorConstants.k_lowershooterClosedMaxSpeed;
+  SPINDEXER_TALON_FX_CONFIGURATION.ClosedLoopRamps.DutyCycleClosedLoopRampPeriod = MotorConstants.k_spindexerRampRate;
+  SPINDEXER_TALON_FX_CONFIGURATION.MotorOutput.PeakForwardDutyCycle = MotorConstants.k_spindexerClosedMaxSpeed;
+  SPINDEXER_TALON_FX_CONFIGURATION.MotorOutput.PeakReverseDutyCycle = -MotorConstants.k_spindexerClosedMaxSpeed;
   SPINDEXER_TALON_FX_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Brake;
-  SPINDEXER_TALON_FX_CONFIGURATION.CurrentLimits.SupplyCurrentLimit = MotorConstants.k_lowershooterSupplyCurrentLimit;
+  SPINDEXER_TALON_FX_CONFIGURATION.CurrentLimits.SupplyCurrentLimit = MotorConstants.k_spindexerSupplyCurrentLimit;
   /*
     ********************************************
     **    ROLLER KRAKEN x44 CONFIGURATIONS    **
