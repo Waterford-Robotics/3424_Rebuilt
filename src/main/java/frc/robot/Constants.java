@@ -81,7 +81,7 @@ public class Constants {
     public static final double k_shooterSpeed = 0.6;
     public static final double k_fastShooterSpeed = 1;
 
-    //Blue roller
+    //shooter roller
     public static final int k_shooterRollerKrakenID = 22;
     public static final double k_shooterRollerRampRate = 0.05;
     public static final double k_shooterRollerClosedMaxSpeed = 0.4;
@@ -98,8 +98,8 @@ public class Constants {
     public static final double k_spindexerSpeed = -0.5;
     public static final int k_spindexerPolarity = -1;
 
-    //black roller
-    public static final int k_hopperRollerKrakenID = 31; // SET
+    //roller floor
+    public static final int k_hopperRollerKrakenID = 31;
     public static final double k_hopperRollerRampRate = 0.05;
     public static final double k_hopperRollerClosedMaxSpeed = 0.4;
     public static final int k_hopperRollerSupplyCurrentLimit = 60;

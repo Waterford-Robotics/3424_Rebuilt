@@ -83,9 +83,9 @@ public class RobotContainer {
         new IntakeRollersCommand(m_intakeSubsystem, 1.0)
     );
 
-    m_chooser.addOption("LSNZSR", m_swerveSubsystem.getAutonomousCommand("LSNZSR"));
-    m_chooser.addOption("SLSDS", m_swerveSubsystem.getAutonomousCommand("SLSDS"));
-    m_chooser.addOption("SLSDS", m_swerveSubsystem.getAutonomousCommand("SLSDS"));
+   // m_chooser.addOption("LSNZSR", m_swerveSubsystem.getAutonomousCommand("LSNZSR"));
+    //m_chooser.addOption("SLSDS", m_swerveSubsystem.getAutonomousCommand("SLSDS"));
+    //m_chooser.addOption("SLSDS", m_swerveSubsystem.getAutonomousCommand("SLSDS"));
 
     new EventTrigger("flipout")
       .whileTrue(new RunCommand(
@@ -207,12 +207,12 @@ public class RobotContainer {
    *
    * @return the command to run in autonomous
    */
-   Command driveFieldOrientedAngularVelocity = m_swerveSubsystem.driveCommand(
+  Command driveFieldOrientedAngularVelocity = m_swerveSubsystem.driveCommand(
         () -> MathUtil.applyDeadband(m_driverController.getLeftY() * DriveConstants.k_driveSpeed, DriveConstants.k_driveDeadBand),
         () -> MathUtil.applyDeadband(m_driverController.getLeftX() * DriveConstants.k_driveSpeed, DriveConstants.k_driveDeadBand),
         () -> m_driverController.getRightX() * DriveConstants.k_turnRate); 
   
-        public Command getAutonomousCommand() {
+  public Command getAutonomousCommand() {
     // The selected auto on SmartDashboard will be run in autonomous
     return m_chooser.getSelected(); 
   }
