@@ -21,9 +21,11 @@ import frc.robot.subsystems.SpindexerSubsystem;
 import frc.robot.subsystems.SwerveSubsystem;
 
 import com.pathplanner.lib.auto.NamedCommands;
+import com.pathplanner.lib.events.EventTrigger;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
@@ -80,6 +82,23 @@ public class RobotContainer {
     NamedCommands.registerCommand("IntakeRollers", 
         new IntakeRollersCommand(m_intakeSubsystem, 1.0)
     );
+
+    m_chooser.addOption("LSNZSR", m_swerveSubsystem.getAutonomousCommand("LSNZSR"));
+    m_chooser.addOption("SLSDS", m_swerveSubsystem.getAutonomousCommand("SLSDS"));
+    m_chooser.addOption("SLSDS", m_swerveSubsystem.getAutonomousCommand("SLSDS"));
+
+    new EventTrigger("flipout")
+      .whileTrue(new RunCommand(
+        () -> m_intakeSubsystem.flipCommand(1),m_intakeSubsystem));
+    
+    new EventTrigger("intakeRollers")
+      .whileTrue(new RunCommand(
+        () -> m_intakeSubsystem.intakeCommand(1),m_intakeSubsystem));
+
+    SmartDashboard.putData("Automode", m_chooser);
+
+    
+
   }
 
   /**
@@ -174,12 +193,13 @@ public class RobotContainer {
         new RunCommand(() -> m_spindexerSubsystem.stopSpindex())
       );
 // shoot/rev up
-    new Trigger (() -> m_operatorController.getRawAxis(OperatorConstants.k_revShooter) > 0.05)
-      .onTrue(new RunCommand(
-        () -> m_shooterSubsystem.shoot(), m_shooterSubsystem))
-      .onFalse(new RunCommand(
-        () -> m_shooterSubsystem.stopShooting(),
-        m_shooterSubsystem));
+    new Trigger (() -> m_driverController.getRawAxis(OperatorConstants.k_revShooter) > 0.05)
+      .whileTrue(
+        new RunCommand(() -> m_shooterSubsystem.shoot())
+      )
+      .onFalse(
+        new RunCommand(() -> m_shooterSubsystem.stopShooting())
+      );
   }
 
   /**

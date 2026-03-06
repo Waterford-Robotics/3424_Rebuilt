@@ -68,7 +68,20 @@
   ],
   "constraintZones": [],
   "pointTowardsZones": [],
-  "eventMarkers": [],
+  "eventMarkers": [
+    {
+      "name": "IntakeFlipout",
+      "waypointRelativePos": 0.8479138627187092,
+      "endWaypointRelativePos": 1.001345895020182,
+      "command": null
+    },
+    {
+      "name": "IntakeRollers",
+      "waypointRelativePos": 0.8721399730820966,
+      "endWaypointRelativePos": 2.1318977119784637,
+      "command": null
+    }
+  ],
   "globalConstraints": {
     "maxVelocity": 3.0,
     "maxAcceleration": 3.0,

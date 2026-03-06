@@ -29,6 +29,7 @@ public class Constants {
     public static final int k_resetNavX = 8;
     public static final int k_flipOut = 5; // Right Bump // flip out for driver 
     public static final int k_flipIn = 6; // Left Bump // flip in for driver,
+    public static final int k_revShooter = Axis.kRightTrigger.value;
   }  
 
   public static final class OperatorConstants {
@@ -75,9 +76,9 @@ public class Constants {
 
     //both shooters
     public static final double k_shooterRampRate = 0.05;
-    public static final double k_shooterClosedMaxSpeed = 0.4;
+    public static final double k_shooterClosedMaxSpeed = 0.7;
     public static final int k_shooterSupplyCurrentLimit = 60;
-    public static final double k_shooterSpeed = 0.31;
+    public static final double k_shooterSpeed = 0.6;
     public static final double k_fastShooterSpeed = 1;
 
     //Blue roller
