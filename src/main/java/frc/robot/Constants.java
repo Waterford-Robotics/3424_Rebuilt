@@ -24,7 +24,7 @@ public class Constants {
     public static final int k_climbCompress = 2; // B
      public static final int k_climbExtend = 7; 
     public static final int k_aimRobot = 3; // X
-   
+    public static final int k_rollerfloor = Axis.kRightTrigger.value;
     public static final int k_spindexer = Axis.kRightTrigger.value;
     public static final int k_resetNavX = 8;
     public static final int k_flipOut = 5; // Right Bump // flip out for driver 
@@ -63,8 +63,8 @@ public class Constants {
     public static final double k_flipRampRate = 0.05;
     public static final double k_flipClosedMaxSpeed = 0.4;
     public static final int k_flipSupplyCurrentLimit = 60;
-    public static final double k_flipSpeed = -0.5;
-    public static final int k_flipPolarity = 1;
+    public static final double k_flipSpeed = 0.2;
+    public static final int k_flipPolarity = -1;
 
     //left shooter
     public static final int k_leftshooterKrakenID = 20;
@@ -105,7 +105,7 @@ public class Constants {
     public static final int k_hopperRollerSupplyCurrentLimit = 60;
     public static final double k_hopperRollerSpeed = 0.31;
     public static final double k_fastHopperRollerSpeed = 0.67;
-    public static final int k_hopperRollerPolarity = -1;
+    public static final int k_hopperRollerPolarity = 1;
     
 
     //climber NOT SPECIFIC TO CLIMBER YET 

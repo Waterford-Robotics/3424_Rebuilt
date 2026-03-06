@@ -12,7 +12,7 @@ public class IntakeSubsystem extends SubsystemBase{
   private TalonFX m_flip; // motor to make intake go up and down
 
   public IntakeSubsystem() {
-    m_intake = new TalonFX(MotorConstants.k_flipKrakenID);
+    m_intake = new TalonFX(MotorConstants.k_intakeKrakenID);
     m_intake.getConfigurator().apply(IntakeConfigs.INTAKE_TALON_FX_CONFIGURATION, 0.05);
 
     m_flip = new TalonFX(MotorConstants.k_flipKrakenID);

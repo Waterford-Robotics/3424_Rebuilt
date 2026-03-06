@@ -200,6 +200,15 @@ public class RobotContainer {
       .onFalse(
         new RunCommand(() -> m_shooterSubsystem.stopShooting())
       );
+  
+
+    new Trigger (() -> m_driverController.getRawAxis(ControllerConstants.k_rollerfloor) > 0.05)
+      .whileTrue(
+        new RunCommand(() -> m_spindexerSubsystem.spindex())
+      )
+      .onFalse(
+        new RunCommand(() -> m_spindexerSubsystem.stopSpindex())
+      );
   }
 
   /**
