@@ -57,8 +57,8 @@ public class RobotContainer {
   SendableChooser<Command> m_chooser = new SendableChooser<>();
  
   SwerveInputStream driveAngularVelocity = SwerveInputStream.of(m_swerveSubsystem.getSwerveDrive(),
-                                                                () -> m_driverController.getLeftY() * -1,
-                                                                () -> m_driverController.getLeftX() * -1)
+                                                                () -> m_driverController.getLeftY(),
+                                                                () -> m_driverController.getLeftX())
                                                             .withControllerRotationAxis(m_driverController::getRightX)
                                                             .deadband(DriveConstants.k_driveDeadBand)
                                                             .scaleTranslation(DriveConstants.k_driveSpeed)
