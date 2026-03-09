@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.XboxController.Axis;
 
 
@@ -41,8 +42,9 @@ public class Constants {
 
   public static final class DriveConstants{
     public static final double k_driveDeadBand = 0.1;
-    public static final double k_driveSpeed = -0.8;
-    public static final double k_turnRate = -0.85;
+    public static final double k_driveSpeed = 0.8;
+    public static final double k_rotationalPolarity = -1;
+    public static final double k_maxSpeed  = Units.feetToMeters(14.5);
   }
 
 

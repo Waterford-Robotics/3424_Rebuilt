@@ -19,11 +19,15 @@ import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.SpindexerSubsystem;
 import frc.robot.subsystems.SwerveSubsystem;
+import swervelib.SwerveInputStream;
+
+import java.io.File;
 
 import com.pathplanner.lib.auto.NamedCommands;
 import com.pathplanner.lib.events.EventTrigger;
 
 import edu.wpi.first.math.MathUtil;
+import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -43,7 +47,7 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final SwerveSubsystem m_swerveSubsystem = new SwerveSubsystem();
+  private final SwerveSubsystem m_swerveSubsystem = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(),"swerve"));
   private final IntakeSubsystem m_intakeSubsystem = new IntakeSubsystem();
   //private final ClimberSubsystem m_climberSubsystem = new ClimberSubsystem();
   private final ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
@@ -52,12 +56,18 @@ public class RobotContainer {
   private final CommandXboxController m_operatorController = new CommandXboxController(OperatorConstants.k_operatorControllerPort);
   SendableChooser<Command> m_chooser = new SendableChooser<>();
  
+  SwerveInputStream driveAngularVelocity = SwerveInputStream.of(m_swerveSubsystem.getSwerveDrive(),
+                                                                () -> m_driverController.getLeftY() * -1,
+                                                                () -> m_driverController.getLeftX() * -1)
+                                                            .withControllerRotationAxis(m_driverController::getRightX)
+                                                            .deadband(DriveConstants.k_driveDeadBand)
+                                                            .scaleTranslation(DriveConstants.k_driveSpeed)
+                                                            .allianceRelativeControl(false);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the trigger bindings
     configureBindings();
-    m_swerveSubsystem.setDefaultCommand(driveFieldOrientedAngularVelocity);
   
    // NamedCommands.registerCommand("shooterCommand", new ShooterCommand(m_shooterSubsystem,1.0));
    // Aim and rev up at the same time, then start spindexing 
@@ -111,6 +121,9 @@ public class RobotContainer {
    * joysticks}.
    */
   private void configureBindings() {
+    Command driveFieldOrientedAnglularVelocity = m_swerveSubsystem.driveFieldOriented(driveAngularVelocity);
+    m_swerveSubsystem.setDefaultCommand(driveFieldOrientedAnglularVelocity);
+
     // CONTROLLER CONSTANTS
     //zero NavX
     new JoystickButton(m_driverController.getHID(), ControllerConstants.k_resetNavX)
@@ -210,17 +223,6 @@ public class RobotContainer {
         new RunCommand(() -> m_spindexerSubsystem.stopSpindex())
       );
   }
-
-  /**
-   * Use this to pass the autonomous command to the main {@link Robot} class.
-   *
-   * @return the command to run in autonomous
-   */
-  Command driveFieldOrientedAngularVelocity = m_swerveSubsystem.driveCommand(
-        () -> MathUtil.applyDeadband(m_driverController.getLeftY() * DriveConstants.k_driveSpeed, DriveConstants.k_driveDeadBand),
-        () -> MathUtil.applyDeadband(m_driverController.getLeftX() * DriveConstants.k_driveSpeed, DriveConstants.k_driveDeadBand),
-        () -> m_driverController.getRightX() * DriveConstants.k_turnRate); 
-  
   public Command getAutonomousCommand() {
     // The selected auto on SmartDashboard will be run in autonomous
     return m_chooser.getSelected(); 

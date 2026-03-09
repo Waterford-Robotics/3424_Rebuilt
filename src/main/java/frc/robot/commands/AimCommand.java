@@ -72,7 +72,7 @@ public class AimCommand extends Command {
     {
       // scales values into speeds: first parameter: X, positive = forward; second parameter: Y, positive = left; third parameter: Angular Rotation, positive = ccw, negative = cw
       //swerveSubsystem.driveCommand( () -> limelight_drive(), () -> 0.0, () -> limelight_rotation());
-      swerveSubsystem.driveCommand( () -> 0.0, () -> 0.0, () -> limelight_rotation());
+      //swerveSubsystem.driveCommand( () -> 0.0, () -> 0.0, () -> limelight_rotation());
     }
     // Otherwise we tell it to quit
     else sees_tag = false;
