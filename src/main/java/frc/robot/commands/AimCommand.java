@@ -5,12 +5,12 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Limelight.ApriltagHelpers;
 import frc.robot.subsystems.Limelight.LimelightHelpers;
 import frc.robot.Constants;
-import frc.robot.subsystems.SwerveSubsystem;
+import frc.robot.subsystems.CommandSwerveDrivetrain;
 // Aims!
 
 public class AimCommand extends Command {
   // Makes instances of Stuff
-  SwerveSubsystem swerveSubsystem;
+  CommandSwerveDrivetrain swerveSubsystem;
   // Timer so it doesn't take 10 years and eventually "times out" if fails too hard
   Timer timer = new Timer();
     
@@ -24,7 +24,7 @@ public class AimCommand extends Command {
 
   double target_distance_to_hub;
   // Constructor
-  public AimCommand(SwerveSubsystem m_swerveSubsystem) {
+  public AimCommand(CommandSwerveDrivetrain m_swerveSubsystem) {
     // swerveSubsystem is an instance of SwerveSubsystem class, aka an object
     swerveSubsystem = m_swerveSubsystem;
     addRequirements(swerveSubsystem);
@@ -72,7 +72,7 @@ public class AimCommand extends Command {
     {
       // scales values into speeds: first parameter: X, positive = forward; second parameter: Y, positive = left; third parameter: Angular Rotation, positive = ccw, negative = cw
       //swerveSubsystem.driveCommand( () -> limelight_drive(), () -> 0.0, () -> limelight_rotation());
-      swerveSubsystem.driveCommand( () -> 0.0, () -> 0.0, () -> limelight_rotation());
+      //swerveSubsystem.driveCommand( () -> 0.0, () -> 0.0, () -> limelight_rotation());
     }
     // Otherwise we tell it to quit
     else sees_tag = false;

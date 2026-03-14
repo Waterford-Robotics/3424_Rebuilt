@@ -4,7 +4,9 @@
 
 package frc.robot;
 
+import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.XboxController.Axis;
+import edu.wpi.first.wpilibj.XboxController.Button;
 
 
 public class Constants {
@@ -20,29 +22,31 @@ public class Constants {
   public static final class ControllerConstants {
     public static final int k_driverControllerPort = 0; // Driver
 
-    public static final int k_intakeWheels = Axis.kLeftTrigger.value;
-    public static final int k_climbCompress = 2; // B
+    public static final int k_intakeWheels = Axis.kRightTrigger.value;
+    public static final int k_climbCompress = Button.kB.value; // B
      public static final int k_climbExtend = 7; 
-    public static final int k_aimRobot = 3; // X
-    public static final int k_rollerfloor = Axis.kRightTrigger.value;
-    public static final int k_spindexer = Axis.kRightTrigger.value;
-    public static final int k_resetNavX = 8;
-    public static final int k_flipOut = 5; // Right Bump // flip out for driver 
-    public static final int k_flipIn = 6; // Left Bump // flip in for driver,
+    public static final int k_aimRobot = Button.kX.value; // X
+    public static final int k_rollerfloor = Axis.kLeftTrigger.value;
+    public static final int k_spindexer = Axis.kLeftTrigger.value;
+    public static final int k_resetNavX = Button.kStart.value;
+    public static final int k_flipOut = Button.kRightBumper.value; // Right Bump // flip out for driver 
+    public static final int k_flipIn = Button.kLeftBumper.value; // Left Bump // flip in for driver,
     public static final int k_revShooter = Axis.kRightTrigger.value;
   }  
 
   public static final class OperatorConstants {
     public static final int k_operatorControllerPort = 1; // Operator
-   
-    public static final int k_Xwheels = 8;
-    public static final int k_revShooter = Axis.kRightTrigger.value;
+    public static final int k_reverseIntake = Button.kX.value; // X
+    public static final int k_Xwheels = Button.kBack.value;
+    public static final int k_revShooterNormal = Axis.kRightTrigger.value;
+    public static final int k_revShooterFast = Axis.kLeftTrigger.value;
   }  
 
   public static final class DriveConstants{
     public static final double k_driveDeadBand = 0.1;
-    public static final double k_driveSpeed = -0.8;
-    public static final double k_turnRate = -0.85;
+    public static final double k_driveSpeed = 0.8;
+    public static final double k_rotationalPolarity = -1;
+    public static final double k_maxSpeed  = Units.feetToMeters(14.5);
   }
 
 
@@ -51,15 +55,15 @@ public class Constants {
     //-->IMPORTANT these constants need testing and are not properly adjusted
 
     //intake
-    public static final int k_intakeKrakenID = 10;
+    public static final int k_intakeKrakenID = 41;
     public static final double k_intakeRampRate = 0.05;
-    public static final double k_intakeClosedMaxSpeed = 0.4;
+    public static final double k_intakeClosedMaxSpeed = 0.95;
     public static final int k_intakeSupplyCurrentLimit = 60;
-    public static final double k_intakeSpeed = -0.5;
+    public static final double k_intakeSpeed = -0.45;
     public static final int k_intakePolarity = 1;
    
     //intake flip
-    public static final int k_flipKrakenID = 11;
+    public static final int k_flipKrakenID = 40;
     public static final double k_flipRampRate = 0.05;
     public static final double k_flipClosedMaxSpeed = 0.4;
     public static final int k_flipSupplyCurrentLimit = 60;
@@ -76,10 +80,10 @@ public class Constants {
 
     //both shooters
     public static final double k_shooterRampRate = 0.05;
-    public static final double k_shooterClosedMaxSpeed = 0.7;
+    public static final double k_shooterClosedMaxSpeed = 0.9;
     public static final int k_shooterSupplyCurrentLimit = 60;
-    public static final double k_shooterSpeed = 0.6;
-    public static final double k_fastShooterSpeed = 1;
+    public static final double k_shooterSpeed = 0.7;
+    public static final double k_fastShooterSpeed = 0.9;
 
     //shooter roller
     public static final int k_shooterRollerKrakenID = 22;
@@ -109,7 +113,7 @@ public class Constants {
     
 
     //climber NOT SPECIFIC TO CLIMBER YET 
-    public static final int k_climberKrakenID = 40;
+    public static final int k_climberKrakenID = 50;
     public static final double k_climberRampRate = 0.05;
     public static final double k_climberClosedMaxSpeed = 0.4;
     public static final int k_climberSupplyCurrentLimit = 60;

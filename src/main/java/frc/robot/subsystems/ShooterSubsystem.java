@@ -20,16 +20,20 @@ public class ShooterSubsystem extends SubsystemBase{
     m_upper.getConfigurator().apply(ShooterConfigs.RIGHTSHOOTER_TALON_FX_CONFIGURATION, 0.05);
   }
 
-  @SuppressWarnings("unused")
   public void shoot() {
-    if(false){ //TODO: A condition that checks if the limelight is getting good data from an april tag
-      m_lower.set(calculateSpeed(ApriltagHelpers.getDistance()) * MotorConstants.k_leftshooterPolarity);  // Revs up the two shooter motors
-      m_upper.set(calculateSpeed(ApriltagHelpers.getDistance())* MotorConstants.k_rightshooterPolarity);
-    }
-    else{
-      m_lower.set(MotorConstants.k_fastShooterSpeed * MotorConstants.k_leftshooterPolarity);  // Revs up the two shooter motors
+    // if(false){ //TODO: A condition that checks if the limelight is getting good data from an april tag
+    //   m_lower.set(calculateSpeed(ApriltagHelpers.getDistance()) * MotorConstants.k_leftshooterPolarity);  // Revs up the two shooter motors
+    //   m_upper.set(calculateSpeed(ApriltagHelpers.getDistance())* MotorConstants.k_rightshooterPolarity);
+    // }
+    // else{
+      m_lower.set(MotorConstants.k_shooterSpeed * MotorConstants.k_leftshooterPolarity);  // Revs up the two shooter motors
+      m_upper.set(MotorConstants.k_shooterSpeed * MotorConstants.k_rightshooterPolarity);
+    // }
+  }
+
+  public void far_shoot(){
+      m_lower.set(MotorConstants.k_fastShooterSpeed * MotorConstants.k_leftshooterPolarity);  // Revs up the two shooter motors to a faster speed
       m_upper.set(MotorConstants.k_fastShooterSpeed * MotorConstants.k_rightshooterPolarity);
-    }
   }
 
   public double calculateSpeed(double distance) {
