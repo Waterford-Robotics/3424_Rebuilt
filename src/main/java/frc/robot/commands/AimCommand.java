@@ -6,11 +6,14 @@ import frc.robot.subsystems.Limelight.ApriltagHelpers;
 import frc.robot.subsystems.Limelight.LimelightHelpers;
 import frc.robot.Constants;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
+import com.ctre.phoenix6.swerve.SwerveRequest;
 // Aims!
 
 public class AimCommand extends Command {
   // Makes instances of Stuff
   CommandSwerveDrivetrain swerveSubsystem;
+  private final SwerveRequest.FieldCentric drive = new SwerveRequest.FieldCentric();
+
   // Timer so it doesn't take 10 years and eventually "times out" if fails too hard
   Timer timer = new Timer();
     
@@ -70,10 +73,8 @@ public class AimCommand extends Command {
     // passes lambdas for DoubleSuppliers because it is called repeatedly
     if (sees_tag) 
     {
-      // scales values into speeds: first parameter: X, positive = forward; second parameter: Y, positive = left; third parameter: Angular Rotation, positive = ccw, negative = cw
-      //swerveSubsystem.driveCommand( () -> limelight_drive(), () -> 0.0, () -> limelight_rotation());
-      //swerveSubsystem.driveCommand( () -> 0.0, () -> 0.0, () -> limelight_rotation());
-    }
+      swerveSubsystem.setControl(drive.withRotationalRate(limelight_rotation())); // Drive counterclockwise with negative X (left)
+     }
     // Otherwise we tell it to quit
     else sees_tag = false;
   }
