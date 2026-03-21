@@ -30,6 +30,8 @@ import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.IntakeFlipCommand;
 import frc.robot.commands.IntakeRollersCommand;
 import frc.robot.commands.ShooterCommand;
+import frc.robot.commands.AimCommand;
+
 
 import frc.robot.commands.SpindexerCommand;
 import frc.robot.generated.TunerConstants;
@@ -50,7 +52,6 @@ public class RobotContainer {
             .withDriveRequestType(DriveRequestType.OpenLoopVoltage); // Use open-loop control for drive motors
     
     public final CommandSwerveDrivetrain m_drivetrain = TunerConstants.createDrivetrain();
-
     private final IntakeSubsystem m_intakeSubsystem = new IntakeSubsystem();
   //private final ClimberSubsystem m_climberSubsystem = new ClimberSubsystem();
     private final ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
@@ -81,6 +82,10 @@ public class RobotContainer {
 
         NamedCommands.registerCommand("IntakeFlipout", 
             new IntakeFlipCommand(m_intakeSubsystem, 1.0, MotorConstants.k_flipPolarity)
+        );
+
+         NamedCommands.registerCommand("AimRobot", 
+            new AimCommand(m_drivetrain)
         );
 
         NamedCommands.registerCommand("IntakeFlipin", 
@@ -181,6 +186,17 @@ public class RobotContainer {
         )
         .onFalse(
             new RunCommand(() -> m_intakeSubsystem.stopFlip(), m_intakeSubsystem)
+        );
+
+        // Aim Command
+        new JoystickButton(m_driverController.getHID(), ControllerConstants.k_aimRobot)
+        .onTrue(
+            new AimCommand(m_drivetrain)
+        );
+        // Aim Command
+        new JoystickButton(m_operatorController.getHID(), ControllerConstants.k_aimRobot)
+        .onTrue(
+            new AimCommand(m_drivetrain)
         );
 
         // flip out
