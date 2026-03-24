@@ -1,27 +1,26 @@
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
-// Spindexes
-// Good
 package frc.robot.commands;
 
-import frc.robot.subsystems.SpindexerSubsystem;
+import frc.robot.subsystems.ShooterSubsystem;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 
-public class SpindexerCommand extends Command {
 
-  // Uses Spindexer Subsystem
-  SpindexerSubsystem m_spindexerSubsystem;
+public class ShootForSecsCommand extends Command {
+
+  ShooterSubsystem m_shooterSubsystem;
   double m_seconds;
   Timer m_timer = new Timer();
 
   // Constructor
-  public SpindexerCommand(SpindexerSubsystem spindexerSubsystem, double seconds) {
+  public ShootForSecsCommand(ShooterSubsystem shooterSubsystem, double seconds) {
         
     // Definitions and setting parameters are equal to members!
-    m_spindexerSubsystem = spindexerSubsystem;
-    addRequirements(spindexerSubsystem);
+    m_shooterSubsystem = shooterSubsystem;
+    addRequirements(shooterSubsystem);
+
     m_seconds = seconds;
   }
 
@@ -34,20 +33,18 @@ public class SpindexerCommand extends Command {
   // Actual command
   public void execute() {
 
-    if(m_timer.get() < m_seconds) {
-      m_spindexerSubsystem.spindex();
-    }
+    m_shooterSubsystem.shoot();
   }
 
   // Stuff that happens when command is over
   public void end(boolean interrupted) {
-    m_spindexerSubsystem.stopSpindex();
+    m_shooterSubsystem.stopShooter();
   }
 
   // Checks if the command is done
   public boolean isFinished() {
 
     // Am I done?  Am I done? Am I finally done?
-    return m_timer.get() > m_seconds;
+    return m_timer.hasElapsed(m_seconds);
   }
 }

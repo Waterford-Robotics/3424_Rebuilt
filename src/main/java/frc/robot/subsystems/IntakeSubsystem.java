@@ -4,33 +4,35 @@ import com.ctre.phoenix6.hardware.TalonFX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Configs.IntakeConfigs;
-import frc.robot.Constants.MotorConstants;
+import frc.robot.Constants.IntakeConstants;
+import frc.robot.Constants.MotorIDConstants;
 
-// Clean
-public class IntakeSubsystem extends SubsystemBase{
+public class IntakeSubsystem extends SubsystemBase {
 
-  private TalonFX m_intake; // intake wheels
-  private TalonFX m_flip; // motor to make intake go up and down
+  // [Kraken x44] x1
+  private TalonFX m_intake;
 
+  // Intake constructor
   public IntakeSubsystem() {
-    m_intake = new TalonFX(MotorConstants.k_intakeKrakenID);
+
+    // Intake Roller
+    m_intake = new TalonFX(MotorIDConstants.k_intakeKrakenID);
+
+    // Apply Configs (yay!)
     m_intake.getConfigurator().apply(IntakeConfigs.INTAKE_TALON_FX_CONFIGURATION, 0.05);
-
-    m_flip = new TalonFX(MotorConstants.k_flipKrakenID);
-    m_flip.getConfigurator().apply(IntakeConfigs.FLIP_TALON_FX_CONFIGURATION, 0.05);
   }
 
-  public void intakeCommand(int polarity) { //polarity is 1 or -1
-    m_intake.set(MotorConstants.k_intakeSpeed*polarity*MotorConstants.k_intakePolarity); //-1 polarity makes motor run backwards
+  // Intake!
+  public void intake() {
+    m_intake.set(-IntakeConstants.k_intakeSpeed);
   }
 
-  public void flipCommand(int polarity){
-    m_flip.set(MotorConstants.k_flipSpeed*polarity*MotorConstants.k_flipPolarity); //-1 polarity makes motor run backwards
+  // Reverse Intake!
+  public void reverseIntake() {
+    m_intake.set(IntakeConstants.k_intakeSpeed);
   }
-  public void stopFlip() {
-      m_flip.set(0);
-    }
 
+  // Stop!
   public void stopIntake() {
     m_intake.set(0);
   }
