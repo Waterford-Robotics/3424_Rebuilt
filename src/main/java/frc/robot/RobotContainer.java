@@ -9,9 +9,7 @@ import static edu.wpi.first.units.Units.*;
 import com.ctre.phoenix6.swerve.SwerveModule.DriveRequestType;
 import com.ctre.phoenix6.SignalLogger;
 import com.ctre.phoenix6.swerve.SwerveRequest;
-import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
-import com.pathplanner.lib.events.EventTrigger;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -28,7 +26,6 @@ import frc.robot.Constants.ControllerConstants;
 
 import frc.robot.commands.IntakeForSecsCommand;
 import frc.robot.commands.ShootForSecsCommand;
-import frc.robot.commands.AimCommand;
 
 import frc.robot.generated.TunerConstants;
 
@@ -52,7 +49,7 @@ public class RobotContainer {
 	private final IndexerSubsystem m_spindexerSubsystem = new IndexerSubsystem();
 
 	private final CommandXboxController m_driverController = new CommandXboxController(ControllerConstants.k_driverControllerPort);
-	private final CommandXboxController m_operatorController = new CommandXboxController(OperatorConstants.k_operatorControllerPort);
+	private final CommandXboxController m_operatorController = new CommandXboxController(ControllerConstants.k_operatorControllerPort);
 
   private SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -83,7 +80,7 @@ public class RobotContainer {
 		);
 		
 		// AUTOS!
-		m_chooser.addOption("Shoot", Shoot);
+		m_chooser.addOption("Shoot", getShootCommandGroup());
 
 		// Put Chooser on SmartDashboarrd
 		SmartDashboard.putData("Automode", m_chooser);
