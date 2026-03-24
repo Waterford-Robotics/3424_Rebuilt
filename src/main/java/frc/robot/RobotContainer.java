@@ -95,140 +95,70 @@ public class RobotContainer {
 		// neutral mode is applied to the drive motors while disabled.
 		final var idle = new SwerveRequest.Idle();
 		RobotModeTriggers.disabled().whileTrue(
-				m_drivetrain.applyRequest(() -> idle).ignoringDisable(true)
+			m_drivetrain.applyRequest(() -> idle).ignoringDisable(true)
 		);
 
 		// Zero NavX
-		new JoystickButton(m_driverController.getHID(), ControllerConstants.k_resetNavX)
+		new JoystickButton(m_driverController.getHID(), ControllerConstants.k_back)
 		.onTrue(
-				new InstantCommand(() -> m_drivetrain.resetGyro(), m_drivetrain)
+			new InstantCommand(() -> m_drivetrain.resetGyro(), m_drivetrain)
 		);
 
 		// X Wheels
-		new JoystickButton(m_operatorController.getHID(), OperatorConstants.k_Xwheels)
+		new JoystickButton(m_operatorController.getHID(), ControllerConstants.k_X) // TODO: CHECK
 		.whileTrue(
-				m_drivetrain.applyRequest(() -> new SwerveRequest.SwerveDriveBrake()
-			));
+			m_drivetrain.applyRequest(() -> new SwerveRequest.SwerveDriveBrake())
+		);
 
-		// intake wheels
-		new Trigger(() -> m_driverController.getRawAxis(ControllerConstants.k_intakeWheels) > 0.05)
+		// Intake Wheels
+		new Trigger(() -> m_driverController.getRawAxis(ControllerConstants.k_righttrig) > 0.05)
 		.whileTrue(
-				new RunCommand(() -> m_intakeSubsystem.intakeCommand(1))
+			new RunCommand(() -> m_intakeSubsystem.intake())
 		)
 		.onFalse(
-				new RunCommand(() -> m_intakeSubsystem.stopIntake())
-		);
-
-		// spindexer and feed
-		new JoystickButton(m_driverController.getHID(), ControllerConstants.k_spindexer)
-		.onTrue(
-				new RunCommand(() -> m_spindexerSubsystem.spindex(), m_spindexerSubsystem)
-		)
-		.onFalse(
-				new RunCommand(() -> m_spindexerSubsystem.stopSpindex(), m_spindexerSubsystem)
-		);
-
-		// flip out
-		new JoystickButton(m_driverController.getHID(), ControllerConstants.k_flipOut)
-		.onTrue(
-				new RunCommand(() -> m_intakeSubsystem.flipCommand(MotorConstants.k_intakePolarity), m_intakeSubsystem)
-		)
-		.onFalse(
-				new RunCommand(() -> m_intakeSubsystem.stopFlip(), m_intakeSubsystem)
-		);
-
-		// flip in
-		new JoystickButton(m_driverController.getHID(), ControllerConstants.k_flipIn)
-		.onTrue(
-				new RunCommand(() -> m_intakeSubsystem.flipCommand(-1 * MotorConstants.k_intakePolarity), m_intakeSubsystem)
-		)
-		.onFalse(
-				new RunCommand(() -> m_intakeSubsystem.stopFlip(), m_intakeSubsystem)
-		);
-
-		// Aim Command
-		new JoystickButton(m_driverController.getHID(), ControllerConstants.k_aimRobot)
-		.onTrue(
-				new AimCommand(m_drivetrain)
-		);
-		// Aim Command
-		new JoystickButton(m_operatorController.getHID(), ControllerConstants.k_aimRobot)
-		.onTrue(
-				new AimCommand(m_drivetrain)
-		);
-
-		// flip out
-		new JoystickButton(m_operatorController.getHID(), ControllerConstants.k_flipOut)
-		.onTrue(
-				new RunCommand(() -> m_intakeSubsystem.flipCommand(MotorConstants.k_intakePolarity), m_intakeSubsystem)
-		)
-		.onFalse(
-				new RunCommand(() -> m_intakeSubsystem.stopFlip(), m_intakeSubsystem)
-		);
-
-		// flip in
-		new JoystickButton(m_operatorController.getHID(), ControllerConstants.k_flipIn)
-		.onTrue(
-				new RunCommand(() -> m_intakeSubsystem.flipCommand(-1 * MotorConstants.k_intakePolarity), m_intakeSubsystem)
-		)
-		.onFalse(
-				new RunCommand(() -> m_intakeSubsystem.stopFlip(), m_intakeSubsystem)
+			new InstantCommand(() -> m_intakeSubsystem.stopIntake())
 		);
 
 		// Spindexer on Driver controller
-		new Trigger(() -> m_driverController.getRawAxis(ControllerConstants.k_spindexer) > 0.05)
+		new Trigger(() -> m_driverController.getRawAxis(ControllerConstants.k_lefttrig) > 0.05)
 		.whileTrue(
-				new RunCommand(() -> m_spindexerSubsystem.spindex())
+				new RunCommand(() -> m_spindexerSubsystem.index())
 		)
 		.onFalse(
-				new RunCommand(() -> m_spindexerSubsystem.stopSpindex())
+				new RunCommand(() -> m_spindexerSubsystem.stopIndex())
 		);
 		
-		// rev up normal speed
-		new Trigger (() -> m_operatorController.getRawAxis(OperatorConstants.k_revShooterNormal) > 0.05)
+		// Rev up normal speed
+		new Trigger (() -> m_operatorController.getRawAxis(ControllerConstants.k_righttrig) > 0.05)
 		.whileTrue(
-				new RunCommand(() -> m_shooterSubsystem.shoot())
+			new RunCommand(() -> m_shooterSubsystem.shoot())
 		)
 		.onFalse(
-				new RunCommand(() -> m_shooterSubsystem.stopShooting())
+			new InstantCommand(() -> m_shooterSubsystem.stopShooter())
 		);
 
-		// rev up faster speed
-		new Trigger (() -> m_operatorController.getRawAxis(OperatorConstants.k_revShooterFast) > 0.05)
-		.whileTrue(
-				new RunCommand(() -> m_shooterSubsystem.far_shoot())
-		)
-		.onFalse(
-				new RunCommand(() -> m_shooterSubsystem.stopShooting())
-		);
-
-
-		new Trigger (() -> m_driverController.getRawAxis(ControllerConstants.k_rollerfloor) > 0.05)
-		.whileTrue(
-				new RunCommand(() -> m_spindexerSubsystem.spindex())
-		)
-		.onFalse(
-				new RunCommand(() -> m_spindexerSubsystem.stopSpindex())
-		);
-
-		new JoystickButton(m_operatorController.getHID(), OperatorConstants.k_reverseIntake)
+		new JoystickButton(m_operatorController.getHID(), ControllerConstants.k_leftbump) // TODO: Confirm
 		.onTrue(
-				new RunCommand(() -> m_intakeSubsystem.intakeCommand(-1), m_intakeSubsystem)
+			new RunCommand(() -> m_intakeSubsystem.intake(), m_intakeSubsystem)
 		)
 		.onFalse(
-				new RunCommand(() -> m_intakeSubsystem.stopIntake(), m_intakeSubsystem)
+			new InstantCommand(() -> m_intakeSubsystem.stopIntake(), m_intakeSubsystem)
 		);
 	}
 
-	SequentialCommandGroup Shoot = new SequentialCommandGroup(
-		new ShootForSecsCommand(m_shooterSubsystem, 1),
-		new ParallelCommandGroup(
-				new ShootForSecsCommand(m_shooterSubsystem, 10),
-				new SpindexerCommand(m_spindexerSubsystem,10)
-		)
-	);
+	// Shoot Command for Autos
+	SequentialCommandGroup getShootCommandGroup() {
+		return new SequentialCommandGroup(
+			new ShootForSecsCommand(m_shooterSubsystem, 1),
+			new ParallelCommandGroup(
+				new ShootForSecsCommand(m_shooterSubsystem, 10)
+				// new SpindexerCommand(m_spindexerSubsystem,10)
+			)
+		);
+	}
 
+	// Return Autos
 	public Command getAutonomousCommand() {
-			return m_chooser.getSelected();
+		return m_chooser.getSelected();
 	}
 }
