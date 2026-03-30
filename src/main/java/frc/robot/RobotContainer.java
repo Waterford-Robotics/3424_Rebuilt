@@ -25,7 +25,8 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.RobotModeTriggers;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.ControllerConstants;
-import frc.robot.commands.IntakeForSecsCommad;
+import frc.robot.commands.IndexForSecsCommand;
+import frc.robot.commands.IntakeForSecsCommand;
 import frc.robot.commands.ShootForSecsCommand;
 import frc.robot.commands.AimCommand;
 
@@ -50,10 +51,10 @@ public class RobotContainer {
 	public final CommandSwerveDrivetrain m_drivetrain = TunerConstants.createDrivetrain();
 	private final IntakeSubsystem m_intakeSubsystem = new IntakeSubsystem();
 	private final ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
-	private final IndexSubsystem m_spindexerSubsystem = new IndexSubsystem();
+	private final IndexSubsystem m_indexSubsystem = new IndexSubsystem();
 
 	private final CommandXboxController m_driverController = new CommandXboxController(ControllerConstants.k_driverControllerPort);
-	private final CommandXboxController m_operatorController = new CommandXboxController(OperatorConstants.k_operatorControllerPort);
+	private final CommandXboxController m_operatorController = new CommandXboxController(ControllerConstants.k_operatorControllerPort);
 
 	
 
@@ -82,7 +83,7 @@ public class RobotContainer {
 
 
 			NamedCommands.registerCommand("Intake", 
-					new IntakeForSecsCommad(m_intakeSubsystem, 1.0)
+					new IntakeForSecsCommand(m_intakeSubsystem, 1.0)
 			);
 			
 			//autos!! (only one works)
@@ -90,14 +91,10 @@ public class RobotContainer {
 			
 			
 			
-
-			new EventTrigger("flipout")
-			.whileTrue(new RunCommand(
-					() -> m_intakeSubsystem.flipCommand(1),m_intakeSubsystem));
 			
 			new EventTrigger("intakeRollers")
 			.whileTrue(new RunCommand(
-					() -> m_intakeSubsystem.intakeCommand(1),m_intakeSubsystem));
+					() -> m_intakeSubsystem.intake(),m_intakeSubsystem));
 
 			SmartDashboard.putData("Automode", m_chooser);
 
@@ -118,37 +115,47 @@ public class RobotContainer {
 		// ));
 
 		// Zero NavX
-		new JoystickButton(m_driverController.getHID(), ControllerConstants.k_resetNavX)
+		new JoystickButton(m_driverController.getHID(), ControllerConstants.k_Start)
 		.onTrue(
 				new InstantCommand(() -> m_drivetrain.resetGyro(), m_drivetrain)
 		);
 
 		// X Wheels
-		new JoystickButton(m_operatorController.getHID(), OperatorConstants.k_Xwheels)
-		.whileTrue(
-				m_drivetrain.applyRequest(() -> new SwerveRequest.SwerveDriveBrake()
-			));
+		//TODO: ADD X WHEELS METHOD
 
 		// intake wheels
-		new Trigger(() -> m_driverController.getRawAxis(ControllerConstants.k_intakeWheels) > 0.05)
+		new Trigger(() -> m_driverController.getRawAxis(ControllerConstants.k_rightTrigger) > 0.05)
 		.whileTrue(
-				new RunCommand(() -> m_intakeSubsystem.intakeCommand(1))
+				new RunCommand(() -> m_intakeSubsystem.intake())
 		)
 		.onFalse(
 				new RunCommand(() -> m_intakeSubsystem.stopIntake())
 		);
 
-		// spindexer and feed
-		new JoystickButton(m_driverController.getHID(), ControllerConstants.k_spindexer)
+		// TODO: ADD FLIP IN AND FLIP OUT BUTTON BINDINGS 
+
+		/* 
+		// flip out on driver controller
+		new JoystickButton(m_driverController.getHID(), ControllerConstants.k_RightBumper)
 		.onTrue(
-				new RunCommand(() -> m_spindexerSubsystem.spindex(), m_spindexerSubsystem)
+				new RunCommand(() -> m_intakeSubsystem.(), m_intakeSubsystem)
 		)
 		.onFalse(
-				new RunCommand(() -> m_spindexerSubsystem.stopSpindex(), m_spindexerSubsystem)
+				new RunCommand(() -> m_intakeSubsystem.(), m_intakeSubsystem)
+		);
+		 
+		// flip in
+		new JoystickButton(m_driverController.getHID(), ControllerConstants.k_LeftBumper)
+		.onTrue(
+				new RunCommand(() -> m_intakeSubsystem.(), m_intakeSubsystem)
+		)
+		.onFalse(
+				new RunCommand(() -> m_intakeSubsystem.(), m_intakeSubsystem)
 		);
 
-		// flip out
-		new JoystickButton(m_driverController.getHID(), ControllerConstants.k_flipOut)
+
+		// flip out backup on operator controller
+		new JoystickButton(m_operatorController.getHID(), ControllerConstants.k_RightBumper)
 		.onTrue(
 				new RunCommand(() -> m_intakeSubsystem.flipCommand(MotorConstants.k_intakePolarity), m_intakeSubsystem)
 		)
@@ -157,82 +164,50 @@ public class RobotContainer {
 		);
 
 		// flip in
-		new JoystickButton(m_driverController.getHID(), ControllerConstants.k_flipIn)
+		new JoystickButton(m_operatorController.getHID(), ControllerConstants.k_LeftBumper)
 		.onTrue(
 				new RunCommand(() -> m_intakeSubsystem.flipCommand(-1 * MotorConstants.k_intakePolarity), m_intakeSubsystem)
 		)
 		.onFalse(
 				new RunCommand(() -> m_intakeSubsystem.stopFlip(), m_intakeSubsystem)
 		);
+		*/
+		
+		
 
-		// Aim Command
-		new JoystickButton(m_driverController.getHID(), ControllerConstants.k_aimRobot)
-		.onTrue(
-				new AimCommand(m_drivetrain)
-		);
-		// Aim Command
-		new JoystickButton(m_operatorController.getHID(), ControllerConstants.k_aimRobot)
-		.onTrue(
-				new AimCommand(m_drivetrain)
-		);
-
-		// flip out
-		new JoystickButton(m_operatorController.getHID(), ControllerConstants.k_flipOut)
-		.onTrue(
-				new RunCommand(() -> m_intakeSubsystem.flipCommand(MotorConstants.k_intakePolarity), m_intakeSubsystem)
-		)
-		.onFalse(
-				new RunCommand(() -> m_intakeSubsystem.stopFlip(), m_intakeSubsystem)
-		);
-
-		// flip in
-		new JoystickButton(m_operatorController.getHID(), ControllerConstants.k_flipIn)
-		.onTrue(
-				new RunCommand(() -> m_intakeSubsystem.flipCommand(-1 * MotorConstants.k_intakePolarity), m_intakeSubsystem)
-		)
-		.onFalse(
-				new RunCommand(() -> m_intakeSubsystem.stopFlip(), m_intakeSubsystem)
-		);
-
-		// Spindexer on Driver controller
-		new Trigger(() -> m_driverController.getRawAxis(ControllerConstants.k_spindexer) > 0.05)
+		// 	// indexer runs: belt floor, hopper floor, shooter indexer on Driver controller
+		new Trigger(() -> m_driverController.getRawAxis(ControllerConstants.k_leftTrigger) > 0.05)
 		.whileTrue(
-				new RunCommand(() -> m_spindexerSubsystem.spindex())
+				new RunCommand(() -> m_indexSubsystem.index())
 		)
 		.onFalse(
-				new RunCommand(() -> m_spindexerSubsystem.stopSpindex())
+				new RunCommand(() -> m_indexSubsystem.stopIndex())
 		);
 		
 		// rev up normal speed
-		new Trigger (() -> m_operatorController.getRawAxis(OperatorConstants.k_revShooterNormal) > 0.05)
+		new Trigger (() -> m_operatorController.getRawAxis(ControllerConstants.k_rightTrigger) > 0.05)
 		.whileTrue(
 				new RunCommand(() -> m_shooterSubsystem.shoot())
 		)
 		.onFalse(
-				new RunCommand(() -> m_shooterSubsystem.stopShooting())
+				new RunCommand(() -> m_shooterSubsystem.stopShooter())
 		);
 
 		// rev up faster speed
-		new Trigger (() -> m_operatorController.getRawAxis(OperatorConstants.k_revShooterFast) > 0.05)
+		new Trigger (() -> m_operatorController.getRawAxis(ControllerConstants.k_leftTrigger) > 0.05)
 		.whileTrue(
-				new RunCommand(() -> m_shooterSubsystem.far_shoot())
+				new RunCommand(() -> m_shooterSubsystem.farShoot())
 		)
 		.onFalse(
-				new RunCommand(() -> m_shooterSubsystem.stopShooting())
+				new RunCommand(() -> m_shooterSubsystem.stopShooter())
 		);
 
 
-		new Trigger (() -> m_driverController.getRawAxis(ControllerConstants.k_rollerfloor) > 0.05)
-		.whileTrue(
-				new RunCommand(() -> m_spindexerSubsystem.spindex())
-		)
-		.onFalse(
-				new RunCommand(() -> m_spindexerSubsystem.stopSpindex())
-		);
+	
 
-		new JoystickButton(m_operatorController.getHID(), OperatorConstants.k_reverseIntake)
+		new JoystickButton(m_operatorController.getHID(), ControllerConstants.k_X)
 		.onTrue(
-				new RunCommand(() -> m_intakeSubsystem.intakeCommand(-1), m_intakeSubsystem)
+				new RunCommand(() -> m_intakeSubsystem.intake(), m_intakeSubsystem)
 		)
 		.onFalse(
 				new RunCommand(() -> m_intakeSubsystem.stopIntake(), m_intakeSubsystem)
@@ -243,7 +218,7 @@ public class RobotContainer {
 		new ShootForSecsCommand(m_shooterSubsystem, 1),
 		new ParallelCommandGroup(
 			new ShootForSecsCommand(m_shooterSubsystem, 10),
-			new SpindexerCommand(m_spindexerSubsystem,10)
+			new IndexForSecsCommand(m_indexSubsystem,10)
 )
 
 
