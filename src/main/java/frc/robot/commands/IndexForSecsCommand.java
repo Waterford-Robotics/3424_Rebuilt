@@ -7,25 +7,25 @@
 package frc.robot.commands;
 
 
-import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.IndexSubsystem;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 
-public class IntakeForSecsCommad extends Command {
+public class IndexForSecsCommand extends Command {
 
 
   // Uses Elevator and Subsystems
-  IntakeSubsystem m_intakeSubsystem;
+  IndexSubsystem m_indexSubsystem;
   double m_seconds;
   Timer m_timer = new Timer();
 
 
   // Constructor
-  public IntakeForSecsCommad(IntakeSubsystem intakeSubsystem, double seconds) {
+  public IndexForSecsCommand(IndexSubsystem indexSubsystem, double seconds) {
        
     // Definitions and setting parameters are equal to members!
-    m_intakeSubsystem = intakeSubsystem;
-    addRequirements(intakeSubsystem);
+    m_indexSubsystem = indexSubsystem;
+    addRequirements(indexSubsystem);
     m_seconds = seconds;
   }
 
@@ -38,13 +38,13 @@ public class IntakeForSecsCommad extends Command {
  
   // Actual command
   public void execute() {
-      m_intakeSubsystem.intake();
+      m_indexSubsystem.index();
   }
 
 
   // Stuff that happens when command is over
   public void end(boolean interrupted) {
-    m_intakeSubsystem.stopIntake();
+    m_indexSubsystem.stopIndex();
   }
 
 

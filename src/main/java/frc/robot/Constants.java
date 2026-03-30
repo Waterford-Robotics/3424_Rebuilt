@@ -4,7 +4,6 @@
 
 package frc.robot;
 
-import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.XboxController.Axis;
 import edu.wpi.first.wpilibj.XboxController.Button;
 
@@ -13,22 +12,25 @@ public class Constants {
 
   public static final class ControllerConstants {
     public static final int k_driverControllerPort = 0; // Driver
-
-    public static final int k_intakeWheels = Axis.kRightTrigger.value;
-    public static final int k_climbCompress = Button.kB.value; // B
-     public static final int k_climbExtend = 7; 
-    public static final int k_aimRobot = Button.kX.value; // X
-    public static final int k_resetNavX = Button.kStart.value;
-    public static final int k_flipOut = Button.kRightBumper.value; // Right Bump // flip out for driver 
-    public static final int k_flipIn = Button.kLeftBumper.value; // Left Bump  flip in for driver,
-    public static final int k_revShooter = Axis.kRightTrigger.value;
     public static final int k_operatorControllerPort = 1; // Operator
-    public static final int k_Xwheels = Button.kBack.value;
+
+    public static final int k_rightTrigger = Axis.kRightTrigger.value; // Intake on driver controller and shooter on operator controller
+    public static final int k_leftTrigger = Axis.kLeftTrigger.value; // Belt + roller floor on driver controller
+    public static final int k_rightBumper = Button.kRightBumper.value; // Flipout on driver controller
+    public static final int k_leftBumper = Button.kLeftBumper.value; // Flipin on driver controller 
+    
+    public static final int k_A = Button.kA.value;
+    public static final int k_B = Button.kB.value;
+    public static final int k_X = Button.kX.value; //reverse intake on operator controller
+    public static final int k_Y = Button.kY.value;
+
+    public static final int k_Start = Button.kStart.value; //reset NavX on driver
+    public static final int k_Back = Button.kBack.value; //X-Wheels on operator controller
   
-    public static final int k_revShooterFast = Axis.kLeftTrigger.value;
+    
   }  
 
-  public static final class MotorIDConstants{
+  public static final class MotorIDConstants {
     //left shooter
     public static final int k_leftshooterKrakenID = 20;
     public static final int k_rightshooterKrakenID = 21;
