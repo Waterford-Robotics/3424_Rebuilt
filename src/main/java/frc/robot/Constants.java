@@ -6,7 +6,8 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.XboxController.Axis;
 import edu.wpi.first.wpilibj.XboxController.Button;
-
+import edu.wpi.first.units.Units;
+import edu.wpi.first.units.measure.Angle;
 
 public class Constants {
 
@@ -40,7 +41,7 @@ public class Constants {
     public static final int k_rollerFloorKrakenID = 32;
 
     public static final int k_intakeKrakenID = 40;
-    public static final int k_flipuutKrakenID = 41;
+    public static final int k_fliputKrakenID = 41;
     
 
   }
@@ -55,6 +56,11 @@ public class Constants {
     
   }
 
+  public static final class IntakeFlipoutConstants {
+    public static final Angle k_intakeFlipoutHomeAngle = edu.wpi.first.units.Units.Rotations.of(0);
+    public static final Angle k_intakeFlipoutIntakeAngle = edu.wpi.first.units.Units.Rotations.of(0); //TODO: ACTUALLY MEASURE THE ROTATIONS, ITS NOT O
+  }
+
   public static final class IndexerConstants {
 
     public static final double k_beltFloorSpeed = 0.3;
@@ -65,7 +71,7 @@ public class Constants {
   
     //limelight
      public static final class VisionConstants{
-     public static final String LimelightName = "limelight-three";
+     public static final String LimelightName = "limelight-red";
      public static final double kP = 1.0;
      public static final double kI = 1.0;
      public static final double kD = 1.0;

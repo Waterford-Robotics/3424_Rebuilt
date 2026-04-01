@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.ParallelDeadlineGroup;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -27,7 +28,9 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.ControllerConstants;
 import frc.robot.commands.IndexForSecsCommand;
 import frc.robot.commands.IntakeForSecsCommand;
+import frc.robot.commands.SetIntakeFlipoutCommand;
 import frc.robot.commands.ShootForSecsCommand;
+import frc.robot.commands.ZeroIntakeFlipoutCommand;
 import frc.robot.commands.AimCommand;
 
 
@@ -36,6 +39,7 @@ import frc.robot.generated.TunerConstants;
 
 import frc.robot.subsystems.CommandSwerveDrivetrain;
 import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.IntakeFlipoutSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.IndexSubsystem;
 
@@ -50,6 +54,8 @@ public class RobotContainer {
 	
 	public final CommandSwerveDrivetrain m_drivetrain = TunerConstants.createDrivetrain();
 	private final IntakeSubsystem m_intakeSubsystem = new IntakeSubsystem();
+	private final IntakeFlipoutSubsystem m_intakeFlipoutSubsystem = new IntakeFlipoutSubsystem();
+
 	private final ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
 	private final IndexSubsystem m_indexSubsystem = new IndexSubsystem();
 
@@ -122,6 +128,7 @@ public class RobotContainer {
 
 		// X Wheels
 		//TODO: ADD X WHEELS METHOD
+		
 
 		// intake wheels
 		new Trigger(() -> m_driverController.getRawAxis(ControllerConstants.k_rightTrigger) > 0.05)
@@ -133,6 +140,14 @@ public class RobotContainer {
 		);
 
 		// TODO: ADD FLIP IN AND FLIP OUT BUTTON BINDINGS 
+
+		new JoystickButton(m_driverController.getHID(), ControllerConstants.k_rightBumper)
+		.onTrue(
+			new SetIntakeFlipoutCommand(m_intakeFlipoutSubsystem,"INTAKE")
+		)
+		.onFalse(
+				new ZeroIntakeFlipoutCommand(m_intakeFlipoutSubsystem)
+		);
 
 		/* 
 		// flip out on driver controller
@@ -177,11 +192,11 @@ public class RobotContainer {
 
 		// 	// indexer runs: belt floor, hopper floor, shooter indexer on Driver controller
 		new Trigger(() -> m_driverController.getRawAxis(ControllerConstants.k_leftTrigger) > 0.05)
-		.whileTrue(
-				new RunCommand(() -> m_indexSubsystem.index())
+		.onTrue(
+			new RunCommand(() -> m_indexSubsystem.index())
 		)
 		.onFalse(
-				new RunCommand(() -> m_indexSubsystem.stopIndex())
+			new RunCommand(() -> m_indexSubsystem.stopIndex())
 		);
 		
 		// rev up normal speed
@@ -219,10 +234,9 @@ public class RobotContainer {
 		new ParallelCommandGroup(
 			new ShootForSecsCommand(m_shooterSubsystem, 10),
 			new IndexForSecsCommand(m_indexSubsystem,10)
-)
-
-
+		)
 	);
+
 	public Command getAutonomousCommand() {
 			return m_chooser.getSelected();
 	}
