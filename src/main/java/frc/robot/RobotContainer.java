@@ -192,7 +192,7 @@ public class RobotContainer {
 
 		// 	// indexer runs: belt floor, hopper floor, shooter indexer on Driver controller
 		new Trigger(() -> m_driverController.getRawAxis(ControllerConstants.k_leftTrigger) > 0.05)
-		.onTrue(
+		.whileTrue(
 			new RunCommand(() -> m_indexSubsystem.index())
 		)
 		.onFalse(
