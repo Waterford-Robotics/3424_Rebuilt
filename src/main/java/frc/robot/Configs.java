@@ -1,13 +1,19 @@
 package frc.robot;
 
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
+import com.ctre.phoenix6.signals.GravityTypeValue;
+import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
+
+import edu.wpi.first.units.Units;
+
 
 public class Configs {
   public static final class IntakeConfigs {
     // Intake Kraken x44
     public static final TalonFXConfiguration INTAKE_TALON_FX_CONFIGURATION = new TalonFXConfiguration();
     public static final TalonFXConfiguration FLIPOUT_TALON_FX_CONFIGURATION = new TalonFXConfiguration();
+
 
     static{
       /*
@@ -27,7 +33,26 @@ public class Configs {
         **    INTAKE FLIP KRAKEN x60 CONFIGURATIONS    **
         ********************************************
       */
-      //TODO: add flipout later!
+      FLIPOUT_TALON_FX_CONFIGURATION.Slot0.kP = 0; // how much "push" you have, more push = quicker
+      FLIPOUT_TALON_FX_CONFIGURATION.Slot0.kI = 0; // Corrects accumulated error (9.5 goes to 10 with extra push)
+      FLIPOUT_TALON_FX_CONFIGURATION.Slot0.kD = 0; // Softens P curve, stops oscillations
+      FLIPOUT_TALON_FX_CONFIGURATION.Slot0.kS = 0; // overcomes gearbox static friction
+      FLIPOUT_TALON_FX_CONFIGURATION.Slot0.kV = 0; // Helps maintain velocity point
+      FLIPOUT_TALON_FX_CONFIGURATION.Slot0.kA = 0; // Helps reach desired acceleration
+      FLIPOUT_TALON_FX_CONFIGURATION.Slot0.kG = 0; // helps overcome force of gravity on arm/elevator/etc
+      FLIPOUT_TALON_FX_CONFIGURATION.Slot0.GravityType = GravityTypeValue.Arm_Cosine; //knows you are doing arm, could be elevator
+
+
+      FLIPOUT_TALON_FX_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Brake; // uses reverse current to stop motor immediately 
+      FLIPOUT_TALON_FX_CONFIGURATION.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
+      FLIPOUT_TALON_FX_CONFIGURATION.CurrentLimits.SupplyCurrentLimit = 50;
+      FLIPOUT_TALON_FX_CONFIGURATION.SoftwareLimitSwitch.ForwardSoftLimitEnable = true; //Turns on limit!
+      FLIPOUT_TALON_FX_CONFIGURATION.SoftwareLimitSwitch.ForwardSoftLimitThreshold = Units.Rotations.of(0).in(Units.Rotations); // Most you can extend
+      FLIPOUT_TALON_FX_CONFIGURATION.SoftwareLimitSwitch.ReverseSoftLimitEnable = true; //Virtual hardstop!
+      FLIPOUT_TALON_FX_CONFIGURATION.SoftwareLimitSwitch.ReverseSoftLimitThreshold = Units.Rotations.of(0).in(Units.Rotations); // Starting position (should always be 0)
+      
+      
+
     }
   }
   
