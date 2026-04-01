@@ -38,7 +38,6 @@ public class Constants {
 
     public static final int k_shooterIndexerKrakenID = 30;
     public static final int k_beltFloorKrakenID = 31;
-    public static final int k_rollerFloorKrakenID = 32;
 
     public static final int k_intakeKrakenID = 40;
     public static final int k_fliputKrakenID = 41;
@@ -64,7 +63,6 @@ public class Constants {
   public static final class IndexerConstants {
 
     public static final double k_beltFloorSpeed = 0.3;
-    public static final double k_rollerFloorSpeed = 0.3;
     public static final double k_shooterIndexerSpeed = 0.3;
 
   }
