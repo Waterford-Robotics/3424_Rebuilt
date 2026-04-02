@@ -22,14 +22,14 @@ public class ShooterSubsystem extends SubsystemBase {
   }
 
   public void shoot() {
-    m_leftShooter.set(ShooterConstants.k_shooterSpeed);  // Revs up the two shooter motors
-    m_rightShooter.set(-ShooterConstants.k_shooterSpeed);
+    m_leftShooter.set(-ShooterConstants.k_shooterSpeed);  // Revs up the two shooter motors
+    m_rightShooter.set(ShooterConstants.k_shooterSpeed);
     
   }
 
   public void farShoot() {
-    m_leftShooter.set(1.3*ShooterConstants.k_shooterSpeed);  // Revs up the two shooter motors
-    m_rightShooter.set(-1.3*ShooterConstants.k_shooterSpeed);
+    m_leftShooter.set(-1.3*ShooterConstants.k_shooterSpeed);  // Revs up the two shooter motors
+    m_rightShooter.set(1.3*ShooterConstants.k_shooterSpeed);
     
   }
 
