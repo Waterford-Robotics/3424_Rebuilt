@@ -17,11 +17,11 @@ public class IntakeFlipoutSubsystem extends SubsystemBase {
     
     public IntakeFlipoutSubsystem() {
 
-        m_intakeFlipout = new TalonFX(MotorIDConstants.k_fliputKrakenID); //gets ID number
+        m_intakeFlipout = new TalonFX(MotorIDConstants.k_flipoutKrakenID); //gets ID number
         m_intakeFlipout.getConfigurator().apply(IntakeConfigs.FLIPOUT_TALON_FX_CONFIGURATION, 0.05); //GIVES UP AFTER 0.05 SECONDs
     }
 
-    public void setPositiion(Angle angle) {
+    public void setPosition(Angle angle) {
         m_intakeFlipout.setControl(new PositionVoltage(angle.in(Units.Rotations))); // picks angle then converts to voltage command that motor can understand
     }
     
@@ -42,6 +42,6 @@ public class IntakeFlipoutSubsystem extends SubsystemBase {
     }
 
     public void periodic() {
-        SmartDashboard.putNumber("Wrist/Pos", Units.Rotations.of(m_intakeFlipout.getPosition().getValueAsDouble()).magnitude()); // puts position on smart dashboard
+        SmartDashboard.putNumber("Wrist/Pos", Units.Rotations.of(m_intakeFlipout.getPosition().getValueAsDouble()).magnitude()); // puts position on smart dashboard, 14
     }
 }
