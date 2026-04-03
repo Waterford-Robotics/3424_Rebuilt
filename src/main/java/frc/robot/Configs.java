@@ -33,7 +33,14 @@ public class Configs {
         **    INTAKE FLIP KRAKEN x60 CONFIGURATIONS    **
         ********************************************
       */
-      FLIPOUT_TALON_FX_CONFIGURATION.Slot0.kP = 0; // how much "push" you have, more push = quicker
+      // FLIPOUT_TALON_FX_CONFIGURATION.ClosedLoopRamps.DutyCycleClosedLoopRampPeriod = 0.05;
+      // FLIPOUT_TALON_FX_CONFIGURATION.MotorOutput.PeakForwardDutyCycle =0.95;
+      // FLIPOUT_TALON_FX_CONFIGURATION.MotorOutput.PeakReverseDutyCycle = -0.95;
+      // FLIPOUT_TALON_FX_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Brake;
+      // FLIPOUT_TALON_FX_CONFIGURATION.CurrentLimits.SupplyCurrentLimit = 50;  
+
+      // Start with ONLY P. Beware of a very high P value!
+      FLIPOUT_TALON_FX_CONFIGURATION.Slot0.kP = 0.6; // how much "push" you have, more push = quicker
       FLIPOUT_TALON_FX_CONFIGURATION.Slot0.kI = 0; // Corrects accumulated error (9.5 goes to 10 with extra push)
       FLIPOUT_TALON_FX_CONFIGURATION.Slot0.kD = 0; // Softens P curve, stops oscillations
       FLIPOUT_TALON_FX_CONFIGURATION.Slot0.kS = 0; // overcomes gearbox static friction
@@ -44,7 +51,7 @@ public class Configs {
 
 
       FLIPOUT_TALON_FX_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Brake; // uses reverse current to stop motor immediately 
-      FLIPOUT_TALON_FX_CONFIGURATION.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
+      FLIPOUT_TALON_FX_CONFIGURATION.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
       FLIPOUT_TALON_FX_CONFIGURATION.CurrentLimits.SupplyCurrentLimit = 50;
       FLIPOUT_TALON_FX_CONFIGURATION.SoftwareLimitSwitch.ForwardSoftLimitEnable = true; //Turns on limit!
       FLIPOUT_TALON_FX_CONFIGURATION.SoftwareLimitSwitch.ForwardSoftLimitThreshold = Units.Rotations.of(0).in(Units.Rotations); // Most you can extend

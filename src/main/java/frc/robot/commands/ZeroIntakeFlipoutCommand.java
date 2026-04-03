@@ -7,7 +7,6 @@
 package frc.robot.commands;
 
 
-import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.Constants.IntakeFlipoutConstants;
 import frc.robot.subsystems.IntakeFlipoutSubsystem;
 import edu.wpi.first.wpilibj.Timer;

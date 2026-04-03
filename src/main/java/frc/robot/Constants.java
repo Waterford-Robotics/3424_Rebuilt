@@ -40,7 +40,7 @@ public class Constants {
     public static final int k_beltFloorKrakenID = 31;
 
     public static final int k_intakeKrakenID = 40;
-    public static final int k_fliputKrakenID = 41;
+    public static final int k_flipoutKrakenID = 41;
     
 
   }
@@ -57,11 +57,13 @@ public class Constants {
 
   public static final class IntakeFlipoutConstants {
     public static final Angle k_intakeFlipoutHomeAngle = edu.wpi.first.units.Units.Rotations.of(0);
-    public static final Angle k_intakeFlipoutIntakeAngle = edu.wpi.first.units.Units.Rotations.of(0); //TODO: ACTUALLY MEASURE THE ROTATIONS, ITS NOT O
+    public static final Angle k_intakeFlipoutIntakeAngle = edu.wpi.first.units.Units.Rotations.of(-14); //MEASURED IN SMARTDASHBOARD
+  
+  
   }
 
   public static final class IndexerConstants {
-
+ 
     public static final double k_beltFloorSpeed = 0.3;
     public static final double k_shooterIndexerSpeed = 0.3;
 

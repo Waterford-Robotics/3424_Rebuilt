@@ -149,48 +149,18 @@ public class RobotContainer {
 				new ZeroIntakeFlipoutCommand(m_intakeFlipoutSubsystem)
 		);
 
-		/* 
-		// flip out on driver controller
-		new JoystickButton(m_driverController.getHID(), ControllerConstants.k_RightBumper)
-		.onTrue(
-				new RunCommand(() -> m_intakeSubsystem.(), m_intakeSubsystem)
-		)
-		.onFalse(
-				new RunCommand(() -> m_intakeSubsystem.(), m_intakeSubsystem)
-		);
-		 
-		// flip in
-		new JoystickButton(m_driverController.getHID(), ControllerConstants.k_LeftBumper)
-		.onTrue(
-				new RunCommand(() -> m_intakeSubsystem.(), m_intakeSubsystem)
-		)
-		.onFalse(
-				new RunCommand(() -> m_intakeSubsystem.(), m_intakeSubsystem)
-		);
-
-
-		// flip out backup on operator controller
-		new JoystickButton(m_operatorController.getHID(), ControllerConstants.k_RightBumper)
-		.onTrue(
-				new RunCommand(() -> m_intakeSubsystem.flipCommand(MotorConstants.k_intakePolarity), m_intakeSubsystem)
-		)
-		.onFalse(
-				new RunCommand(() -> m_intakeSubsystem.stopFlip(), m_intakeSubsystem)
-		);
-
-		// flip in
-		new JoystickButton(m_operatorController.getHID(), ControllerConstants.k_LeftBumper)
-		.onTrue(
-				new RunCommand(() -> m_intakeSubsystem.flipCommand(-1 * MotorConstants.k_intakePolarity), m_intakeSubsystem)
-		)
-		.onFalse(
-				new RunCommand(() -> m_intakeSubsystem.stopFlip(), m_intakeSubsystem)
-		);
-		*/
 		
+		// flip out on driver controller - UPDATED
+		// new JoystickButton(m_driverController.getHID(), ControllerConstants.k_rightBumper)
+		// .whileTrue(
+		// 		new RunCommand(() -> m_intakeFlipoutSubsystem.intakeFlip(), m_intakeFlipoutSubsystem)
+		// )
+		// .onFalse(
+		// 		new RunCommand(() -> m_intakeFlipoutSubsystem.stopIntakeFlip(), m_intakeFlipoutSubsystem)
+		// );
 		
 
-		// 	// indexer runs: belt floor, hopper floor, shooter indexer on Driver controller
+		// indexer runs: belt floor, shooter indexer on Driver controller
 		new Trigger(() -> m_driverController.getRawAxis(ControllerConstants.k_leftTrigger) > 0.05)
 		.whileTrue(
 			new RunCommand(() -> m_indexSubsystem.index())
@@ -216,9 +186,6 @@ public class RobotContainer {
 		.onFalse(
 				new RunCommand(() -> m_shooterSubsystem.stopShooter())
 		);
-
-
-	
 
 		new JoystickButton(m_operatorController.getHID(), ControllerConstants.k_X)
 		.onTrue(

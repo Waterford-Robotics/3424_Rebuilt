@@ -7,7 +7,6 @@
 package frc.robot.commands;
 
 
-import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.Constants.IntakeFlipoutConstants;
 import frc.robot.subsystems.IntakeFlipoutSubsystem;
 import edu.wpi.first.wpilibj.Timer;
@@ -42,11 +41,11 @@ public class SetIntakeFlipoutCommand extends Command {
   // Actual command
   public void execute() {
      if (m_position.equals("INTAKE")) {
-        m_intakeFlipoutSubsystem.setPositiion(IntakeFlipoutConstants.k_intakeFlipoutIntakeAngle);
+        m_intakeFlipoutSubsystem.setPosition(IntakeFlipoutConstants.k_intakeFlipoutIntakeAngle);
      }
 
      if (m_position.equals("HOME")) {
-        m_intakeFlipoutSubsystem.setPositiion(IntakeFlipoutConstants.k_intakeFlipoutHomeAngle);
+        m_intakeFlipoutSubsystem.setPosition(IntakeFlipoutConstants.k_intakeFlipoutHomeAngle);
      }
   }
 
