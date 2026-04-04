@@ -39,8 +39,10 @@ public class Constants {
     public static final int k_shooterIndexerKrakenID = 30;
     public static final int k_beltFloorKrakenID = 31;
 
-    public static final int k_intakeKrakenID = 40;
-    public static final int k_flipoutKrakenID = 41;
+    public static final int k_rightIntakeKrakenID = 40;
+    public static final int k_leftIntakeKrakenID = 41; //FIND IN PHEONIX TUNER
+
+    public static final int k_flipoutKrakenID = 42; // CHANGE FROM 41 to 42 in pheonix tuner
     
 
   }

@@ -10,24 +10,30 @@ import frc.robot.Constants.MotorIDConstants;
 // Clean
 public class IntakeSubsystem extends SubsystemBase {
 
-  private TalonFX m_intake; // intake wheel
+  private TalonFX m_rightIntake; // intake wheel ADD NEW
+  private TalonFX m_leftIntake;
 
   public IntakeSubsystem() {
-    m_intake = new TalonFX(MotorIDConstants.k_intakeKrakenID);
-    m_intake.getConfigurator().apply(IntakeConfigs.INTAKE_TALON_FX_CONFIGURATION, 0.05);
+    m_rightIntake = new TalonFX(MotorIDConstants.k_rightIntakeKrakenID);
+    m_rightIntake.getConfigurator().apply(IntakeConfigs.RIGHT_INTAKE_TALON_FX_CONFIGURATION, 0.05);
+    m_leftIntake = new TalonFX(MotorIDConstants.k_leftIntakeKrakenID);
+    m_leftIntake.getConfigurator().apply(IntakeConfigs.LEFT_INTAKE_TALON_FX_CONFIGURATION, 0.05);
   }
 
 
-  public void intake() { 
-    m_intake.set(-IntakeConstants.k_intakeSpeed);//intake forward
+  public void intake() { // -  +
+    m_rightIntake.set(-IntakeConstants.k_intakeSpeed);//intake forward
+    m_leftIntake.set(IntakeConstants.k_intakeSpeed);//intake forward
   }
 
 
   public void reverseIntake() {
-    m_intake.set(IntakeConstants.k_intakeSpeed); //make it run backwards!
+    m_rightIntake.set(IntakeConstants.k_intakeSpeed); //make it run backwards!
+    m_leftIntake.set(-IntakeConstants.k_intakeSpeed);
   }
 
   public void stopIntake() {
-    m_intake.set(0);
+    m_rightIntake.set(0);
+    m_leftIntake.set(0);
   }
 }

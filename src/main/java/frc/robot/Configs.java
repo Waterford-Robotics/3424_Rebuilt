@@ -11,7 +11,8 @@ import edu.wpi.first.units.Units;
 public class Configs {
   public static final class IntakeConfigs {
     // Intake Kraken x44
-    public static final TalonFXConfiguration INTAKE_TALON_FX_CONFIGURATION = new TalonFXConfiguration();
+    public static final TalonFXConfiguration RIGHT_INTAKE_TALON_FX_CONFIGURATION = new TalonFXConfiguration();
+    public static final TalonFXConfiguration LEFT_INTAKE_TALON_FX_CONFIGURATION = new TalonFXConfiguration();
     public static final TalonFXConfiguration FLIPOUT_TALON_FX_CONFIGURATION = new TalonFXConfiguration();
 
 
@@ -22,11 +23,17 @@ public class Configs {
         ********************************************
       */
 
-      INTAKE_TALON_FX_CONFIGURATION.ClosedLoopRamps.DutyCycleClosedLoopRampPeriod = 0.05;
-      INTAKE_TALON_FX_CONFIGURATION.MotorOutput.PeakForwardDutyCycle =0.95;
-      INTAKE_TALON_FX_CONFIGURATION.MotorOutput.PeakReverseDutyCycle = -0.95;
-      INTAKE_TALON_FX_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Brake;
-      INTAKE_TALON_FX_CONFIGURATION.CurrentLimits.SupplyCurrentLimit = 50;
+      RIGHT_INTAKE_TALON_FX_CONFIGURATION.ClosedLoopRamps.DutyCycleClosedLoopRampPeriod = 0.05;
+      RIGHT_INTAKE_TALON_FX_CONFIGURATION.MotorOutput.PeakForwardDutyCycle =0.95;
+      RIGHT_INTAKE_TALON_FX_CONFIGURATION.MotorOutput.PeakReverseDutyCycle = -0.95;
+      RIGHT_INTAKE_TALON_FX_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Brake;
+      RIGHT_INTAKE_TALON_FX_CONFIGURATION.CurrentLimits.SupplyCurrentLimit = 50;
+
+      LEFT_INTAKE_TALON_FX_CONFIGURATION.ClosedLoopRamps.DutyCycleClosedLoopRampPeriod = 0.05;
+      LEFT_INTAKE_TALON_FX_CONFIGURATION.MotorOutput.PeakForwardDutyCycle =0.95;
+      LEFT_INTAKE_TALON_FX_CONFIGURATION.MotorOutput.PeakReverseDutyCycle = -0.95;
+      LEFT_INTAKE_TALON_FX_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Brake;
+      LEFT_INTAKE_TALON_FX_CONFIGURATION.CurrentLimits.SupplyCurrentLimit = 50;
 
       /*
         ********************************************
