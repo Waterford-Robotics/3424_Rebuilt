@@ -46,7 +46,7 @@ public class Constants {
   }
 
   public static final class ShooterConstants {
-    public static final double k_shooterSpeed = 0.7;
+    public static final double k_shooterSpeed = 0.85;
 
   }
 
