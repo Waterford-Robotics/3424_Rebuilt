@@ -40,14 +40,15 @@ public class ZeroIntakeFlipoutCommand extends Command {
  
   // Actual command
   public void execute() {
-     if(m_intakeFlipoutSubsystem.getCurrentPosition() < 0.05 && m_intakeFlipoutSubsystem.getCurrentVelocity() < 0.03) {
-        m_intakeFlipoutSubsystem.setNeutral();
+     if(m_intakeFlipoutSubsystem.getCurrentPosition() < 0.25 && m_intakeFlipoutSubsystem.getCurrentVelocity() == 0) {
+        m_finished = true;
      }
   }
 
 
   // Stuff that happens when command is over
   public void end(boolean interrupted) {
+    m_intakeFlipoutSubsystem.setNeutral();
     m_intakeFlipoutSubsystem.resetSensorPosition(IntakeFlipoutConstants.k_intakeFlipoutHomeAngle);
   }
 
