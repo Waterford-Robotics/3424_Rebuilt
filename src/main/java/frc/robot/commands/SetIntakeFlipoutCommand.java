@@ -52,7 +52,6 @@ public class SetIntakeFlipoutCommand extends Command {
 
   // Stuff that happens when command is over
   public void end(boolean interrupted) {
-    m_intakeFlipoutSubsystem.resetSensorPosition(IntakeFlipoutConstants.k_intakeFlipoutHomeAngle);
   }
 
 

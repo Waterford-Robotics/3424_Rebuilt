@@ -57,15 +57,15 @@ public class Constants {
 
   public static final class IntakeFlipoutConstants {
     public static final Angle k_intakeFlipoutHomeAngle = edu.wpi.first.units.Units.Rotations.of(0);
-    public static final Angle k_intakeFlipoutIntakeAngle = edu.wpi.first.units.Units.Rotations.of(-14); //MEASURED IN SMARTDASHBOARD
+    public static final Angle k_intakeFlipoutIntakeAngle = edu.wpi.first.units.Units.Rotations.of(14.1); //MEASURED IN SMARTDASHBOARD
   
   
   }
 
   public static final class IndexerConstants {
  
-    public static final double k_beltFloorSpeed = 0.3;
-    public static final double k_shooterIndexerSpeed = 0.3;
+    public static final double k_beltFloorSpeed = 0.5;
+    public static final double k_shooterIndexerSpeed = 0.7;
 
   }
   

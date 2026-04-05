@@ -143,12 +143,22 @@ public class RobotContainer {
 
 		new JoystickButton(m_driverController.getHID(), ControllerConstants.k_rightBumper)
 		.onTrue(
-			new SetIntakeFlipoutCommand(m_intakeFlipoutSubsystem,"INTAKE")
-		)
-		.onFalse(
+			new SetIntakeFlipoutCommand(m_intakeFlipoutSubsystem,"HOME").andThen(
 				new ZeroIntakeFlipoutCommand(m_intakeFlipoutSubsystem)
+			)
 		);
 
+		new JoystickButton(m_driverController.getHID(), ControllerConstants.k_leftBumper)
+		.onTrue(
+			new ZeroIntakeFlipoutCommand(m_intakeFlipoutSubsystem).andThen(
+				new SetIntakeFlipoutCommand(m_intakeFlipoutSubsystem, "INTAKE")
+			)
+		);
+
+		new JoystickButton(m_driverController.getHID(), ControllerConstants.k_Back)
+		.onTrue(
+			new ZeroIntakeFlipoutCommand(m_intakeFlipoutSubsystem)
+		);
 		
 		// flip out on driver controller - UPDATED
 		// new JoystickButton(m_driverController.getHID(), ControllerConstants.k_rightBumper)
