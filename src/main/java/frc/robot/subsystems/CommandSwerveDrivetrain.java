@@ -357,4 +357,10 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
     public void resetGyro() {
         this.getPigeon2().reset();
     }
+    
+    // Function to X Wheels
+    private final SwerveRequest.SwerveDriveBrake brake = new SwerveRequest.SwerveDriveBrake();
+    public void XWheels() {
+        this.applyRequest(() -> brake);
+    }
 }

@@ -106,7 +106,6 @@ public class RobotContainer {
 
 
 	}
-
 	private void configureBindings() {
 			
 		// Idle while the robot is disabled. This ensures the configured
@@ -127,8 +126,10 @@ public class RobotContainer {
 		);
 
 		// X Wheels
-		//TODO: ADD X WHEELS METHOD
-		
+		new JoystickButton(m_operatorController.getHID(), ControllerConstants.k_Back)
+    	.whileTrue(
+			new RunCommand(() -> m_drivetrain.XWheels(), m_drivetrain)
+		);
 
 		// intake wheels
 		new Trigger(() -> m_driverController.getRawAxis(ControllerConstants.k_rightTrigger) > 0.05)
@@ -139,7 +140,7 @@ public class RobotContainer {
 				new RunCommand(() -> m_intakeSubsystem.stopIntake())
 		);
 
-		// TODO: ADD FLIP IN AND FLIP OUT BUTTON BINDINGS 
+		// FLIP IN AND FLIP OUT BUTTON BINDINGS 
 
 		new JoystickButton(m_driverController.getHID(), ControllerConstants.k_rightBumper)
 		.onTrue(
