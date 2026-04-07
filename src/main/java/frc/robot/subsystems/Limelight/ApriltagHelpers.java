@@ -1,4 +1,5 @@
 package frc.robot.subsystems.Limelight;
+import frc.robot.Constants.ShooterConstants;
 //import edu.wpi.first.math.geometry.Pose3d;
 //import edu.wpi.first.math.geometry.Rotation3d;
 //import edu.wpi.first.math.geometry.Translation3d;
@@ -7,6 +8,8 @@ public class ApriltagHelpers {
 
 public ApriltagHelpers(){
 }
+public static double k_distance = 0;
+
 public static double getDistance(){
    double TY = Math.toRadians(LimelightHelpers.getTY(VisionConstants.LimelightName));
 
@@ -14,6 +17,7 @@ public static double getDistance(){
    double angleUp = VisionConstants.CAMERA_PITCH + TY;
    // distance = (h2-h1)/tan(ty+pitch) = (h2-h1)/tan(angleup)
    double distance = (VisionConstants.TAG_HEIGHT - VisionConstants.CAMERA_HEIGHT)/Math.tan(angleUp);
+   k_distance = distance;
    return distance;
 }
 public static double getTargetAngle(){

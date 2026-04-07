@@ -190,14 +190,16 @@ public class RobotContainer {
 		);
 
 		// rev up faster speed
-		new Trigger (() -> m_operatorController.getRawAxis(ControllerConstants.k_leftTrigger) > 0.05)
-		.whileTrue(
-				new RunCommand(() -> m_shooterSubsystem.farShoot())
-		)
-		.onFalse(
-				new RunCommand(() -> m_shooterSubsystem.stopShooter())
-		);
+		// TODO: Fix button binding! Find a new button for this (repeat)
+		// new Trigger (() -> m_operatorController.getRawAxis(ControllerConstants.k_leftTrigger) > 0.05)
+		// .whileTrue(
+		// 		new RunCommand(() -> m_shooterSubsystem.farShoot())
+		// )
+		// .onFalse(
+		// 		new RunCommand(() -> m_shooterSubsystem.stopShooter())
+		// );
 
+		// Operator intake non-PID
 		new JoystickButton(m_operatorController.getHID(), ControllerConstants.k_X)
 		.onTrue(
 				new RunCommand(() -> m_intakeSubsystem.intake(), m_intakeSubsystem)
@@ -205,6 +207,16 @@ public class RobotContainer {
 		.onFalse(
 				new RunCommand(() -> m_intakeSubsystem.stopIntake(), m_intakeSubsystem)
 		);
+
+		// limelight shoot
+		// TODO: Fix button binding! Find a button for this
+		// new Trigger (() -> m_operatorController.getRawAxis(ControllerConstants.k_leftTrigger) > 0.05)
+		// .whileTrue(
+		// 		new RunCommand(() -> m_shooterSubsystem.limelightShoot())
+		// )
+		// .onFalse(
+		// 		new RunCommand(() -> m_shooterSubsystem.stopShooter())
+		// );
 	}
 
 	SequentialCommandGroup Shoot = new SequentialCommandGroup(
