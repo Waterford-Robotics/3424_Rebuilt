@@ -6,7 +6,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.XboxController.Axis;
 import edu.wpi.first.wpilibj.XboxController.Button;
-import edu.wpi.first.units.Units;
+import edu.wpi.first.math.util.Units;
 import edu.wpi.first.units.measure.Angle;
 
 public class Constants {
@@ -48,7 +48,7 @@ public class Constants {
   }
 
   public static final class ShooterConstants {
-    public static final double k_shooterSpeed = 0.85;
+    public static final double k_shooterSpeed = 0.65;
 
   }
 

@@ -9,7 +9,6 @@ import static edu.wpi.first.units.Units.*;
 import com.ctre.phoenix6.swerve.SwerveModule.DriveRequestType;
 import com.ctre.phoenix6.SignalLogger;
 import com.ctre.phoenix6.swerve.SwerveRequest;
-import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
 import com.pathplanner.lib.events.EventTrigger;
 
@@ -18,7 +17,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
-import edu.wpi.first.wpilibj2.command.ParallelDeadlineGroup;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -160,6 +158,23 @@ public class RobotContainer {
 		.onTrue(
 			new ZeroIntakeFlipoutCommand(m_intakeFlipoutSubsystem)
 		);
+
+		//BACKUP FLIPOUT MANUAL ON OPERATOR CONBTROLLER
+		new JoystickButton(m_operatorController.getHID(), ControllerConstants.k_leftBumper)
+		.onTrue(
+				new RunCommand(() -> m_intakeFlipoutSubsystem.flipout(), m_intakeFlipoutSubsystem)
+		)
+		.onFalse(
+				new RunCommand(() -> m_intakeFlipoutSubsystem.stopFlipout(), m_intakeFlipoutSubsystem)
+		);
+
+		new JoystickButton(m_operatorController.getHID(), ControllerConstants.k_rightBumper)
+		.onTrue(
+				new RunCommand(() -> m_intakeFlipoutSubsystem.reverseFlipout(), m_intakeFlipoutSubsystem)
+		)
+		.onFalse(
+				new RunCommand(() -> m_intakeFlipoutSubsystem.stopFlipout(), m_intakeFlipoutSubsystem)
+		);
 		
 		// flip out on driver controller - UPDATED
 		// new JoystickButton(m_driverController.getHID(), ControllerConstants.k_rightBumper)
@@ -190,44 +205,32 @@ public class RobotContainer {
 		);
 
 		// rev up faster speed
-		// TODO: Fix button binding! Find a new button for this (repeat)
-		// new Trigger (() -> m_operatorController.getRawAxis(ControllerConstants.k_leftTrigger) > 0.05)
-		// .whileTrue(
-		// 		new RunCommand(() -> m_shooterSubsystem.farShoot())
-		// )
-		// .onFalse(
-		// 		new RunCommand(() -> m_shooterSubsystem.stopShooter())
-		// );
+		new Trigger (() -> m_operatorController.getRawAxis(ControllerConstants.k_leftTrigger) > 0.05)
+		.whileTrue(
+				new RunCommand(() -> m_shooterSubsystem.farShoot())
+		)
+		.onFalse(
+				new RunCommand(() -> m_shooterSubsystem.stopShooter())
+		);
 
-		// Operator intake non-PID
 		new JoystickButton(m_operatorController.getHID(), ControllerConstants.k_X)
 		.onTrue(
-				new RunCommand(() -> m_intakeSubsystem.intake(), m_intakeSubsystem)
+				new RunCommand(() -> m_intakeSubsystem.reverseIntake(), m_intakeSubsystem)
 		)
 		.onFalse(
 				new RunCommand(() -> m_intakeSubsystem.stopIntake(), m_intakeSubsystem)
 		);
-
-		// limelight shoot
-		// TODO: Fix button binding! Find a button for this
-		// new Trigger (() -> m_operatorController.getRawAxis(ControllerConstants.k_leftTrigger) > 0.05)
-		// .whileTrue(
-		// 		new RunCommand(() -> m_shooterSubsystem.limelightShoot())
-		// )
-		// .onFalse(
-		// 		new RunCommand(() -> m_shooterSubsystem.stopShooter())
-		// );
 	}
 
 	SequentialCommandGroup Shoot = new SequentialCommandGroup(
 		new ShootForSecsCommand(m_shooterSubsystem, 1),
 		new ParallelCommandGroup(
 			new ShootForSecsCommand(m_shooterSubsystem, 10),
-			new IndexForSecsCommand(m_indexSubsystem,10)
-		)
+			new IndexForSecsCommand(m_indexSubsystem,10))
 	);
 
 	public Command getAutonomousCommand() {
 			return m_chooser.getSelected();
 	}
+	
 }

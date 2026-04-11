@@ -2,9 +2,8 @@ package frc.robot;
 
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.signals.GravityTypeValue;
-import com.ctre.phoenix6.signals.InvertedValue;
-import com.ctre.phoenix6.signals.NeutralModeValue;
 
+import com.ctre.phoenix6.signals.NeutralModeValue;
 import edu.wpi.first.units.Units;
 
 
@@ -56,16 +55,13 @@ public class Configs {
       FLIPOUT_TALON_FX_CONFIGURATION.Slot0.kG = 0.5; // helps overcome force of gravity on arm/elevator/etc
       FLIPOUT_TALON_FX_CONFIGURATION.Slot0.GravityType = GravityTypeValue.Arm_Cosine; //knows you are doing arm, could be elevator
 
-
-      FLIPOUT_TALON_FX_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Brake; // uses reverse current to stop motor immediately 
-      FLIPOUT_TALON_FX_CONFIGURATION.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
+      //TODO: ADD AND TEST MANUAL BACKUP CONFIGS 
+    
+      FLIPOUT_TALON_FX_CONFIGURATION.ClosedLoopRamps.DutyCycleClosedLoopRampPeriod = 0.05;
+      FLIPOUT_TALON_FX_CONFIGURATION.MotorOutput.PeakForwardDutyCycle = 0.95;
+      FLIPOUT_TALON_FX_CONFIGURATION.MotorOutput.PeakReverseDutyCycle = -0.95;
+      FLIPOUT_TALON_FX_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Brake;
       FLIPOUT_TALON_FX_CONFIGURATION.CurrentLimits.SupplyCurrentLimit = 50;
-      FLIPOUT_TALON_FX_CONFIGURATION.SoftwareLimitSwitch.ForwardSoftLimitEnable = true; //Turns on limit!
-      FLIPOUT_TALON_FX_CONFIGURATION.SoftwareLimitSwitch.ForwardSoftLimitThreshold = Units.Rotations.of(14.3).in(Units.Rotations); // Most you can extend
-      FLIPOUT_TALON_FX_CONFIGURATION.SoftwareLimitSwitch.ReverseSoftLimitEnable = true; //Virtual hardstop!
-      FLIPOUT_TALON_FX_CONFIGURATION.SoftwareLimitSwitch.ReverseSoftLimitThreshold = Units.Rotations.of(0).in(Units.Rotations); // Starting position (should always be 0)
-      
-      
 
     }
   }
