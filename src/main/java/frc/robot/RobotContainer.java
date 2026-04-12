@@ -29,7 +29,7 @@ import frc.robot.commands.IntakeForSecsCommand;
 import frc.robot.commands.SetIntakeFlipoutCommand;
 import frc.robot.commands.ShootForSecsCommand;
 import frc.robot.commands.ZeroIntakeFlipoutCommand;
-import frc.robot.commands.AimCommand;
+
 
 
 import frc.robot.generated.TunerConstants;
