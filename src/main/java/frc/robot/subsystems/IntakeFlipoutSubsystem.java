@@ -18,7 +18,7 @@ public class IntakeFlipoutSubsystem extends SubsystemBase {
     public IntakeFlipoutSubsystem() {
 
         m_intakeFlipout = new TalonFX(MotorIDConstants.k_flipoutKrakenID); //gets ID number
-        m_intakeFlipout.getConfigurator().apply(IntakeConfigs.FLIPOUT_TALON_FX_CONFIGURATION.Slot1, 0.05); //GIVES UP AFTER 0.05 SECONDs
+        m_intakeFlipout.getConfigurator().apply(IntakeConfigs.FLIPOUT_TALON_FX_CONFIGURATION.Slot0, 0.05); //GIVES UP AFTER 0.05 SECONDs
     }
 
     //ALL METHODS USED FOR PID CONTROL, MANUAL METHODS USED BELOW
@@ -47,17 +47,14 @@ public class IntakeFlipoutSubsystem extends SubsystemBase {
         SmartDashboard.putNumber("Wrist/Pos", Units.Rotations.of(m_intakeFlipout.getPosition().getValueAsDouble()).magnitude()); // puts position on smart dashboard, 14ish 
     }
 
-    public void setSlot0Config(){
-        m_intakeFlipout.getConfigurator().apply(IntakeConfigs.FLIPOUT_TALON_FX_CONFIGURATION.Slot0, 0.05); //GIVES UP AFTER 0.05 SECONDs
 
-    }
     //MANUAL FLIPOUT BUTTONS INCASE PID DOESNT WORK!!
     public void flipout() {
-        m_intakeFlipout.set(0.5);
+        m_intakeFlipout.set(0.2);
     }
 
     public void reverseFlipout() {
-        m_intakeFlipout.set(-0.5);
+        m_intakeFlipout.set(-0.2);
     }
     public void stopFlipout() {
         m_intakeFlipout.set(0);
