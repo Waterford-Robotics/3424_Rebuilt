@@ -9,6 +9,50 @@
           "data": {
             "pathName": "LSD"
           }
+        },
+        {
+          "type": "sequential",
+          "data": {
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "Shoot1SecCommand"
+                }
+              },
+              {
+                "type": "parallel",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "ShootCommand"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "IndexCommand"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "ZeroFlipoutCommand"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "FlipoutCommand"
+                }
+              }
+            ]
+          }
         }
       ]
     }
