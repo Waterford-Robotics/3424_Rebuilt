@@ -365,7 +365,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         this.applyRequest(() -> brake);
     }
 
-    public Command getAutonomoCommand(String pathName) {
+    public Command getAutonomousCommand(String pathName) {
         return new PathPlannerAuto(pathName);
     }
 }

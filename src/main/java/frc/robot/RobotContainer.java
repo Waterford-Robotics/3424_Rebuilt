@@ -92,6 +92,7 @@ public class RobotContainer {
 			
 			//autos!! (only one works)
 				m_chooser.addOption("Shoot", Shoot);
+				m_chooser.addOption("test", m_drivetrain.getAutonomousCommand("LSDS"));
 			
 			
 			
