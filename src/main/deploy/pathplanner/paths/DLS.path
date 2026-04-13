@@ -3,47 +3,40 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 13.100877817319098,
-        "y": 0.6942704626334513
-      },
-      "prevControl": null,
-      "nextControl": {
-        "x": 13.369857651245551,
-        "y": 0.7695848161328585
-      },
-      "isLocked": false,
-      "linkedName": "LS"
-    },
-    {
-      "anchor": {
         "x": 15.82295373665481,
         "y": 2.146761565836299
       },
+      "prevControl": null,
+      "nextControl": {
+        "x": 14.617924080664295,
+        "y": 1.9423368920521953
+      },
+      "isLocked": false,
+      "linkedName": "Depot"
+    },
+    {
+      "anchor": {
+        "x": 13.714151838671413,
+        "y": 2.8676275207591937
+      },
       "prevControl": {
-        "x": 14.82295373665481,
-        "y": 2.146761565836299
+        "x": 13.902296012348131,
+        "y": 2.703001368792063
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Depot"
+      "linkedName": "Shootleft2ndtime"
     }
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 0.24734042553191446,
+      "waypointRelativePos": 0.9,
       "rotationDegrees": 0.0
     }
   ],
   "constraintZones": [],
   "pointTowardsZones": [],
-  "eventMarkers": [
-    {
-      "name": "intakeRollers",
-      "waypointRelativePos": 0.9108129439621154,
-      "endWaypointRelativePos": null,
-      "command": null
-    }
-  ],
+  "eventMarkers": [],
   "globalConstraints": {
     "maxVelocity": 3.0,
     "maxAcceleration": 3.0,
@@ -54,13 +47,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 0.0
+    "rotation": 144.4623222080255
   },
   "reversed": false,
   "folder": null,
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 114.86369657175175
+    "rotation": 0.0
   },
   "useDefaultConstraints": true
 }

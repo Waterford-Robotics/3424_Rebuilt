@@ -58,7 +58,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "LSD"
+            "pathName": "LSN"
           }
         },
         {
@@ -70,7 +70,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "DLS"
+            "pathName": "NLS"
           }
         },
         {
