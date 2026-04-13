@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 13.109058487874464,
-        "y": 0.5868473609129818
+        "x": 13.100877817319098,
+        "y": 2.0391696322657173
       },
       "prevControl": null,
       "nextControl": {
-        "x": 13.730114122681883,
-        "y": 1.0138231098430834
+        "x": 13.369857651245551,
+        "y": 2.1144839857651245
       },
       "isLocked": false,
       "linkedName": "LS"
     },
     {
       "anchor": {
-        "x": 15.981,
-        "y": 2.1394864479315263
+        "x": 15.82295373665481,
+        "y": 2.146761565836299
       },
       "prevControl": {
-        "x": 14.981,
-        "y": 2.1394864479315263
+        "x": 14.82295373665481,
+        "y": 2.146761565836299
       },
       "nextControl": null,
       "isLocked": false,
@@ -30,20 +30,13 @@
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 0.14394242303078594,
+      "waypointRelativePos": 0.20345744680851027,
       "rotationDegrees": 0.0
     }
   ],
   "constraintZones": [],
   "pointTowardsZones": [],
-  "eventMarkers": [
-    {
-      "name": "IntakeFlipout",
-      "waypointRelativePos": 0.6379542395693141,
-      "endWaypointRelativePos": null,
-      "command": null
-    }
-  ],
+  "eventMarkers": [],
   "globalConstraints": {
     "maxVelocity": 3.0,
     "maxAcceleration": 3.0,
