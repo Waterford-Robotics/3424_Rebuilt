@@ -225,8 +225,10 @@ public class RobotContainer {
 	SequentialCommandGroup Shoot = new SequentialCommandGroup(
 		new ShootForSecsCommand(m_shooterSubsystem, 1),
 		new ParallelCommandGroup(
-			new ShootForSecsCommand(m_shooterSubsystem, 10),
-			new IndexForSecsCommand(m_indexSubsystem,10))
+			new ShootForSecsCommand(m_shooterSubsystem, 5),
+			new IndexForSecsCommand(m_indexSubsystem,5)),
+		new ZeroIntakeFlipoutCommand(m_intakeFlipoutSubsystem),
+		new SetIntakeFlipoutCommand(m_intakeFlipoutSubsystem, "INTAKE")
 	);
 
 	public Command getAutonomousCommand() {
