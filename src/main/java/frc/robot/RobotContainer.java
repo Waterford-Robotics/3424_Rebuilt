@@ -80,15 +80,19 @@ public class RobotContainer {
 
 			SignalLogger.enableAutoLogging(false);
 
-			NamedCommands.registerCommand("ShootCommand", 
-					new ShootForSecsCommand(m_shooterSubsystem,3)
-			);
+			// NamedCommands.registerCommand("ShootCommand", 
+			// 		new ShootForSecsCommand(m_shooterSubsystem,3)
+			// );
 			NamedCommands.registerCommand("Intake", 
-					new IntakeForSecsCommand(m_intakeSubsystem, 1.0)
+			 		new IntakeForSecsCommand(m_intakeSubsystem, 1.0)
 			);
+
+			NamedCommands.registerCommand("ShootAndFlipout", shootAndFlipoutCommandGroup());
+			NamedCommands.registerCommand("Shoot", shootCommandGroup());
 			
 			//autos!! (only one works)
 				m_chooser.addOption("Shoot", Shoot);
+				m_chooser.addOption("ShootAndFlipout", ShootAndFlipout);
 				m_chooser.addOption("test", m_drivetrain.getAutonomousCommand("test"));
 
 			new EventTrigger("intakeRollers")
@@ -217,13 +221,42 @@ public class RobotContainer {
 		);
 	}
 
-	SequentialCommandGroup Shoot = new SequentialCommandGroup(
+	public SequentialCommandGroup shootAndFlipoutCommandGroup()
+	{ 
+		return new SequentialCommandGroup(
+		new ShootForSecsCommand(m_shooterSubsystem, 0.5),
+		new ParallelCommandGroup(
+			new ShootForSecsCommand(m_shooterSubsystem, 5),
+			new IndexForSecsCommand(m_indexSubsystem,5)),
+		new ZeroIntakeFlipoutCommand(m_intakeFlipoutSubsystem),
+		new SetIntakeFlipoutCommand(m_intakeFlipoutSubsystem, "INTAKE")
+		);
+	}
+
+	SequentialCommandGroup ShootAndFlipout = new SequentialCommandGroup(
 		new ShootForSecsCommand(m_shooterSubsystem, 1),
 		new ParallelCommandGroup(
 			new ShootForSecsCommand(m_shooterSubsystem, 5),
 			new IndexForSecsCommand(m_indexSubsystem,5)),
 		new ZeroIntakeFlipoutCommand(m_intakeFlipoutSubsystem),
 		new SetIntakeFlipoutCommand(m_intakeFlipoutSubsystem, "INTAKE")
+	);
+
+	public SequentialCommandGroup shootCommandGroup()
+	{
+		return new SequentialCommandGroup(
+		new ShootForSecsCommand(m_shooterSubsystem, 1),
+		new ParallelCommandGroup(
+			new ShootForSecsCommand(m_shooterSubsystem, 5),
+			new IndexForSecsCommand(m_indexSubsystem,5))
+		);
+	}
+
+	SequentialCommandGroup Shoot = new SequentialCommandGroup(
+		new ShootForSecsCommand(m_shooterSubsystem, 1),
+		new ParallelCommandGroup(
+			new ShootForSecsCommand(m_shooterSubsystem, 5),
+			new IndexForSecsCommand(m_indexSubsystem,5))
 	);
 
 	public Command getAutonomousCommand() {
