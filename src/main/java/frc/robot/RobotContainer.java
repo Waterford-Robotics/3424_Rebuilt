@@ -82,7 +82,7 @@ public class RobotContainer {
 
 
 			NamedCommands.registerCommand("ShootCommand", 
-					new ShootForSecsCommand(m_shooterSubsystem,10)
+					new ShootForSecsCommand(m_shooterSubsystem,3)
 			);
 
 
@@ -92,7 +92,7 @@ public class RobotContainer {
 			
 			//autos!! (only one works)
 				m_chooser.addOption("Shoot", Shoot);
-				m_chooser.addOption("test", m_drivetrain.getAutonomousCommand("LSDS"));
+				m_chooser.addOption("test", m_drivetrain.getAutonomousCommand("test"));
 			
 			
 			
