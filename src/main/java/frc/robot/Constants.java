@@ -53,7 +53,7 @@ public class Constants {
   }
 
   public static final class IntakeConstants {
-    public static final double k_intakeSpeed = 0.45;
+    public static final double k_intakeSpeed = 0.3;
     
   }
 
