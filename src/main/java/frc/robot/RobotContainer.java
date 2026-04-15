@@ -92,7 +92,7 @@ public class RobotContainer {
 			
 			//autos!! (only one works)
 				m_chooser.addOption("Shoot", Shoot);
-				m_chooser.addOption("ShootAndFlipout", ShootAndFlipout);
+				m_chooser.addOption("LSNS", m_drivetrain.getAutonomousCommand("LSNS"));
 				m_chooser.addOption("test", m_drivetrain.getAutonomousCommand("test"));
 
 			new EventTrigger("intakeRollers")
