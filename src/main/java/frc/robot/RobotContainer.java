@@ -80,12 +80,9 @@ public class RobotContainer {
 
 			SignalLogger.enableAutoLogging(false);
 
-
 			NamedCommands.registerCommand("ShootCommand", 
 					new ShootForSecsCommand(m_shooterSubsystem,3)
 			);
-
-
 			NamedCommands.registerCommand("Intake", 
 					new IntakeForSecsCommand(m_intakeSubsystem, 1.0)
 			);
@@ -93,10 +90,7 @@ public class RobotContainer {
 			//autos!! (only one works)
 				m_chooser.addOption("Shoot", Shoot);
 				m_chooser.addOption("test", m_drivetrain.getAutonomousCommand("test"));
-			
-			
-			
-			
+
 			new EventTrigger("intakeRollers")
 			.whileTrue(new RunCommand(
 					() -> m_intakeSubsystem.intake(),m_intakeSubsystem));
