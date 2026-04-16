@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 8.818718861209964,
-        "y": 2.318908659549229
+        "x": 8.796065248842593,
+        "y": 2.7733750723379624
       },
       "prevControl": null,
       "nextControl": {
-        "x": 8.840237247924078,
-        "y": 2.0499288256227772
+        "x": 8.66379441550926,
+        "y": 1.8155925202546301
       },
       "isLocked": false,
       "linkedName": "NeutralLeft"
@@ -20,33 +20,49 @@
         "y": 0.6942704626334513
       },
       "prevControl": {
-        "x": 8.870667822833763,
-        "y": 0.8836229530335965
+        "x": 8.54416101217345,
+        "y": 0.7550104079878677
       },
       "nextControl": {
-        "x": 9.30288256227758,
-        "y": 0.382253855278766
+        "x": 9.964129557291667,
+        "y": 0.578899594907408
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 13.100877817319098,
+        "x": 13.211654079861113,
         "y": 0.6942704626334513
       },
       "prevControl": {
-        "x": 12.067995255041518,
-        "y": 0.6081969157769856
+        "x": 11.486490740740742,
+        "y": 0.5194564525462968
+      },
+      "nextControl": {
+        "x": 14.303052127143676,
+        "y": 0.804863856847379
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 13.801886429398149,
+        "y": 2.467892433449074
+      },
+      "prevControl": {
+        "x": 13.55834013310185,
+        "y": 2.0416208043981485
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "LS"
+      "linkedName": "Shootleft2ndtime"
     }
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 1.9347826086956554,
+      "waypointRelativePos": 2.85,
       "rotationDegrees": 90.0
     }
   ],
@@ -63,7 +79,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 114.86369657175175
+    "rotation": 144.4623222080255
   },
   "reversed": false,
   "folder": null,

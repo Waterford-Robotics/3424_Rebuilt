@@ -89,6 +89,7 @@ public class RobotContainer {
 
 			NamedCommands.registerCommand("ShootAndFlipout", shootAndFlipoutCommandGroup());
 			NamedCommands.registerCommand("Shoot", shootCommandGroup());
+			NamedCommands.registerCommand("flipoutDeploy", flipoutDeploy());
 			
 			//autos!! (only one works)
 				m_chooser.addOption("Shoot", Shoot);
@@ -221,10 +222,10 @@ public class RobotContainer {
 		);
 	}
 
-	public SequentialCommandGroup shootAndFlipoutCommandGroup()
-	{ 
+	//Command Groups for autos, make em named commands
+	public SequentialCommandGroup shootAndFlipoutCommandGroup() { 
 		return new SequentialCommandGroup(
-		new ShootForSecsCommand(m_shooterSubsystem, 0.5),
+		new ShootForSecsCommand(m_shooterSubsystem, 0.5),//rev first
 		new ParallelCommandGroup(
 			new ShootForSecsCommand(m_shooterSubsystem, 5),
 			new IndexForSecsCommand(m_indexSubsystem,5)),
@@ -232,18 +233,8 @@ public class RobotContainer {
 		new SetIntakeFlipoutCommand(m_intakeFlipoutSubsystem, "INTAKE")
 		);
 	}
-
-	SequentialCommandGroup ShootAndFlipout = new SequentialCommandGroup(
-		new ShootForSecsCommand(m_shooterSubsystem, 1),
-		new ParallelCommandGroup(
-			new ShootForSecsCommand(m_shooterSubsystem, 5),
-			new IndexForSecsCommand(m_indexSubsystem,5)),
-		new ZeroIntakeFlipoutCommand(m_intakeFlipoutSubsystem),
-		new SetIntakeFlipoutCommand(m_intakeFlipoutSubsystem, "INTAKE")
-	);
-
-	public SequentialCommandGroup shootCommandGroup()
-	{
+	//for shooting the second time
+	public SequentialCommandGroup shootCommandGroup() {
 		return new SequentialCommandGroup(
 		new ShootForSecsCommand(m_shooterSubsystem, 1),
 		new ParallelCommandGroup(
@@ -251,12 +242,21 @@ public class RobotContainer {
 			new IndexForSecsCommand(m_indexSubsystem,5))
 		);
 	}
+	public SequentialCommandGroup flipoutDeploy() {
+		return new SequentialCommandGroup(
+			new ZeroIntakeFlipoutCommand(m_intakeFlipoutSubsystem),
+			new SetIntakeFlipoutCommand(m_intakeFlipoutSubsystem, "INTAKE")
+		);
+	}
 
+		// Hardcoded Auto--stationary shoot w intake deploy (WORKS)
 	SequentialCommandGroup Shoot = new SequentialCommandGroup(
 		new ShootForSecsCommand(m_shooterSubsystem, 1),
 		new ParallelCommandGroup(
 			new ShootForSecsCommand(m_shooterSubsystem, 5),
-			new IndexForSecsCommand(m_indexSubsystem,5))
+			new IndexForSecsCommand(m_indexSubsystem,5)),
+		new ZeroIntakeFlipoutCommand(m_intakeFlipoutSubsystem),
+		new SetIntakeFlipoutCommand(m_intakeFlipoutSubsystem, "INTAKE")
 	);
 
 	public Command getAutonomousCommand() {
