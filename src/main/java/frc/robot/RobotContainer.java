@@ -28,6 +28,7 @@ import frc.robot.commands.IndexForSecsCommand;
 import frc.robot.commands.IntakeForSecsCommand;
 import frc.robot.commands.SetIntakeFlipoutCommand;
 import frc.robot.commands.ShootForSecsCommand;
+import frc.robot.commands.ShootFarForSecsCommand;
 import frc.robot.commands.ZeroIntakeFlipoutCommand;
 
 
@@ -93,6 +94,7 @@ public class RobotContainer {
 			
 			//autos!! (only one works)
 				m_chooser.addOption("Shoot", Shoot);
+				m_chooser.addOption("ShootFar", ShootFar);
 				m_chooser.addOption("LSNS", m_drivetrain.getAutonomousCommand("LSNS"));
 				m_chooser.addOption("test", m_drivetrain.getAutonomousCommand("test"));
 
@@ -124,7 +126,7 @@ public class RobotContainer {
 		);
 
 		// X Wheels
-		new JoystickButton(m_operatorController.getHID(), ControllerConstants.k_Back)
+		new JoystickButton(m_operatorController.getHID(), ControllerConstants.k_rightTrigger)
     	.whileTrue(
 			new RunCommand(() -> m_drivetrain.XWheels(), m_drivetrain)
 		);
@@ -199,10 +201,13 @@ public class RobotContainer {
 		new Trigger (() -> m_operatorController.getRawAxis(ControllerConstants.k_rightTrigger) > 0.05)
 		.whileTrue(
 				new RunCommand(() -> m_shooterSubsystem.shoot())
+	
 		)
 		.onFalse(
 				new RunCommand(() -> m_shooterSubsystem.stopShooter())
 		);
+
+		
 
 		// rev up faster speed
 		new Trigger (() -> m_operatorController.getRawAxis(ControllerConstants.k_leftTrigger) > 0.05)
@@ -236,7 +241,7 @@ public class RobotContainer {
 	//for shooting the second time
 	public SequentialCommandGroup shootCommandGroup() {
 		return new SequentialCommandGroup(
-		new ShootForSecsCommand(m_shooterSubsystem, 1),
+		new ShootForSecsCommand(m_shooterSubsystem, 0.5),
 		new ParallelCommandGroup(
 			new ShootForSecsCommand(m_shooterSubsystem, 5),
 			new IndexForSecsCommand(m_indexSubsystem,5))
@@ -258,6 +263,17 @@ public class RobotContainer {
 		new ZeroIntakeFlipoutCommand(m_intakeFlipoutSubsystem),
 		new SetIntakeFlipoutCommand(m_intakeFlipoutSubsystem, "INTAKE")
 	);
+
+	SequentialCommandGroup ShootFar = new SequentialCommandGroup(
+		new ShootFarForSecsCommand(m_shooterSubsystem, 0.5),
+		new ParallelCommandGroup(
+			new ShootFarForSecsCommand(m_shooterSubsystem, 3),
+			new IndexForSecsCommand(m_indexSubsystem,3)),
+		new ZeroIntakeFlipoutCommand(m_intakeFlipoutSubsystem),
+		new SetIntakeFlipoutCommand(m_intakeFlipoutSubsystem, "INTAKE")
+	);
+
+
 
 	public Command getAutonomousCommand() {
 			return m_chooser.getSelected();

@@ -11,6 +11,7 @@ public class ShooterSubsystem extends SubsystemBase {
 
   private TalonFX m_leftShooter; // lower shooter
   private TalonFX m_rightShooter; // upper shooter
+  
 
   public ShooterSubsystem () {
     //kraken x60s
