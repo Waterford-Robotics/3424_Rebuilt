@@ -357,7 +357,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
 
 
     public void resetGyro() {
-        this.getPigeon2().setYaw(0);
+        this.getPigeon2().reset();
         // var alliance = DriverStation.getAlliance();
         // if(alliance.isPresent()){
         //     if(alliance.get() == DriverStation.Alliance.Red) this.getPigeon2().setYaw(0);

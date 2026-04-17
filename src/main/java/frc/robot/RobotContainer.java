@@ -8,6 +8,7 @@ import static edu.wpi.first.units.Units.*;
 
 import com.ctre.phoenix6.swerve.SwerveModule.DriveRequestType;
 import com.ctre.phoenix6.SignalLogger;
+import com.ctre.phoenix6.hardware.Pigeon2;
 import com.ctre.phoenix6.swerve.SwerveRequest;
 import com.pathplanner.lib.auto.NamedCommands;
 import com.pathplanner.lib.events.EventTrigger;
@@ -103,6 +104,8 @@ public class RobotContainer {
 					() -> m_intakeSubsystem.intake(),m_intakeSubsystem));
 
 			SmartDashboard.putData("Automode", m_chooser);
+			
+
 
 
 	}
