@@ -59,7 +59,7 @@ public class Constants {
 
   public static final class IntakeFlipoutConstants {
     public static final Angle k_intakeFlipoutHomeAngle = edu.wpi.first.units.Units.Rotations.of(0);
-    public static final Angle k_intakeFlipoutIntakeAngle = edu.wpi.first.units.Units.Rotations.of(14.2); //MEASURED IN SMARTDASHBOARD
+    public static final Angle k_intakeFlipoutIntakeAngle = edu.wpi.first.units.Units.Rotations.of(16.3); //MEASURED IN SMARTDASHBOARD
   
   
   }

@@ -26,13 +26,13 @@ public class Configs {
       RIGHT_INTAKE_TALON_FX_CONFIGURATION.MotorOutput.PeakForwardDutyCycle =0.95;
       RIGHT_INTAKE_TALON_FX_CONFIGURATION.MotorOutput.PeakReverseDutyCycle = -0.95;
       RIGHT_INTAKE_TALON_FX_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Brake;
-      RIGHT_INTAKE_TALON_FX_CONFIGURATION.CurrentLimits.SupplyCurrentLimit = 50;
+      RIGHT_INTAKE_TALON_FX_CONFIGURATION.CurrentLimits.SupplyCurrentLimit = 40;
 
       LEFT_INTAKE_TALON_FX_CONFIGURATION.ClosedLoopRamps.DutyCycleClosedLoopRampPeriod = 0.05;
       LEFT_INTAKE_TALON_FX_CONFIGURATION.MotorOutput.PeakForwardDutyCycle =0.95;
       LEFT_INTAKE_TALON_FX_CONFIGURATION.MotorOutput.PeakReverseDutyCycle = -0.95;
       LEFT_INTAKE_TALON_FX_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Brake;
-      LEFT_INTAKE_TALON_FX_CONFIGURATION.CurrentLimits.SupplyCurrentLimit = 50;
+      LEFT_INTAKE_TALON_FX_CONFIGURATION.CurrentLimits.SupplyCurrentLimit = 40;
 
       /*
         ********************************************
@@ -99,7 +99,7 @@ public class Configs {
       BELT_FLOOR_TALON_FX_CONFIGURATION.MotorOutput.PeakForwardDutyCycle = 0.95;
       BELT_FLOOR_TALON_FX_CONFIGURATION.MotorOutput.PeakReverseDutyCycle = -0.95;
       BELT_FLOOR_TALON_FX_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Brake;
-      BELT_FLOOR_TALON_FX_CONFIGURATION.CurrentLimits.SupplyCurrentLimit = 50;
+      BELT_FLOOR_TALON_FX_CONFIGURATION.CurrentLimits.SupplyCurrentLimit = 30;
       /*
        ********************************************
        **    SHOOTER ROLLER KRAKEN x44 CONFIGURATIONS    **
@@ -121,7 +121,7 @@ public class Configs {
       ROLLER_FLOOR_TALON_FX_CONFIGURATION.MotorOutput.PeakForwardDutyCycle = 0.95;
       ROLLER_FLOOR_TALON_FX_CONFIGURATION.MotorOutput.PeakReverseDutyCycle = -0.95;
       ROLLER_FLOOR_TALON_FX_CONFIGURATION.MotorOutput.NeutralMode = NeutralModeValue.Brake;
-      ROLLER_FLOOR_TALON_FX_CONFIGURATION.CurrentLimits.SupplyCurrentLimit = 50;
+      ROLLER_FLOOR_TALON_FX_CONFIGURATION.CurrentLimits.SupplyCurrentLimit = 40;
     }
   }
 }

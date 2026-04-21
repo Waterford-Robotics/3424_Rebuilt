@@ -25,7 +25,7 @@
       },
       "nextControl": {
         "x": 8.316069612949127,
-        "y": 0.9700025949208455
+        "y": 0.9700025949208453
       },
       "isLocked": false,
       "linkedName": null
@@ -60,7 +60,7 @@
     {
       "name": "intakeRollers",
       "waypointRelativePos": 1.25,
-      "endWaypointRelativePos": null,
+      "endWaypointRelativePos": 2.0,
       "command": null
     }
   ],

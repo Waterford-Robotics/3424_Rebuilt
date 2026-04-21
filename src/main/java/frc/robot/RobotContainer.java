@@ -27,6 +27,7 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.ControllerConstants;
 import frc.robot.commands.IndexForSecsCommand;
 import frc.robot.commands.IntakeForSecsCommand;
+import frc.robot.commands.RevAndShootCommand;
 import frc.robot.commands.SetIntakeFlipoutCommand;
 import frc.robot.commands.ShootForSecsCommand;
 import frc.robot.commands.ShootFarForSecsCommand;
@@ -59,6 +60,8 @@ public class RobotContainer {
 	private final ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
 	private final IndexSubsystem m_indexSubsystem = new IndexSubsystem();
 
+	private final SwerveRequest.SwerveDriveBrake brake = new SwerveRequest.SwerveDriveBrake();
+
 	private final CommandXboxController m_driverController = new CommandXboxController(ControllerConstants.k_driverControllerPort);
 	private final CommandXboxController m_operatorController = new CommandXboxController(ControllerConstants.k_operatorControllerPort);
 
@@ -80,6 +83,22 @@ public class RobotContainer {
 					)
 			);
 
+			// m_drivetrain.setDefaultCommand(
+			// 		// Drivetrain will execute this command periodically
+			// 		m_drivetrain.applyRequest(() -> (
+			// 			if (new JoystickButton(m_driverController.getHID(), ControllerConstants.k_Start) || JoystickButton(m_operatorController.getHID(), ControllerConstants.k_Start)){
+			// 				return m_drivetrain.XWheels();
+			// 			}
+			// 			else {
+			// 				drive.withVelocityX(-m_driverController.getLeftY() * MaxSpeed) // Drive forward with negative Y (forward)
+			// 				.withVelocityY(-m_driverController.getLeftX() * MaxSpeed) // Drive left with negative X (left)
+			// 				.withRotationalRate(-m_driverController.getRightX() * MaxAngularRate); // Drive counterclockwise with negative X (left)
+			// 			}
+			// 		)
+			// 		)
+			// );
+
+
 			SignalLogger.enableAutoLogging(false);
 
 			// NamedCommands.registerCommand("ShootCommand", 
@@ -89,15 +108,18 @@ public class RobotContainer {
 			 		new IntakeForSecsCommand(m_intakeSubsystem, 1.0)
 			);
 
-			NamedCommands.registerCommand("ShootAndFlipout", shootAndFlipoutCommandGroup());
+			NamedCommands.registerCommand("ShootAndFlipout", shootAndFlipoutCommandGroup().withTimeout(10));
 			NamedCommands.registerCommand("Shoot", shootCommandGroup());
-			NamedCommands.registerCommand("flipoutDeploy", flipoutDeploy());
+			NamedCommands.registerCommand("flipoutDeploy", flipoutDeploy().withTimeout(8));
 			
 			//autos!! (only one works)
 				m_chooser.addOption("Shoot", Shoot);
 				m_chooser.addOption("ShootFar", ShootFar);
 				m_chooser.addOption("LSNS", m_drivetrain.getAutonomousCommand("LSNS"));
+				m_chooser.addOption("RSNS", m_drivetrain.getAutonomousCommand("RSNS"));
 				m_chooser.addOption("test", m_drivetrain.getAutonomousCommand("test"));
+				m_chooser.addOption("middleshoot",m_drivetrain.getAutonomousCommand("MiddleShootAuto"));
+				m_chooser.addOption("DoubleDipLeftTrench", m_drivetrain.getAutonomousCommand("DoubleDipLeft"));
 
 			new EventTrigger("intakeRollers")
 			.whileTrue(new RunCommand(
@@ -134,6 +156,12 @@ public class RobotContainer {
 			new RunCommand(() -> m_drivetrain.XWheels(), m_drivetrain)
 		);
 
+		new JoystickButton(m_operatorController.getHID(), ControllerConstants.k_Start)
+    	.whileTrue(
+			new InstantCommand(() -> m_drivetrain.XWheels(), m_drivetrain)
+		);
+
+
 		// intake wheels
 		new Trigger(() -> m_driverController.getRawAxis(ControllerConstants.k_rightTrigger) > 0.05)
 		.whileTrue(
@@ -164,6 +192,12 @@ public class RobotContainer {
 			new ZeroIntakeFlipoutCommand(m_intakeFlipoutSubsystem)
 		);
 
+		// new Trigger(() -> m_driverController.getRawAxis(ControllerConstants.k_leftTrigger) > 0.05)
+		// .whileTrue(
+		// 	new RevAndShootCommand(m_shooterSubsystem, m_indexSubsystem)
+		// );
+
+
 		//BACKUP FLIPOUT MANUAL ON OPERATOR CONBTROLLER
 		new JoystickButton(m_operatorController.getHID(), ControllerConstants.k_leftBumper)
 		.onTrue(
@@ -191,7 +225,7 @@ public class RobotContainer {
 		// );
 		
 
-		// indexer runs: belt floor, shooter indexer on Driver controller
+		//indexer runs: belt floor, shooter indexer on Driver controller
 		new Trigger(() -> m_driverController.getRawAxis(ControllerConstants.k_leftTrigger) > 0.05)
 		.whileTrue(
 			new RunCommand(() -> m_indexSubsystem.index())
@@ -244,10 +278,10 @@ public class RobotContainer {
 	//for shooting the second time
 	public SequentialCommandGroup shootCommandGroup() {
 		return new SequentialCommandGroup(
-		new ShootForSecsCommand(m_shooterSubsystem, 0.5),
+		new ShootFarForSecsCommand(m_shooterSubsystem, 0.5),
 		new ParallelCommandGroup(
-			new ShootForSecsCommand(m_shooterSubsystem, 5),
-			new IndexForSecsCommand(m_indexSubsystem,5))
+			new ShootForSecsCommand(m_shooterSubsystem, 3),
+			new IndexForSecsCommand(m_indexSubsystem,3))
 		);
 	}
 	public SequentialCommandGroup flipoutDeploy() {
@@ -262,19 +296,16 @@ public class RobotContainer {
 		new ShootForSecsCommand(m_shooterSubsystem, 1),
 		new ParallelCommandGroup(
 			new ShootForSecsCommand(m_shooterSubsystem, 5),
-			new IndexForSecsCommand(m_indexSubsystem,5)),
-		new ZeroIntakeFlipoutCommand(m_intakeFlipoutSubsystem),
-		new SetIntakeFlipoutCommand(m_intakeFlipoutSubsystem, "INTAKE")
+			new IndexForSecsCommand(m_indexSubsystem,5))
 	);
 
 	SequentialCommandGroup ShootFar = new SequentialCommandGroup(
 		new ShootFarForSecsCommand(m_shooterSubsystem, 0.5),
 		new ParallelCommandGroup(
 			new ShootFarForSecsCommand(m_shooterSubsystem, 3),
-			new IndexForSecsCommand(m_indexSubsystem,3)),
-		new ZeroIntakeFlipoutCommand(m_intakeFlipoutSubsystem),
-		new SetIntakeFlipoutCommand(m_intakeFlipoutSubsystem, "INTAKE")
+			new IndexForSecsCommand(m_indexSubsystem,3))
 	);
+
 
 
 

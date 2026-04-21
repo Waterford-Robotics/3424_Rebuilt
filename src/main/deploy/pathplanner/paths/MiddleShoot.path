@@ -3,37 +3,32 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 13.665420827389443,
-        "y": 6.085777460770328
+        "x": 13.031426533523536,
+        "y": 4.028530670470756
       },
       "prevControl": null,
       "nextControl": {
-        "x": 13.829153461993902,
-        "y": 5.8968551900728725
+        "x": 14.031426533523538,
+        "y": 4.028530670470756
       },
       "isLocked": false,
-      "linkedName": "RS"
+      "linkedName": "MiddleStart"
     },
     {
       "anchor": {
-        "x": 15.82295373665481,
-        "y": 2.146761565836299
+        "x": 14.364108416547788,
+        "y": 4.028530670470756
       },
       "prevControl": {
-        "x": 14.82295373665481,
-        "y": 2.146761565836299
+        "x": 13.364108416547788,
+        "y": 4.028530670470756
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Depot"
+      "linkedName": "MiddleShoot"
     }
   ],
-  "rotationTargets": [
-    {
-      "waypointRelativePos": 0.14440993788819864,
-      "rotationDegrees": 0.0
-    }
-  ],
+  "rotationTargets": [],
   "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [],
@@ -47,13 +42,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 0.0
+    "rotation": 180.0
   },
   "reversed": false,
   "folder": null,
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -131.98721249581664
+    "rotation": 180.0
   },
   "useDefaultConstraints": true
 }
