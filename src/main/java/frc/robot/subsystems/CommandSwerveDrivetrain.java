@@ -368,8 +368,8 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
     
     // Function to X Wheels
     private final SwerveRequest.SwerveDriveBrake brake = new SwerveRequest.SwerveDriveBrake();
-    public void XWheels() {
-        this.applyRequest(() -> brake);
+    public Command XWheels() {
+        return applyRequest(() -> brake);
     }
 
     public Command getAutonomousCommand(String pathName) {
