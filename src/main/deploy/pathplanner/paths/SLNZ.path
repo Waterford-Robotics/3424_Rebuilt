@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 13.963009985734663,
-        "y": 2.5794008559201154
+        "x": 13.809366030092592,
+        "y": 2.2797214265046297
       },
       "prevControl": null,
       "nextControl": {
-        "x": 14.059440246778742,
-        "y": 2.276872188519546
+        "x": 13.90579629113667,
+        "y": 1.9771927591040606
       },
       "isLocked": false,
       "linkedName": "Shootleft2ndtime"
@@ -41,7 +41,7 @@
       },
       "nextControl": {
         "x": 9.397912474812202,
-        "y": 0.9871023654546992
+        "y": 0.9871023654546991
       },
       "isLocked": false,
       "linkedName": null
@@ -92,7 +92,7 @@
   "folder": null,
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 144.4623222080255
+    "rotation": 134.24320448838517
   },
   "useDefaultConstraints": true
 }
